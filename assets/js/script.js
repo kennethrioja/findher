@@ -1,24 +1,56 @@
-// Search bar functionality
-const searchInput = document.getElementById('search-input');
-const searchIcon = document.querySelector('.search-icon');
+const mainInterface = document.querySelector(".main-interface");
+const searchInput = document.getElementById("search-input");
+const searchIcon = document.querySelector(".search-icon");
+const mediaBtn1 = document.getElementById("media-btn-1");
+const mediaBtn2 = document.getElementById("media-btn-2");
+const mediaBtn3 = document.getElementById("media-btn-3");
+const mediaButtons = document.querySelectorAll(".media-btns");
+const mainMsgButton = document.getElementById("main-msg");
+const mainNbButton = document.getElementById("main-nb");
+const mainOptButton = document.getElementById("main-opt");
 
-searchInput.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    // Perform search or display "Wrong" pop-up
-    // CHANGE IMG HERE
+const returnButton = document.querySelector(".return-btn");
+
+const msgInterface = document.querySelector(".msg-interface");
+const msgBtn2 = document.getElementById("msg-btn-2");
+const msgBtn3 = document.getElementById("msg-btn-3");
+const msgBtn1 = document.getElementById("msg-btn-1");
+
+const nbInterface = document.querySelector(".nb-interface");
+const nbTrue = document.querySelector(".nb-true");
+const nbTrueList = document.querySelector(".nb-true-list");
+const nbfalse = document.querySelector(".nb-false");
+const nbFalseList = document.querySelector(".nb-false-list");
+
+const optInterface = document.querySelector(".opt-interface");
+const optHomeButton = document.getElementById("opt-btn-home");
+const optCreditsButton = document.getElementById("opt-btn-credits");
+
+// Search bar functionality
+// clicking enter in the input
+searchInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    const searchText = searchInput.value.trim();
+    console.log(searchText);
+
+    if (searchText === "1") {
+      mediaBtn1.value = "New";
+    } else {
+      searchInput.value = "";
+      searchInput.placeholder = "Wrong try again";
+    }
   }
 });
 
-searchIcon.addEventListener('click', () => {
+// clicking on the search icon
+searchIcon.addEventListener("click", () => {
   // Perform search or display "Wrong" pop-up
   // CHANGE IMG HERE
 });
 
 // Media button functionality
-const mediaButtons = document.querySelectorAll('.media-btn');
-
 mediaButtons.forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener("click", () => {
     // Display pop-up window with image and audio
     // CHANGE IMG HERE
     // CHANGE AUDIO HERE
@@ -26,33 +58,25 @@ mediaButtons.forEach((button) => {
 });
 
 // Apps button functionality
-const appsMsgButton = document.getElementById('apps-msg');
-const appsNotebookButton = document.getElementById('apps-notebook');
-const appsOptionsButton = document.getElementById('apps-options');
-const mainInterface = document.querySelector('.interface');
-const msgInterface = document.querySelector('.msg');
-const notebookInterface = document.querySelector('.notebook');
-const optionsInterface = document.querySelector('.options');
-const returnButton = document.querySelector('.return-btn');
 
-appsMsgButton.addEventListener('click', () => {
-  mainInterface.style.display = 'none';
-  msgInterface.style.display = 'block';
+appsMsgButton.addEventListener("click", () => {
+  mainInterface.style.display = "none";
+  msgInterface.style.display = "block";
 });
 
-appsNotebookButton.addEventListener('click', () => {
-  mainInterface.style.display = 'none';
-  notebookInterface.style.display = 'block';
+appsNotebookButton.addEventListener("click", () => {
+  mainInterface.style.display = "none";
+  notebookInterface.style.display = "block";
 });
 
-appsOptionsButton.addEventListener('click', () => {
-  mainInterface.style.display = 'none';
-  optionsInterface.style.display = 'block';
+appsOptionsButton.addEventListener("click", () => {
+  mainInterface.style.display = "none";
+  optionsInterface.style.display = "block";
 });
 
-returnButton.addEventListener('click', () => {
-  mainInterface.style.display = 'flex';
-  msgInterface.style.display = 'none';
-  notebookInterface.style.display = 'none';
-  optionsInterface.style.display = 'none';
+returnButton.addEventListener("click", () => {
+  mainInterface.style.display = "flex";
+  msgInterface.style.display = "none";
+  notebookInterface.style.display = "none";
+  optionsInterface.style.display = "none";
 });

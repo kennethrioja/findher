@@ -1,33 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
-  <script src="./assets/js/script.js"></script>
-</head>
-<body>
-  <div class="header">
-    <div class="network-icon"></div>
-    <div class="wifi-icon"></div>
-    <div class="time"></div>
-    <div class="battery-icon"></div>
-  </div>
-  <div class="main">
+  <head>
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <div class="header">
+      <div class="network-icon">
+        <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+      </div>
+      <div class="wifi-icon">
+        <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+      </div>
+      <div class="time">09:42</div>
+      <div class="battery-icon">
+        <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+      </div>
+    </div>
+
     <div class="interface">
-      <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Search">
-        <div class="search-icon"></div>
+
+      <!-- main interface -->
+      <div class="main-interface">
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Search" autocapitalize="none" autocomplete="off"/>
+          <div class="search-icon">
+            <img src="./assets/icons/search.png" alt="search icon" width="20px"/>
+          </div>
+        </div>
+        <div class="media">
+          <button class="media-btn" id="media-btn-1">EmptyMedia1</button>
+          <button class="media-btn" id="media-btn-2">EmptyMedia2</button>
+          <button class="media-btn" id="media-btn-3">EmptyMedia3</button>
+        </div>
+        <div class="footer">
+          <button class="main-btn" id="main-msg">Msg</button>
+          <button class="main-btn" id="main-nb">Nb</button>
+          <button class="main-btn" id="main-opt">Opt</button>
+        </div>
       </div>
-      <div class="media">
-        <button class="media-btn" id="media-btn-1"></button>
-        <button class="media-btn" id="media-btn-2"></button>
-        <button class="media-btn" id="media-btn-3"></button>
+
+      <!-- msg interface -->
+      <div class="msg-interface">
+        <button class="return-btn">Return</button>
+        <h1>Messenger</h1>
+        <div class="msgs">
+          <button class="msg-btn" id="msg-btn-1">EmptyMsg1</button>
+          <button class="msg-btn" id="msg-btn-2">EmptyMsg2</button>
+          <button class="msg-btn" id="msg-btn-3">EmptyMsg3</button>
+        </div>
       </div>
+
+      <!-- notebook interface -->
+      <div class="nb-interface">
+        <button class="return-btn">Return</button>
+        <h1>Notebook</h1>
+        <div class="nb-true">
+          <p>Correct keywords</p>
+          <div class="nb-true-list"></div>
+        </div>
+        <div class="nb-false">
+          <p>False keywords</p>
+          <div class="nb-false-list"></div>
+        </div>
+      </div>
+
+      <!-- option interface -->
+      <div class="opt-interface">
+        <button class="return-btn">Return</button>
+        <h1>Options</h1>
+        <button class="opt-btn" id="opt-btn-home">Home</button>
+        <button class="opt-btn" id="opt-btn-credits">Credits</button>
+      </div>
+
     </div>
-    <div class="footer">
-      <button class="apps-btn" id="apps-msg"></button>
-      <button class="apps-btn" id="apps-notebook"></button>
-      <button class="apps-btn" id="apps-options"></button>
-    </div>
-  </div>
-</body>
+
+  </body>
+  <script src="./assets/js/script.js"></script>
 </html>

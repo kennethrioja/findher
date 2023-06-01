@@ -2,7 +2,9 @@
 
 ## 31.05.2023 : Prompting et test
 
-2h sur le prompting et 1h de test
+3h : 
+- 2h sur le prompting
+- 1h de test
 
 Voici ce qui a été demandé à ChatGPT : 
 
@@ -25,11 +27,18 @@ The user's possible interactions on this page are :
 - Clicking on the button of id "apps-options" changes the main interface (class = "main") to an other interface (class = "options"). This "options" interface displays on the top left the same return button than the previous "msg" interface. On the rest of the screen, there are 2 buttons (of class = "options-btn" and respectively id = "options-home", id = "options-credits").`
 ```
 
-Le résultat se trouve au premier commit du repo : 
+Le résultat se trouve au premier commit du repo : https://github.com/kennethrioja/findher/commit/ea299305432fd4cf025686c543d71e75d422ec5b
 
 A faire ensuite : 
 
 * Meca primaire, secondaire et gestion erreur
 
-## .06.2023 : 
+## 01.06.2023 : 
+
+h :
+
+
+Attributions : 
+Search icon : <a href="https://www.flaticon.com/free-icons/loupe" title="loupe icons">Loupe icons created by Fuzzee - Flaticon</a>
+Wifi icon : <a href="https://www.flaticon.com/free-icons/wifi-connection" title="wifi connection icons">Wifi connection icons created by Freepik - Flaticon</a>
 
