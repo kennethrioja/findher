@@ -30,17 +30,23 @@ const optCreditsButton = document.getElementById("opt-btn-credits");
 // clicking enter in the input
 searchInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
-    const searchText = searchInput.value.trim();
+    const searchText = searchInput.value.trim(); // change to keyword
     console.log(searchText);
 
-    if (searchText === "1") {
-      mediaBtn1.value = "New";
+    if (searchText === "1") { // create findSearchText()
+      mediaBtn1.innerHTML = "New";
     } else {
       searchInput.value = "";
       searchInput.placeholder = "Wrong try again";
     }
   }
 });
+
+// main();
+// parseKeyword();
+// keywordIsTrue();
+// changeMediaBtn();
+// toNotebook();
 
 // clicking on the search icon
 searchIcon.addEventListener("click", () => {
