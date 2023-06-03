@@ -1,0 +1,20 @@
+{
+    "data": [
+      {
+        "code": "01",
+        "keywords": ["happy","baby","john"],
+        "seen": false
+      },
+      {
+        "code": "02",
+        "keywords": ["mail","brain","alice"],
+        "seen": false
+      },
+      {
+        "code": "test",
+        "keywords": ["mail","john","alice"],
+        "seen": false
+      }
+    ]
+  }
+  

@@ -33,9 +33,10 @@ A faire ensuite :
 
 * Meca primaire, secondaire et gestion erreur
 
-## 01.06.2023 : 
+## 03.06.2023 : 
 
-h :
+1h : introduit le JSON et how to use it
+3h : comment chercher dans le JSON, search word in json works, idée pour implémentation de notebook, commence à changer le media
 
 
 Attributions : 

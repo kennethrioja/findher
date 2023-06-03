@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  background-color: rgb(87, 105, 106);
 }
 
 .header {
@@ -14,9 +15,7 @@ body {
   padding: 0 10px;
 }
 
-.network-icon,
-.wifi-icon,
-.battery-icon {
+.header-icon {
   width: 20px;
   height: 20px;
 }
