@@ -1,113 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
+    <link rel='stylesheet' type='text/css' href='./assets/css/styles.css' />
   </head>
   <body>
     <!-- header -->
-    <div class="header">
-      <div class="header-icon" id="network">
-        <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+    <div class='header'>
+      <div class='header-icon' id='network'>
+        <img src='./assets/icons/wifi.png' alt="wifi icon" width='20px' />
       </div>
-      <div class="header-icon" id="wifi">
-        <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+      <div class='header-icon' id='wifi'>
+        <img src='./assets/icons/wifi.png' alt="wifi icon" width='20px' />
       </div>
-      <div id="clock"></div>
-      <div class="header-icon" id="battery">
-        <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+      <div id='clock'></div>
+      <div class='header-icon' id='battery'>
+        <img src='./assets/icons/wifi.png' alt="wifi icon" width='20px' />
       </div>
     </div>
 
-    <div class="interface">
+    <div class='interface'>
       <!-- main interface -->
-      <div class="main-interface">
-        <div class="search-bar">
-          <input
-            type="text"
-            id="search-input"
-            placeholder="Search"
-            autocapitalize="none"
-            autocomplete="off"
-            autofocus
-          />
-          <div class="search-icon">
-            <img
-              src="./assets/icons/search.png"
-              alt="search icon"
-              width="20px"
-            />
+      <div class='main-interface'>
+        <div class='search-bar'>
+          <input type='text' id='search-input' placeholder='Search' autocapitalize='none' autocomplete='off' autofocus />
+          <div class='search-icon'>
+            <img src='./assets/icons/search.png' alt="search icon" width='20px' />
           </div>
         </div>
-        <div class="media">
-          <div class="button">
-            <button class="media-btn" id="media-btn-1">EmptyMedia1</button>
-            <span class="dot" id="dot1"></span>
+        <div class='media'>
+          <div class='button'>
+            <button class='media-btn' id='media-btn-1'>EmptyMedia1</button>
+            <span class='dot' id='dot1'></span>
           </div>
-          <div class="button">
-            <button class="media-btn" id="media-btn-2">EmptyMedia2</button>
-            <span class="dot" id="dot2"></span>
+          <div class='button'>
+            <button class='media-btn' id='media-btn-2'>EmptyMedia2</button>
+            <span class='dot' id='dot2'></span>
         </div>
-        <div class="button">
-          <button class="media-btn" id="media-btn-3">EmptyMedia3</button>
-          <span class="dot" id="dot3"></span>
+        <div class='button'>
+          <button class='media-btn' id='media-btn-3'>EmptyMedia3</button>
+          <span class='dot' id='dot3'></span>
         </div>
-        <div class="footer">
-          <button class="main-btn" id="main-msg">Msg</button>
-          <button class="main-btn" id="main-nb">Nb</button>
-          <button class="main-btn" id="main-opt">Opt</button>
+        <div class='footer'>
+          <button class='main-btn' id='main-msg'>Msg</button>
+          <button class='main-btn' id='main-nb'>Nb</button>
+          <button class='main-btn' id='main-opt'>Opt</button>
         </div>
       </div>
 
       <!-- popup -->
-      <div id="popup" class="popup">
-        <div id="image-container" class="image-container">
-          <img src="./assets/media/img/" alt="image"/>
-          <audio id="audio-player" controls>
-            <source src="./assets/media/audio/" type="audio/mp3" />
+      <div id='popup' class='popup'>
+        <div id='image-container' class='image-container'>
+          <img id='image'/> 
+          <audio id='audio-player' controls>
+          <!-- to remove when coded -->
+            <source id='audio' type='audio/mp3' />
           </audio>
-          <button id="close-button">Close</button>
+          <button id='close-button'>Close</button>
         </div>
-        <div id="video-container" class="video-container">
-          <video id="video-player" width="320" height="240" controls>
-            <source src="./assets/media/video/" type="video/mp4" />
+        <div id='video-container' class='video-container'>
+          <video id='video-player' width='320' height='240' controls>
+          <!-- to remove when coded -->
+            <source src='./assets/media/video/' type='video/mp4' />
           </video>
-          <button id="close-button">Close</button>
+          <button id='close-button'>Close</button>
         </div>
       </div>
 
       <!-- msg interface -->
-      <div class="msg-interface">
-        <button class="return-btn">Return</button>
+      <div class='msg-interface'>
+        <button class='return-btn'>Return</button>
         <h1>Messenger</h1>
-        <div class="msgs">
-          <button class="msg-btn" id="msg-btn-1">EmptyMsg1</button>
-          <button class="msg-btn" id="msg-btn-2">EmptyMsg2</button>
-          <button class="msg-btn" id="msg-btn-3">EmptyMsg3</button>
+        <div class='msgs'>
+          <button class='msg-btn' id='msg-btn-1'>EmptyMsg1</button>
+          <button class='msg-btn' id='msg-btn-2'>EmptyMsg2</button>
+          <button class='msg-btn' id='msg-btn-3'>EmptyMsg3</button>
         </div>
       </div>
 
       <!-- notebook interface -->
-      <div class="nb-interface">
-        <button class="return-btn">Return</button>
+      <div class='nb-interface'>
+        <button class='return-btn'>Return</button>
         <h1>Notebook</h1>
-        <div class="nb-true">
+        <div class='nb-true'>
           <p>Correct keywords</p>
-          <div class="nb-true-list"></div>
+          <div class='nb-true-list'></div>
         </div>
-        <div class="nb-false">
+        <div class='nb-false'>
           <p>False keywords</p>
-          <div class="nb-false-list"></div>
+          <div class='nb-false-list'></div>
         </div>
       </div>
 
       <!-- option interface -->
-      <div class="opt-interface">
-        <button class="return-btn">Return</button>
+      <div class='opt-interface'>
+        <button class='return-btn'>Return</button>
         <h1>Options</h1>
-        <button class="opt-btn" id="opt-btn-home">Home</button>
-        <button class="opt-btn" id="opt-btn-credits">Credits</button>
+        <button class='opt-btn' id='opt-btn-home'>Home</button>
+        <button class='opt-btn' id='opt-btn-credits'>Credits</button>
       </div>
     </div>
   </body>
-  <script type="module" src="./assets/js/script.js"></script>
+  <script type='module' src='./assets/js/script.js'></script>
 </html>

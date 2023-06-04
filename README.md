@@ -51,7 +51,7 @@ A faire ensuite :
 1h : downloaded all media and figuring out how to display them with each object/criteria in json file
 1h : created 'Json' class, pretty happy about it
 1h : create and handle red dot
-
+1h : get right image extension to be able to show correct image
 
 
 

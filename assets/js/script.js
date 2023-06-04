@@ -83,14 +83,14 @@ class Json {
     }
 
     // get media code from the expected occurrence (n)
-    getMediaCode(searchWord, n) {
+    getMediaCode(searchWord, n, prefix) {
         let loop = -1;
         for (let i = 0; i < this.json.data.length; i++) {
             for (let j = 0; j < this.json.data[i].keywords.length; j++) {
                 if (searchWord === this.json.data[i].keywords[j]) {
                     loop++;
                     if (loop === n) {
-                        return (' '  + this.json.data[i].code);
+                        return (prefix  + this.json.data[i].code);
                     }
                 }
             }
@@ -113,6 +113,19 @@ class Json {
             }
         }
         document.getElementById('dot' + (n + 1)).style.backgroundColor = 'transparent';
+    }
+
+    // mark as 'true' the media that has been seen
+    isSeen(mediaCode, mediaNum) {
+        for (let i = 0; i < this.json.data.length; i++) {
+            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
+                if (mediaCode === this.json.data[i].code) {
+                    this.json.data[i].seen = true;
+                    document.getElementById('dot' + mediaNum).style.backgroundColor = 'transparent';
+                }
+            }
+        }
+        return (0);
     }
 }
 // instanciate json
@@ -209,18 +222,40 @@ closePopup(popup);
 
 // listener function : display video container only
 function displayVideoButtonOnClick() {
-    popup.style.display = 'block';
+    popup.style.display = 'block'; // show popup
     // change vid path to code
     // autoplay or not
     videoContainer.style.display = 'block';
     imageContainer.style.display = 'none';
 }
 
+function getImgSrcSuffix(img, name) { // https://stackoverflow.com/questions/32772218/how-to-set-an-img-src-without-knowing-the-file-extension-in-javascript
+    img.src = name + '.png';
+    img.onerror = function() {
+        img.src = name + '.jpg';
+        img.onerror = function() {
+            img.src = name + '.gif';
+        };
+    };
+} // this gives a lot of errors, try to make it softer
+
 // listener function : display image container only
-function displayImageButtonOnClick() {
+function displayImageButtonOnClick(event) {
     popup.style.display = 'block';
-    // change vid path to code
-    // autoplay or not
+    // change img path to code
+    const img = document.getElementById('image') // get image DOM
+    const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
+    const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
+    const prefixSrc = './assets/media/img/' + mediaCode // write src without file extension
+    getImgSrcSuffix(img, prefixSrc);
+    console.log('ignore errors with either .png or .jpg, img has been found : ' + img.src);
+    json.isSeen(mediaCode, mediaNum);
+    // TODO : add alt
+    img.style.height = '400px';
+    img.style.width = 'auto'
+    // autoplay audio or not
+    const audio = document.getElementById('audio');
+    audio.src =
     imageContainer.style.display = 'block';
     videoContainer.style.display = 'none';
 }
@@ -231,6 +266,7 @@ function mediaBtnHandleListener(flag, searchWord, i) {
         if (type === 'image' || type === 'gif') {
             // begin listener onclick for image
             mediaBtnArray[i].addEventListener('click', displayImageButtonOnClick, { passive : false});
+            mediaBtnArray[i].id
         } else if (type === 'video') {
             // begin listener onclick for video
             mediaBtnArray[i].addEventListener('click', displayVideoButtonOnClick, { passive : false});
@@ -242,27 +278,20 @@ function mediaBtnHandleListener(flag, searchWord, i) {
     }
 }
 
-function handleRedDot(searchWord, i, flag) {
-    const code = null;
-    if (flag === 'none')
-    return (' ' + code);
-}
-
 function mediaBtnBehavior(searchWord) {
     // changes media accordingly
-// TO DO : WHEN NEW PUT '*new'. addNewToMedia()
-    let i = -1;
+     let i = -1;
     while (++i < mediaBtnArray.length) { // for each media btn
         if (i < json.getOccurrences(searchWord)) { // for the media matching the searchword and by order
             mediaBtnHandleListener('add', searchWord, i); // add listeners when clicking media-btn-(i+1)
-            mediaBtnArray[i].id += json.getMediaCode(searchWord, i); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
-            json.handleRedDot(searchWord, i); // display red dot if never seen media
+            mediaBtnArray[i].id += json.getMediaCode(searchWord, i, ' '); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
             mediaBtnArray[i].innerHTML = searchWord + (i + 1) + 'New'; // add 'new' icon
+            json.handleRedDot(searchWord, i); // display red dot if never seen media
         } else {
-            mediaBtnArray[i].innerHTML = 'EmptyMedia' + (i + 1); // change this to an empty like container (css)
-            mediaBtnArray[i].id = 'media-btn-' + (i + 1); // get back to normal id
-            json.handleRedDot(searchWord, i); // no red dot on empty media
             mediaBtnHandleListener('remove', searchWord, i)
+            mediaBtnArray[i].id = 'media-btn-' + (i + 1); // get back to normal id
+            mediaBtnArray[i].innerHTML = 'EmptyMedia' + (i + 1); // change this to an empty like container (css)
+            json.handleRedDot(searchWord, i); // no red dot on empty media
         }
     }
     return (i);
