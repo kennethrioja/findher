@@ -1,4 +1,4 @@
-import json from '../json/dictionary.json' assert {type: 'json'};
+import localJson from '../json/dictionary.json' assert {type: 'json'};
 
 // DOM
 var searchInput = document.getElementById('search-input');
@@ -42,6 +42,82 @@ var optInterface = document.querySelector('.opt-interface');
 var optHomeButton = document.getElementById('opt-btn-home');
 var optCreditsButton = document.getElementById('opt-btn-credits');
 
+// #############
+// ## CLASSES ##
+// #############
+
+class Json {
+    json;
+
+    constructor(json) {
+        this.json = json;
+    }
+
+    // count occurrences of searchWord in json
+    getOccurrences(searchWord) {
+        let n = 0;
+        for (let i = 0; i < this.json.data.length; i++) {
+            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
+                if (searchWord === this.json.data[i].keywords[j] && this.json.data[i].keywords[0]) { // GESTION ERREUR : what if jon au lieu de john ?
+                    n++;
+                }
+            }
+        }
+        return (n);
+    }
+
+    // get media type from the expected occurrence (occ)
+    getMediaType(searchWord, occ) {
+        let loop = -1;
+        for (let i = 0; i < this.json.data.length; i++) {
+            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
+                if (searchWord === this.json.data[i].keywords[j]) {
+                    loop++;
+                    if (loop === occ) {
+                        return (this.json.data[i].type);
+                    }
+                }
+            }
+        }
+        return (null);
+    }
+
+    // get media code from the expected occurrence (n)
+    getMediaCode(searchWord, n) {
+        let loop = -1;
+        for (let i = 0; i < this.json.data.length; i++) {
+            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
+                if (searchWord === this.json.data[i].keywords[j]) {
+                    loop++;
+                    if (loop === n) {
+                        return (' '  + this.json.data[i].code);
+                    }
+                }
+            }
+        }
+        return (null);
+    }
+
+    // show red dot / notification badge when never seen, else hide it
+    handleRedDot(searchWord, n) {
+        let loop = -1;
+        for (let i = 0; i < this.json.data.length; i++) {
+            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
+                if (searchWord === this.json.data[i].keywords[j]) {
+                    loop++;
+                    if (loop === n && this.json.data[i].seen === false) {
+                        document.getElementById('dot' + (n + 1)).style.backgroundColor = '#fa3e3e';
+                        return ;
+                    }
+                }
+            }
+        }
+        document.getElementById('dot' + (n + 1)).style.backgroundColor = 'transparent';
+    }
+}
+// instanciate json
+var json = new Json(localJson);
+
 class Notebook {
     notebook;
 
@@ -64,6 +140,44 @@ class Notebook {
 // ## UTILS ##
 // ###########
 
+// browser detection : https://stackoverflow.com/questions/2400935/browser-detection-in-javascript
+navigator.saysWho = (() => { 
+    const { userAgent } = navigator
+    let match = userAgent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []
+    let temp
+  
+    if (/trident/i.test(match[1])) {
+      temp = /\brv[ :]+(\d+)/g.exec(userAgent) || []
+  
+      return `IE ${temp[1] || ''}`
+    }
+  
+    if (match[1] === 'Chrome') {
+      temp = userAgent.match(/\b(OPR|Edge)\/(\d+)/)
+  
+      if (temp !== null) {
+        return temp.slice(1).join(' ').replace('OPR', 'Opera')
+      }
+  
+      temp = userAgent.match(/\b(Edg)\/(\d+)/)
+  
+      if (temp !== null) {
+        return temp.slice(1).join(' ').replace('Edg', 'Edge (Chromium)')
+      }
+    }
+  
+    match = match[2] ? [ match[1], match[2] ] : [ navigator.appName, navigator.appVersion, '-?' ]
+    temp = userAgent.match(/version\/(\d+)/i)
+  
+    if (temp !== null) {
+      match.splice(1, 1, temp[1])
+    }
+  
+    return match.join(' ')
+})()
+console.log(navigator.saysWho);
+
+
 // set clock to current time of player : https://stackoverflow.com/questions/28415178/how-do-you-show-the-current-time-on-a-web-page
 (function () {
     var clockElement = document.getElementById('clock');
@@ -74,19 +188,6 @@ class Notebook {
         updateClock( clockElement );
     }, 1000);
 }());
-
-// count occurrences of searchWord in Json
-function countOccurrences(searchWord) {
-    let n = 0;
-    for (let i = 0; i < json.data.length; i++) {
-        for (let j = 0; j < json.data[i].keywords.length; j++) {
-            if (searchWord === json.data[i].keywords[j] && json.data[i].keywords[0]) { // GESTION ERREUR : what if jon au lieu de john ?
-                n++;
-            }
-        }
-    }
-    return (n);
-}
 
 // close popup functionality
 function closePopup(element) {
@@ -124,23 +225,8 @@ function displayImageButtonOnClick() {
     videoContainer.style.display = 'none';
 }
 
-function getMediaType(searchWord, n) {
-    let loop = 0;
-    for (let i = 0; i < json.data.length; i++) {
-        for (let j = 0; j < json.data[i].keywords.length; j++) {
-            if (searchWord === json.data[i].keywords[j]) {
-                loop++;
-                if (loop === n + 1) {
-                    return (json.data[i].type)
-                }
-            }
-        }
-    }
-    return (null);
-}
-
 function mediaBtnHandleListener(flag, searchWord, i) {
-    const type = getMediaType(searchWord, i);
+    const type = json.getMediaType(searchWord, i);
     if (flag === 'add') {
         if (type === 'image' || type === 'gif') {
             // begin listener onclick for image
@@ -162,24 +248,20 @@ function handleRedDot(searchWord, i, flag) {
     return (' ' + code);
 }
 
-function getMediaCode(searchWord, i) {
-    const code = null;
-    return (' ' + code);
-}
-
 function mediaBtnBehavior(searchWord) {
     // changes media accordingly
 // TO DO : WHEN NEW PUT '*new'. addNewToMedia()
     let i = -1;
     while (++i < mediaBtnArray.length) { // for each media btn
-        if (i < countOccurrences(searchWord)) { // for the media matching the searchword and by order
+        if (i < json.getOccurrences(searchWord)) { // for the media matching the searchword and by order
             mediaBtnHandleListener('add', searchWord, i); // add listeners when clicking media-btn-(i+1)
-            // mediaBtnArray[i].id += getMediaCode(searchWord, i); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
-            // handleRedDot(); // display red dot if media never seen
+            mediaBtnArray[i].id += json.getMediaCode(searchWord, i); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
+            json.handleRedDot(searchWord, i); // display red dot if never seen media
             mediaBtnArray[i].innerHTML = searchWord + (i + 1) + 'New'; // add 'new' icon
         } else {
             mediaBtnArray[i].innerHTML = 'EmptyMedia' + (i + 1); // change this to an empty like container (css)
             mediaBtnArray[i].id = 'media-btn-' + (i + 1); // get back to normal id
+            json.handleRedDot(searchWord, i); // no red dot on empty media
             mediaBtnHandleListener('remove', searchWord, i)
         }
     }
@@ -188,7 +270,7 @@ function mediaBtnBehavior(searchWord) {
 
 function isFound(searchWord) {
     // if strictly more than 0 occurrences of searchWord in json, then true
-    if (countOccurrences(searchWord) > 0) {
+    if (json.getOccurrences(searchWord) > 0) {
         return (true);
     }
     return (false);
@@ -196,7 +278,6 @@ function isFound(searchWord) {
 
 // main
 function main(searchWord) {
-    // CHANGE ALL ID media-btn-1 to normal !cf . change media
     if (isFound(searchWord)) {
         // NOTEBOOK : KEEP INPUT. notebook.trueWord(searchWord);
         mediaBtnBehavior(searchWord);

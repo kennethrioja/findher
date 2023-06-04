@@ -58,10 +58,17 @@ body {
 
 .media {
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   align-items: center;
 }
 
+.button {
+    color: white;
+    display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+    position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+    padding: 2px 5px; /* Add some padding so it looks nice */
+  }
+  
 .media-btn {
   width: 100%;
   height: 40px;
@@ -69,6 +76,17 @@ body {
   border-radius: 20px;
   margin-bottom: 10px;
 }
+
+.dot { /* https://stackoverflow.com/questions/5747863/easiest-css-for-red-notification-badge-with-count */
+    height: 15px;
+    width: 15px;
+    background-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute; /* Position the badge within the relatively positioned button*/
+    top: 0;
+    right: 0;
+  }
 
 .popup {
   display: none;

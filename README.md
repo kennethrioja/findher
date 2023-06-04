@@ -1,4 +1,8 @@
-# Journal de conception
+# Journal de developpement
+
+## 26.04.2023 : 
+
+3h : stylo-papier, variables à avoir, fonctions à implémenter, questions avant de commencer, to-do-list
 
 ## 31.05.2023 : Prompting et test
 
@@ -41,9 +45,12 @@ A faire ensuite :
 ## 04.06.2023 : 
 
 2h : change media button label
-2h : media button behavior
+2h : begin media button behavior
 2h : handle media types to be displayed
 15min : check final json
+1h : downloaded all media and figuring out how to display them with each object/criteria in json file
+1h : created 'Json' class, pretty happy about it
+1h : create and handle red dot
 
 
 
