@@ -38,6 +38,15 @@ A faire ensuite :
 1h : introduit le JSON et how to use it
 3h : comment chercher dans le JSON, search word in json works, idée pour implémentation de notebook, commence à changer le media
 
+## 04.06.2023 : 
+
+2h : change media button label
+2h : media button behavior
+2h : handle media types to be displayed
+15min : check final json
+
+
+
 
 Attributions : 
 Search icon : <a href="https://www.flaticon.com/free-icons/loupe" title="loupe icons">Loupe icons created by Fuzzee - Flaticon</a>
