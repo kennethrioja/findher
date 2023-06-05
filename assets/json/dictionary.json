@@ -1,5 +1,4 @@
-{
-  "data": [
+[
     {
         "code": "00",
         "keywords": ["begin"],
@@ -451,5 +450,4 @@
       "type": "video",
       "autoplay": false
     }
-  ]
-}
+]

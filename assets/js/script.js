@@ -52,9 +52,9 @@ class Json {
     // count occurrences of searchWord in json
     getOccurrences(searchWord) {
         let n = 0;
-        for (let i = 0; i < this.json.data.length; i++) {
-            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
-                if (searchWord === this.json.data[i].keywords[j] && this.json.data[i].keywords[0]) { // GESTION ERREUR : what if jon au lieu de john ?
+        for (let i = 0; i < this.json.length; i++) {
+            for (let j = 0; j < this.json[i].keywords.length; j++) {
+                if (searchWord === this.json[i].keywords[j] && this.json[i].keywords[0]) { // GESTION ERREUR : what if jon au lieu de john ?
                     n++;
                 }
             }
@@ -65,12 +65,12 @@ class Json {
     // get media type from the expected occurrence (occ)
     getMediaType(searchWord, occ) {
         let loop = -1;
-        for (let i = 0; i < this.json.data.length; i++) {
-            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
-                if (searchWord === this.json.data[i].keywords[j]) {
+        for (let i = 0; i < this.json.length; i++) {
+            for (let j = 0; j < this.json[i].keywords.length; j++) {
+                if (searchWord === this.json[i].keywords[j]) {
                     loop++;
                     if (loop === occ) {
-                        return (this.json.data[i].type);
+                        return (this.json[i].type);
                     }
                 }
             }
@@ -81,12 +81,12 @@ class Json {
     // get media code from the expected occurrence (n)
     getMediaCode(searchWord, n, prefix) {
         let loop = -1;
-        for (let i = 0; i < this.json.data.length; i++) {
-            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
-                if (searchWord === this.json.data[i].keywords[j]) {
+        for (let i = 0; i < this.json.length; i++) {
+            for (let j = 0; j < this.json[i].keywords.length; j++) {
+                if (searchWord === this.json[i].keywords[j]) {
                     loop++;
                     if (loop === n) {
-                        return (prefix  + this.json.data[i].code);
+                        return (prefix  + this.json[i].code);
                     }
                 }
             }
@@ -97,11 +97,11 @@ class Json {
     // show red dot / notification badge when never seen, else hide it
     handleRedDot(searchWord, n) {
         let loop = -1;
-        for (let i = 0; i < this.json.data.length; i++) {
-            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
-                if (searchWord === this.json.data[i].keywords[j]) {
+        for (let i = 0; i < this.json.length; i++) {
+            for (let j = 0; j < this.json[i].keywords.length; j++) {
+                if (searchWord === this.json[i].keywords[j]) {
                     loop++;
-                    if (loop === n && this.json.data[i].seen === false) {
+                    if (loop === n && this.json[i].seen === false) {
                         document.getElementById('dot' + (n + 1)).style.backgroundColor = '#fa3e3e';
                         return ;
                     }
@@ -113,10 +113,11 @@ class Json {
 
     // mark as 'true' the media that has been seen and hide dot
     isSeen(mediaCode, mediaNum) {
-        for (let i = 0; i < this.json.data.length; i++) {
-            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
-                if (mediaCode === this.json.data[i].code) {
-                    this.json.data[i].seen = true;
+        for (let i = 0; i < this.json.length; i++) {
+            for (let j = 0; j < this.json[i].keywords.length; j++) {
+                if (mediaCode === this.json[i].code) {
+                    this.json[i].seen = true;
+                    notebook.isAllSeen(mediaCode);
                     document.getElementById('dot' + mediaNum).style.backgroundColor = 'transparent';
                 }
             }
@@ -126,10 +127,10 @@ class Json {
 
     // if 'autoplay' === true, then autoplay, ha.
     isAutoplay(mediaCode, mediaNum, audioPlayer) {
-        for (let i = 0; i < this.json.data.length; i++) {
-            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
-                if (mediaCode === this.json.data[i].code
-                    && this.json.data[i].autoplay === true) {
+        for (let i = 0; i < this.json.length; i++) {
+            for (let j = 0; j < this.json[i].keywords.length; j++) {
+                if (mediaCode === this.json[i].code
+                    && this.json[i].autoplay === true) {
                     audioPlayer.play();
                 }
             }
@@ -141,22 +142,58 @@ class Json {
 var json = new Json(localJson);
 
 class Notebook {
-    notebook;
+    history;
+    maxAttempt;
 
-    constructor(notebook) {
-        this.notebook = {
-            0 : {
-                word : null,
-                attemptNumber : [],
-                true : true
-            }   
-        };
+    constructor() {
+        this.history = [];
+        this.maxAttempt = 0;
     }
 
-    addWord(searchWord) {
-        console.log(searchWord);
+    isInNotebook(searchWord) { // update maxAttempt and update attemptNumber
+        for (let i = 0; i < this.history.length; i++) {
+            if (searchWord === this.history[i].word) {
+                return (true);
+            }
+        }
+        return (false);
+    }
+
+    addEntryToHistory(searchWord, isInJson) {
+        if (!this.isInNotebook(searchWord)) { // if new entry
+            this.#addNewEntryToHistory(searchWord, isInJson);
+        } else { // else if already in entry
+            this.#addNotNewEntryToHistory(searchWord);
+        }
+        console.log(this);
+    }
+
+    #addNewEntryToHistory(searchWord, isInJson, notebook) {
+        console.log(this.isInNotebook(searchWord));
+        this.maxAttempt++;
+        let newHistory = {
+            word : searchWord,
+            attemptArray : [this.maxAttempt],
+            true : isInJson
+        };
+        this.history[this.history.length] = newHistory;
+    }
+
+    #addNotNewEntryToHistory(searchWord) {
+        for (let i = 0; i < this.history.length; i++) {
+            if (searchWord === this.history[i].word) {
+                this.maxAttempt++;
+                this.history[i].attemptArray.push(this.maxAttempt);
+            }
+        }
+    }
+
+    #isAllSeen(searchWord) { // where is the best to put this ?
+        return (null);
     }
 }
+// instanciate notebook
+var notebook = new Notebook();
 
 // ###########
 // ## UTILS ##
@@ -335,11 +372,15 @@ function isFound(searchWord) {
 
 // main
 function main(searchWord) {
-    if (isFound(searchWord)) {
+    if (isFound(searchWord)) { // can be shortened
         // NOTEBOOK : KEEP INPUT. notebook.trueWord(searchWord);
+        notebook.addEntryToHistory(searchWord, true);
+        console.log(notebook.history);
         mediaBtnBehavior(searchWord);
     } else {
         // NOTEBOOK : KEEP INPUT. notebook.falseWord(searchWord);
+        notebook.addEntryToHistory(searchWord, false);
+        console.log(notebook.history);
         searchInput.value = '';
         searchInput.placeholder = "No media found on word '" + searchWord + "', try again.";
     }
@@ -372,7 +413,8 @@ searchIcon.addEventListener('click', (event) => { // when clicking on the search
 
 mainNbButton.addEventListener('click', () => {
   mainInterface.style.display = 'none';
-  notebookInterface.style.display = 'block';
+  nbInterface.style.display = 'block';
+  returnButton.style.display = 'block';
 });
 
 // mainOptButton.addEventListener('click', () => {
