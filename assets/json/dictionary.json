@@ -382,7 +382,7 @@
     {
 
       "code": "48",
-      "keywords": "safe",
+      "keywords": ["safe"],
       "seen" : false,
       "type": "image",
       "autoplay": true

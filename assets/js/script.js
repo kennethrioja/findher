@@ -142,6 +142,9 @@ var json = new Json(localJson);
 
 class Notebook {
     history;
+        // word : searchWord,
+        // attemptArray : [this.maxAttempt],
+        // true : isInJson
     maxAttempt;
 
     constructor() {
@@ -159,16 +162,15 @@ class Notebook {
     }
 
     addEntryToHistory(searchWord, isInJson) {
+        searchWord === 'caca' ? searchWord = '💩' : null;
         if (!this.isInNotebook(searchWord)) { // if new entry
             this.#addNewEntryToHistory(searchWord, isInJson);
         } else { // else if already in entry
             this.#addNotNewEntryToHistory(searchWord);
         }
-        console.log(this);
     }
 
     #addNewEntryToHistory(searchWord, isInJson, notebook) {
-        console.log(this.isInNotebook(searchWord));
         this.maxAttempt++;
         let newHistory = {
             word : searchWord,
@@ -370,9 +372,14 @@ function isFound(searchWord) {
 }
 
 // main
-function main(searchWord) {
+function mainInterfaceFct(searchWord) {
     if (isFound(searchWord)) { // can be shortened
         // NOTEBOOK : KEEP INPUT. notebook.trueWord(searchWord);
+        // for first interaction
+        if (searchWord === 'begin') {
+            searchInput.placeholder = 'Search';
+            searchInput.value = '';
+        }
         notebook.addEntryToHistory(searchWord, true);
         console.log(notebook.history);
         mediaBtnBehavior(searchWord);
@@ -381,28 +388,64 @@ function main(searchWord) {
         notebook.addEntryToHistory(searchWord, false);
         console.log(notebook.history);
         searchInput.value = '';
-        searchInput.placeholder = "No media found on word '" + searchWord + "', try again.";
+        if (searchWord != "caca") {
+            searchInput.placeholder = "No media found on word '" + searchWord + "', try again.";
+        } else {
+            searchInput.placeholder = "CONGRATS ! You won the 'caca' badge ! English people do not understand what this means... However, it appears to be a bit smelly. Try again."; // easter egg
+        }
+            
     }
 }
 
 // Search bar functionality
 searchInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') { // when clicking enter in the input
-        main(searchInput.value.trim());
+        mainInterfaceFct(searchInput.value.trim());
     }
 });
+
 // Search icon functionality
 searchIcon.addEventListener('click', (event) => { // when clicking on the search-icon
-    main(searchInput.value.trim());
+    mainInterfaceFct(searchInput.value.trim());
 });
 
-///////////////////////////////////////////////////////////////
+function updateNotebook() {
+    let correctWords = [];
+    let wrongWords = [];
+    for (let i = 0; i < notebook.history.length; i++) {
+        if (notebook.history[i].true) {
+            correctWords.push(notebook.history[i].word + '(tries : ' + notebook.history[i].attemptArray.length + ') ');
+        } else {
+            wrongWords.push(notebook.history[i].word + '(tries : ' + notebook.history[i].attemptArray.length + ') ');
+        }
+    }
+    nbTrueList.innerHTML = correctWords;
+    nbFalseList.innerHTML = wrongWords;
+    return (false);
+}
 
-// clicking on the search icon
-// searchIcon.addEventListener('click', () => {
-//   // Perform search or display 'Wrong' pop-up
-//   // CHANGE IMG HERE
+function notebookInterface() {
+    console.log("yo");
+    // mainInterface.style.display = 'none';
+    // nbInterface.style.display = 'block';
+    // returnButton.style.display = 'block';
+    updateNotebook();
+}
+// Main notebook button functionality
+mainNbButton.addEventListener('click', () => {
+    notebookInterface();    
+});
+
+// // Return button functionality // DOES NOT WORK YET
+// returnButton.addEventListener('click', () => {
+//     console.log("yoooo");
+//     mainInterface.style.display = 'block';
+//     // msgInterface.style.display = 'none';
+//     nbInterface.style.display = 'none';
+//     // optInterface.style.display = 'none';
 // });
+
+///////////////////////////////////////////////////////////////
 
 // Apps button functionality
 // mainMsgButton.addEventListener('click', () => {
@@ -410,20 +453,7 @@ searchIcon.addEventListener('click', (event) => { // when clicking on the search
 //   msgInterface.style.display = 'block';
 // });
 
-mainNbButton.addEventListener('click', () => {
-  mainInterface.style.display = 'none';
-  nbInterface.style.display = 'block';
-  returnButton.style.display = 'block';
-});
-
 // mainOptButton.addEventListener('click', () => {
 //   mainInterface.style.display = 'none';
 //   optionsInterface.style.display = 'block';
-// });
-
-// returnButton.addEventListener('click', () => {
-//   mainInterface.style.display = 'flex';
-//   msgInterface.style.display = 'none';
-//   notebookInterface.style.display = 'none';
-//   optionsInterface.style.display = 'none';
 // });

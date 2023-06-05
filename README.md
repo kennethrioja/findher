@@ -65,9 +65,13 @@ A faire ensuite :
 - 30min : video works
 - 30min : changed css, cursor, how to begin the game
 - 1h : setting up Notebook class
-- 9:56, new history for each input entered, don't know where to put the mirador-like to check if all media from a keyword are already seen to be able to put it in green in notebook.
+- 9:56, 30min: new history for each input entered, don't know where to put the mirador-like to check if all media from a keyword are already seen to be able to put it in green in notebook.
+- 10:31, 1h, notebook behavior
 
-TODO : create notebook
+TODO :
+- notebook interface
+- after begin help do something
+- 
 
 # Attributions : 
 
