@@ -14,6 +14,7 @@ const closeBtn = document.getElementById('close-button');
 const imageContainer = document.getElementById('image-container');
 const audioPlayer = document.getElementById('audio-player'); // check which to keep in function scope only !
 const videoContainer = document.getElementById('video-container');
+const videoPlayer = document.getElementById('video-player');
 
 var mediaButtons = document.querySelectorAll('.main-btn');
 var mainMsgButton = document.getElementById('main-msg');
@@ -227,24 +228,33 @@ closePopup(popup);
 
 // toNotebook();
 
-// listener function : display video container only
-function displayVideoButtonOnClick(event) {
-    popup.style.display = 'block'; // show popup
-    videoContainer.style.display = 'block'; // show video container
-    const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
-    const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
-    // change vid path to code
+function handleVideo(mediaCode, mediaNum) {
     const videoSource = document.getElementById('video-source');
-    const videoPlayer = document.getElementById('video-player');
     const videoPath = './assets/media/video/' + mediaCode + '.mp4' // write complete src, there are only mp4
-    console.log(mediaCode);
     videoSource.src = videoPath;
     videoSource.type = "video/mp4";
     json.isSeen(mediaCode, mediaNum); // change red dot
     videoPlayer.load();
     videoPlayer.play();
-    // json.isAutoplay(mediaCode, mediaNum, videoPlayer);
+}
+
+// listener function : display video container only
+function displayVideoButtonOnClick(event) {
+    popup.style.display = 'block'; // show popup
+    videoContainer.style.display = 'block'; // show video container
+    const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
+    const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
+    handleVideo(mediaCode, mediaNum);
     imageContainer.style.display = 'none'; // hide image container
+}
+
+function handleAudio(mediaCode, mediaNum) {
+    const audioSource = document.getElementById('audio-source');
+    const audioPath = './assets/media/audio/' + mediaCode + '.mp3' // write complete src, there are only mp3
+    audioSource.src = audioPath;
+    audioSource.type = "audio/mp3";
+    audioPlayer.load();
+    json.isAutoplay(mediaCode, mediaNum, audioPlayer);
 }
 
 function getImgSrcSuffix(img, name) { // https://stackoverflow.com/questions/32772218/how-to-set-an-img-src-without-knowing-the-file-extension-in-javascript
@@ -257,13 +267,7 @@ function getImgSrcSuffix(img, name) { // https://stackoverflow.com/questions/327
     };
 } // this gives a lot of errors, try to make it softer, can add to json "extension" to be able add it directly
 
-// listener function : display image container only
-function displayImageButtonOnClick(event) {
-    popup.style.display = 'block'; // show popup
-    imageContainer.style.display = 'block'; // show image container
-    const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
-    const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
-    // change img path to code
+function handleImage(mediaCode, mediaNum) {
     const img = document.getElementById('image') // get image DOM
     const prefixImgSrc = './assets/media/img/' + mediaCode // write src without file extension
     getImgSrcSuffix(img, prefixImgSrc); // change src to correct one
@@ -272,13 +276,16 @@ function displayImageButtonOnClick(event) {
     img.style.height = '400px';
     img.style.width = 'auto';
     // TODO : add alt
-    // autoplay audio or not
-    const audioSource = document.getElementById('audio-source');
-    const audioPath = './assets/media/audio/' + mediaCode + '.mp3' // write complete src, there are only mp3
-    audioSource.src = audioPath;
-    audioSource.type = "audio/mp3";
-    audioPlayer.load();
-    json.isAutoplay(mediaCode, mediaNum, audioPlayer);
+}
+
+// listener function : display image container only
+function displayImageButtonOnClick(event) {
+    popup.style.display = 'block'; // show popup
+    imageContainer.style.display = 'block'; // show image container
+    const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
+    const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
+    handleImage(mediaCode, mediaNum);
+    handleAudio(mediaCode, mediaNum);
     videoContainer.style.display = 'none'; // hide video container
 }
 
@@ -304,12 +311,15 @@ function mediaBtnBehavior(searchWord) {
         if (i < json.getOccurrences(searchWord)) { // for the media matching the searchword and by order
             mediaBtnHandleListener('add', searchWord, i); // add listeners when clicking media-btn-(i+1)
             mediaBtnArray[i].id += json.getMediaCode(searchWord, i, ' '); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
-            mediaBtnArray[i].innerHTML = searchWord + (i + 1) + 'New'; // add 'new' icon
+            mediaBtnArray[i].innerHTML = "Search Result " + (i + 1); // change label of button
+            mediaBtnArray[i].style.cursor = 'pointer';
             json.handleRedDot(searchWord, i); // display red dot if never seen media
         } else {
             mediaBtnHandleListener('remove', searchWord, i)
             mediaBtnArray[i].id = 'media-btn-' + (i + 1); // get back to normal id
-            mediaBtnArray[i].innerHTML = 'EmptyMedia' + (i + 1); // change this to an empty like container (css)
+            // mediaBtnArray[i].innerHTML = 'EmptyMedia' + (i + 1); // change this to an empty like container (css)
+            mediaBtnArray[i].innerHTML = ''; // change this to an empty like container (css)
+            mediaBtnArray[i].style.cursor = '';
             json.handleRedDot(searchWord, i); // no red dot on empty media
         }
     }
@@ -317,8 +327,7 @@ function mediaBtnBehavior(searchWord) {
 }
 
 function isFound(searchWord) {
-    // if strictly more than 0 occurrences of searchWord in json, then true
-    if (json.getOccurrences(searchWord) > 0) {
+    if (json.getOccurrences(searchWord) > 0) { // if strictly more than 0 occurrences of searchWord in json, then true
         return (true);
     }
     return (false);
@@ -342,8 +351,10 @@ searchInput.addEventListener('keydown', (event) => {
         main(searchInput.value.trim());
     }
 });
-
-// show first video !!!!
+// Search icon functionality
+searchIcon.addEventListener('click', (event) => { // when clicking on the search-icon
+    main(searchInput.value.trim());
+});
 
 ///////////////////////////////////////////////////////////////
 
@@ -359,10 +370,10 @@ searchInput.addEventListener('keydown', (event) => {
 //   msgInterface.style.display = 'block';
 // });
 
-// mainNbButton.addEventListener('click', () => {
-//   mainInterface.style.display = 'none';
-//   notebookInterface.style.display = 'block';
-// });
+mainNbButton.addEventListener('click', () => {
+  mainInterface.style.display = 'none';
+  notebookInterface.style.display = 'block';
+});
 
 // mainOptButton.addEventListener('click', () => {
 //   mainInterface.style.display = 'none';

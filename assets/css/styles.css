@@ -58,35 +58,52 @@ body {
 
 .media {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
 }
 
 .button {
-    color: white;
-    display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
-    position: relative; /* All 'absolute'ly positioned elements are relative to this one */
-    padding: 2px 5px; /* Add some padding so it looks nice */
-  }
-  
+  color: white;
+  display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+  position: relative; /* All 'absolute'ly positioned elements are relative to this one */
+  padding: 2px 5px; /* Add some padding so it looks nice */
+}
+
 .media-btn {
-  width: 100%;
+  width: 25vh;
   height: 40px;
   background: #f1fff1;
   border-radius: 20px;
   margin-bottom: 10px;
 }
 
-.dot { /* https://stackoverflow.com/questions/5747863/easiest-css-for-red-notification-badge-with-count */
-    height: 15px;
-    width: 15px;
-    background-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    position: absolute; /* Position the badge within the relatively positioned button*/
-    top: 0;
-    right: 0;
-  }
+#search-input:hover,
+.media-btn:hover,
+#main-nb:hover {
+  -webkit-filter: brightness(70%);
+  -webkit-transition: all 0s ease;
+  -moz-transition: all 0s ease;
+  -o-transition: all 0s ease;
+  -ms-transition: all 0s ease;
+  transition: all 0s ease;
+}
+
+#main-nb:hover {
+  cursor:pointer;
+}
+
+
+.dot {
+  /* https://stackoverflow.com/questions/5747863/easiest-css-for-red-notification-badge-with-count */
+  height: 15px;
+  width: 15px;
+  background-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute; /* Position the badge within the relatively positioned button*/
+  top: 0;
+  right: 0;
+}
 
 .popup {
   display: none;

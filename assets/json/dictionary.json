@@ -1,6 +1,13 @@
 {
   "data": [
     {
+        "code": "00",
+        "keywords": ["begin"],
+        "seen" : false,
+        "type": "video",
+        "autoplay": true
+      },
+      {
       "code": "01",
       "keywords": ["happy","baby","john"],
       "seen" : false,

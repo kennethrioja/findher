@@ -62,9 +62,10 @@ A faire ensuite :
 - 1h : now shows correct images with keyword, and badge gets removed when we click on the img - it is constant
 - 10min : looking at cookies to be able to save : https://stackoverflow.com/questions/4825683/how-do-i-create-and-read-a-value-from-cookie-with-javascript/4825695#4825695, https://www.quirksmode.org/js/cookies.html, https://stackoverflow.com/questions/11344531/pure-javascript-store-object-in-cookie
 - 1h : audio with autoplay works, nailed it
-- 15min : video works
+- 30min : video works
 - 1h : created notebook
-
+- 15min : changed css, cursor, how to begin the game
+- 15min
 
 # Attributions : 
 
