@@ -203,7 +203,7 @@
       "keywords": ["girl","dear"],
       "seen" : false,
       "type": "video",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -218,8 +218,8 @@
       "code": "28",
       "keywords": ["girl","like","dear","ice cream","ice-cream","yummy"],
       "seen" : false,
-      "type": "video",
-      "autoplay": false
+      "type": "image",
+      "autoplay": true
     },
     {
 
@@ -227,7 +227,7 @@
       "keywords": ["ice cream","ice-cream","yummy","precious"],
       "seen" : false,
       "type": "video",
-      "autoplay": false
+      "autoplay": true
     },
     {
 

@@ -2,13 +2,9 @@ import localJson from '../json/dictionary.json' assert {type: 'json'};
 
 // DOM
 var searchInput = document.getElementById('search-input');
-var mediaBtn1 = document.getElementById('media-btn-1');
-var mediaBtn2 = document.getElementById('media-btn-2');
-var mediaBtn3 = document.getElementById('media-btn-3');
 var mediaBtnArray = [document.getElementById('media-btn-1'), 
                         document.getElementById('media-btn-2'),
                         document.getElementById('media-btn-3')];
-
 
 var mainInterface = document.querySelector('.main-interface');
 var searchIcon = document.querySelector('.search-icon');
@@ -16,9 +12,8 @@ var searchIcon = document.querySelector('.search-icon');
 const popup = document.getElementById('popup');
 const closeBtn = document.getElementById('close-button');
 const imageContainer = document.getElementById('image-container');
-const imagePlayer = document.getElementById('image-player');
+const audioPlayer = document.getElementById('audio-player'); // check which to keep in function scope only !
 const videoContainer = document.getElementById('video-container');
-const videoPlayer = document.getElementById('video-player');
 
 var mediaButtons = document.querySelectorAll('.main-btn');
 var mainMsgButton = document.getElementById('main-msg');
@@ -115,13 +110,26 @@ class Json {
         document.getElementById('dot' + (n + 1)).style.backgroundColor = 'transparent';
     }
 
-    // mark as 'true' the media that has been seen
+    // mark as 'true' the media that has been seen and hide dot
     isSeen(mediaCode, mediaNum) {
         for (let i = 0; i < this.json.data.length; i++) {
             for (let j = 0; j < this.json.data[i].keywords.length; j++) {
                 if (mediaCode === this.json.data[i].code) {
                     this.json.data[i].seen = true;
                     document.getElementById('dot' + mediaNum).style.backgroundColor = 'transparent';
+                }
+            }
+        }
+        return (0);
+    }
+
+    // if 'autoplay' === true, then autoplay, ha.
+    isAutoplay(mediaCode, mediaNum, audioPlayer) {
+        for (let i = 0; i < this.json.data.length; i++) {
+            for (let j = 0; j < this.json.data[i].keywords.length; j++) {
+                if (mediaCode === this.json.data[i].code
+                    && this.json.data[i].autoplay === true) {
+                    audioPlayer.play();
                 }
             }
         }
@@ -206,7 +214,7 @@ console.log(navigator.saysWho);
 function closePopup(element) {
     element.addEventListener('click', () => {
         popup.style.display = 'none';
-        imagePlayer.pause();
+        audioPlayer.pause();
         videoPlayer.pause();
     });
 }
@@ -217,16 +225,26 @@ closePopup(popup);
 // ## FUNCTIONS ##
 // ###############
 
-// when media finished, say 'seen'
 // toNotebook();
 
 // listener function : display video container only
-function displayVideoButtonOnClick() {
+function displayVideoButtonOnClick(event) {
     popup.style.display = 'block'; // show popup
+    videoContainer.style.display = 'block'; // show video container
+    const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
+    const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
     // change vid path to code
-    // autoplay or not
-    videoContainer.style.display = 'block';
-    imageContainer.style.display = 'none';
+    const videoSource = document.getElementById('video-source');
+    const videoPlayer = document.getElementById('video-player');
+    const videoPath = './assets/media/video/' + mediaCode + '.mp4' // write complete src, there are only mp4
+    console.log(mediaCode);
+    videoSource.src = videoPath;
+    videoSource.type = "video/mp4";
+    json.isSeen(mediaCode, mediaNum); // change red dot
+    videoPlayer.load();
+    videoPlayer.play();
+    // json.isAutoplay(mediaCode, mediaNum, videoPlayer);
+    imageContainer.style.display = 'none'; // hide image container
 }
 
 function getImgSrcSuffix(img, name) { // https://stackoverflow.com/questions/32772218/how-to-set-an-img-src-without-knowing-the-file-extension-in-javascript
@@ -237,42 +255,43 @@ function getImgSrcSuffix(img, name) { // https://stackoverflow.com/questions/327
             img.src = name + '.gif';
         };
     };
-} // this gives a lot of errors, try to make it softer
+} // this gives a lot of errors, try to make it softer, can add to json "extension" to be able add it directly
 
 // listener function : display image container only
 function displayImageButtonOnClick(event) {
-    popup.style.display = 'block';
-    // change img path to code
-    const img = document.getElementById('image') // get image DOM
+    popup.style.display = 'block'; // show popup
+    imageContainer.style.display = 'block'; // show image container
     const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
     const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
-    const prefixSrc = './assets/media/img/' + mediaCode // write src without file extension
-    getImgSrcSuffix(img, prefixSrc);
-    console.log('ignore errors with either .png or .jpg, img has been found : ' + img.src);
-    json.isSeen(mediaCode, mediaNum);
-    // TODO : add alt
+    // change img path to code
+    const img = document.getElementById('image') // get image DOM
+    const prefixImgSrc = './assets/media/img/' + mediaCode // write src without file extension
+    getImgSrcSuffix(img, prefixImgSrc); // change src to correct one
+    console.log('ignore errors with either .png or .jpg, img has been found : ' + img.src); // can add to json "extension" to be able add it directly
+    json.isSeen(mediaCode, mediaNum); // change red dot
     img.style.height = '400px';
-    img.style.width = 'auto'
+    img.style.width = 'auto';
+    // TODO : add alt
     // autoplay audio or not
-    const audio = document.getElementById('audio');
-    audio.src =
-    imageContainer.style.display = 'block';
-    videoContainer.style.display = 'none';
+    const audioSource = document.getElementById('audio-source');
+    const audioPath = './assets/media/audio/' + mediaCode + '.mp3' // write complete src, there are only mp3
+    audioSource.src = audioPath;
+    audioSource.type = "audio/mp3";
+    audioPlayer.load();
+    json.isAutoplay(mediaCode, mediaNum, audioPlayer);
+    videoContainer.style.display = 'none'; // hide video container
 }
 
 function mediaBtnHandleListener(flag, searchWord, i) {
     const type = json.getMediaType(searchWord, i);
     if (flag === 'add') {
-        if (type === 'image' || type === 'gif') {
-            // begin listener onclick for image
+        if (type === 'image') { // begin listener onclick for image
             mediaBtnArray[i].addEventListener('click', displayImageButtonOnClick, { passive : false});
             mediaBtnArray[i].id
-        } else if (type === 'video') {
-            // begin listener onclick for video
+        } else if (type === 'video') { // begin listener onclick for video
             mediaBtnArray[i].addEventListener('click', displayVideoButtonOnClick, { passive : false});
         }
-    } else if (flag === 'remove') {
-        // remove all listeners
+    } else if (flag === 'remove') { // remove all listeners
         mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
         mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);
     }
@@ -323,6 +342,8 @@ searchInput.addEventListener('keydown', (event) => {
         main(searchInput.value.trim());
     }
 });
+
+// show first video !!!!
 
 ///////////////////////////////////////////////////////////////
 

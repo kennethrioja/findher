@@ -2,7 +2,8 @@
 
 ## 26.04.2023 : 
 
-3h : stylo-papier, variables à avoir, fonctions à implémenter, questions avant de commencer, to-do-list
+3h : 
+- 3h stylo-papier, variables à avoir, fonctions à implémenter, questions avant de commencer, to-do-list
 
 ## 31.05.2023 : Prompting et test
 
@@ -39,23 +40,34 @@ A faire ensuite :
 
 ## 03.06.2023 : 
 
-1h : introduit le JSON et how to use it
-3h : comment chercher dans le JSON, search word in json works, idée pour implémentation de notebook, commence à changer le media
+4h : 
+- 1h : introduit le JSON et how to use it
+- 3h : comment chercher dans le JSON, search word in json works, idée pour implémentation de notebook, commence à changer le media
 
 ## 04.06.2023 : 
 
-2h : change media button label
-2h : begin media button behavior
-2h : handle media types to be displayed
-15min : check final json
-1h : downloaded all media and figuring out how to display them with each object/criteria in json file
-1h : created 'Json' class, pretty happy about it
-1h : create and handle red dot
-1h : get right image extension to be able to show correct image
++/- 10h : 
+- 2h : change media button label
+- 2h : begin media button behavior
+- 2h : handle media types to be displayed
+- 15min : check final json
+- 1h : downloaded all media and figuring out how to display them with each object/criteria in json file
+- 1h : created 'Json' class, pretty happy about it
+- 1h : create and handle red dot
+- 1h : get right image extension to be able to show correct image, 
+
+## 05.06.2023 : 
+
+2h : 
+- 1h : now shows correct images with keyword, and badge gets removed when we click on the img - it is constant
+- 10min : looking at cookies to be able to save : https://stackoverflow.com/questions/4825683/how-do-i-create-and-read-a-value-from-cookie-with-javascript/4825695#4825695, https://www.quirksmode.org/js/cookies.html, https://stackoverflow.com/questions/11344531/pure-javascript-store-object-in-cookie
+- 1h : audio with autoplay works, nailed it
+- 15min : video works
+- 1h : created notebook
 
 
+# Attributions : 
 
-Attributions : 
 Search icon : <a href="https://www.flaticon.com/free-icons/loupe" title="loupe icons">Loupe icons created by Fuzzee - Flaticon</a>
 Wifi icon : <a href="https://www.flaticon.com/free-icons/wifi-connection" title="wifi connection icons">Wifi connection icons created by Freepik - Flaticon</a>
 
