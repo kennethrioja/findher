@@ -264,32 +264,32 @@
       "code": "33",
       "keywords": ["fun","challenge"],
       "seen" : false,
-      "type": "video",
-      "autoplay": false
+      "type": "image",
+      "autoplay": true
     },
     {
 
       "code": "34",
       "keywords": ["challenge","party","trip","birthday","dinner"],
       "seen" : false,
-      "type": "video",
-      "autoplay": false
+      "type": "image",
+      "autoplay": true
     },
     {
 
       "code": "35",
       "keywords": ["dress","wine","blood","explain"],
       "seen" : false,
-      "type": "video",
-      "autoplay": false
+      "type": "image",
+      "autoplay": true
     },
     {
 
       "code": "36",
       "keywords": ["health","blood"],
       "seen" : false,
-      "type": "video",
-      "autoplay": false
+      "type": "image",
+      "autoplay": true
     },
     {
 
@@ -447,7 +447,7 @@
       "code": "56",
       "keywords": [],
       "seen" : false,
-      "type": "video",
-      "autoplay": false
+      "type": "image",
+      "autoplay": true
     }
 ]
