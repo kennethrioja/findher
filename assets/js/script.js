@@ -117,7 +117,6 @@ class Json {
             for (let j = 0; j < this.json[i].keywords.length; j++) {
                 if (mediaCode === this.json[i].code) {
                     this.json[i].seen = true;
-                    notebook.isAllSeen(mediaCode);
                     document.getElementById('dot' + mediaNum).style.backgroundColor = 'transparent';
                 }
             }
