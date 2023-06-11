@@ -58,7 +58,7 @@ A faire ensuite :
 
 ## 05.06.2023 : 
 
-3h : 
+5h30h : 
 - 1h : now shows correct images with keyword, and badge gets removed when we click on the img - it is constant
 - 10min : looking at cookies to be able to save : https://stackoverflow.com/questions/4825683/how-do-i-create-and-read-a-value-from-cookie-with-javascript/4825695#4825695, https://www.quirksmode.org/js/cookies.html, https://stackoverflow.com/questions/11344531/pure-javascript-store-object-in-cookie
 - 1h : audio with autoplay works, nailed it
@@ -69,9 +69,16 @@ A faire ensuite :
 - 10:31, 1h, notebook behavior
 
 TODO :
+- how to finish the game
+- met pourcentage video seen qqpart
+- error handling : minuscules
+- criminal 3 marche pas
+- drunk 2 marche pas
 - notebook interface
-- after begin help do something
-- 
+- after begin help do something (les petits pushs)
+- css, styling
+- met autoplay toujours
+- JOURNAL DE CONCEPTION
 
 # Attributions : 
 
