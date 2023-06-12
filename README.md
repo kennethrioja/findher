@@ -81,9 +81,11 @@ h :
 - 30min : new media added fade in for red dot
 - 30min : fixed media progression bug
 - 5min : error handling minuscules
+- asked chatgpt to find leaks in js code, fixed them.
 
 TODO :
 mandatory : 
+- how to begin the game
 - how to finish the game
 - JOURNAL DE CONCEPTION
 
@@ -91,7 +93,6 @@ useful to play :
 - chapter pages
 - after begin help do something (les petites bulles d'info en itération)
 - intrigue video always accessible
-- 
 
 details : 
 - css, styling

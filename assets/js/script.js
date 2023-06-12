@@ -1,43 +1,9 @@
 import localJson from '../json/dictionary.json' assert {type: 'json'};
 
 // DOM
-var searchInput = document.getElementById('search-input');
 var mediaBtnArray = [document.getElementById('media-btn-1'), 
                         document.getElementById('media-btn-2'),
                         document.getElementById('media-btn-3')];
-
-var mainInterface = document.querySelector('.interface');
-var searchIcon = document.querySelector('.search-icon');
-
-const popup = document.getElementById('popup');
-const closeBtn = document.getElementById('close-button');
-const imageContainer = document.getElementById('image-container');
-const audioPlayer = document.getElementById('audio-player'); // check which to keep in function scope only !
-const videoContainer = document.getElementById('video-container');
-const videoPlayer = document.getElementById('video-player');
-
-var mediaButtons = document.querySelectorAll('.main-btn');
-var mainMsgButton = document.getElementById('main-msg');
-var mainNbButton = document.getElementById('main-nb');
-var mainOptButton = document.getElementById('main-opt');
-
-var returnButton = document.getElementById('return-btn');
-
-var msgInterface = document.querySelector('.msg-interface');
-var msgBtn2 = document.getElementById('msg-btn-2');
-var msgBtn3 = document.getElementById('msg-btn-3');
-var msgBtn1 = document.getElementById('msg-btn-1');
-
-var nbInterface = document.querySelector('.nb-interface');
-var nbContainer = document.getElementById('nb-container');
-var nbTrue = document.querySelector('.nb-true');
-var nbTrueList = document.querySelector('.nb-true-list');
-var nbfalse = document.querySelector('.nb-false');
-var nbFalseList = document.querySelector('.nb-false-list');
-
-var optInterface = document.querySelector('.opt-interface');
-var optHomeButton = document.getElementById('opt-btn-home');
-var optCreditsButton = document.getElementById('opt-btn-credits');
 
 // #############
 // ## CLASSES ##
@@ -329,15 +295,15 @@ function updateMediaProgress() {
 // close popup functionality
 function closePopup(element) {
     element.addEventListener('click', () => {
-        popup.style.display = 'none';
-        audioPlayer.pause();
-        videoPlayer.pause();
+        document.getElementById('popup').style.display = 'none';
+        document.getElementById('audio-player').pause();
+        document.getElementById('video-player').pause();
         // update media progression
         updateMediaProgress();  
     });
 }
-closePopup(closeBtn);
-closePopup(popup);
+closePopup(document.getElementById('close-button'));
+closePopup(document.getElementById('popup'));
 
 // ###############
 // ## FUNCTIONS ##
@@ -349,19 +315,19 @@ function handleVideo(mediaCode, mediaNum) {
     videoSource.src = videoPath;
     videoSource.type = "video/mp4";
     json.isSeen(mediaCode, mediaNum); // change red dot
-    videoPlayer.load();
-    videoPlayer.play();
+    document.getElementById('video-player').load();
+    document.getElementById('video-player').play();
 }
 
 // listener function : display video container only
 function displayVideoButtonOnClick(event) {
-    popup.style.display = 'block'; // show popup
-    videoContainer.style.display = 'block'; // show video container
+    document.getElementById('popup').style.display = 'block'; // show popup
+    document.getElementById('video-container').style.display = 'block'; // show video container
     const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
     const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
     handleVideo(mediaCode, mediaNum);
-    imageContainer.style.display = 'none'; // hide image container
-    nbContainer.style.display = 'none'; // hide nb container
+    document.getElementById('image-container').style.display = 'none'; // hide image container
+    document.getElementById('nb-container').style.display = 'none'; // hide nb container
 }
 
 function handleAudio(mediaCode, mediaNum) {
@@ -369,8 +335,8 @@ function handleAudio(mediaCode, mediaNum) {
     const audioPath = './assets/media/audio/' + mediaCode + '.mp3' // write complete src, there are only mp3
     audioSource.src = audioPath;
     audioSource.type = "audio/mp3";
-    audioPlayer.load();
-    json.isAutoplay(mediaCode, mediaNum, audioPlayer);
+    document.getElementById('audio-player').load();
+    json.isAutoplay(mediaCode, mediaNum, document.getElementById('audio-player'));
 }
 
 function getImgSrcSuffix(img, name) { // https://stackoverflow.com/questions/32772218/how-to-set-an-img-src-without-knowing-the-file-extension-in-javascript
@@ -396,14 +362,14 @@ function handleImage(mediaCode, mediaNum) {
 
 // listener function : display image container only
 function displayImageButtonOnClick(event) {
-    popup.style.display = 'block'; // show popup
-    imageContainer.style.display = 'block'; // show image container
+    document.getElementById('popup').style.display = 'block'; // show popup
+    document.getElementById('image-container').style.display = 'block'; // show image container
     const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
     const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
     handleImage(mediaCode, mediaNum);
     handleAudio(mediaCode, mediaNum);
-    videoContainer.style.display = 'none'; // hide video container
-    nbContainer.style.display = 'none'; // hide nb container
+    document.getElementById('video-container').style.display = 'none'; // hide video container
+    document.getElementById('nb-container').style.display = 'none'; // hide nb container
 }
 
 function mediaBtnHandleListener(flag, searchWord, i) {
@@ -460,6 +426,7 @@ function isFound(searchWord) {
 //////////
 
 function mainInterfaceFct(searchWord) {
+    const searchInput = document.getElementById('search-input');
     if (isFound(searchWord)) { // can be shortened
         // NOTEBOOK : KEEP INPUT. notebook.trueWord(searchWord);
         // for first interaction
@@ -469,7 +436,6 @@ function mainInterfaceFct(searchWord) {
         }
         notebook.addEntryToHistory(searchWord, true);
         mediaBtnBehavior(searchWord);
-        
     } else {
         // NOTEBOOK : KEEP INPUT. notebook.falseWord(searchWord);
         notebook.addEntryToHistory(searchWord, false);
@@ -483,15 +449,15 @@ function mainInterfaceFct(searchWord) {
 }
 
 // Search bar functionality
-searchInput.addEventListener('keydown', (event) => {
+document.getElementById('search-input').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') { // when clicking enter in the input
-        mainInterfaceFct(searchInput.value.trim().toLowerCase());
+        mainInterfaceFct(document.getElementById('search-input').value.trim().toLowerCase());
     }
 });
 
 // Search icon functionality
-searchIcon.addEventListener('click', (event) => { // when clicking on the search-icon
-    mainInterfaceFct(searchInput.value.trim());
+document.querySelector('.search-icon').addEventListener('click', (event) => { // when clicking on the search-icon
+    mainInterfaceFct(document.getElementById('search-input').value.trim());
 });
 
 //////////////
@@ -509,20 +475,20 @@ function updateNotebook() {
         }
     }
     console.log("heyy");
-    nbTrueList.innerHTML = correctWords;
-    nbFalseList.innerHTML = wrongWords;
+    document.querySelector('.nb-true-list').innerHTML = correctWords;
+    document.querySelector('.nb-false-list').innerHTML = wrongWords;
     return (false);
 }
 
 // listener function : display image container only
 function displayNbMainButtonOnClick(event) {
     console.log("yo");
-    popup.style.display = 'block'; // show popup
-    imageContainer.style.display = 'none'; // hide image container
-    videoContainer.style.display = 'none'; // hide video container
-    nbContainer.style.display = 'block'; // show nb container
+    document.getElementById('popup').style.display = 'block'; // show popup
+    document.getElementById('image-container').style.display = 'none'; // hide image container
+    document.getElementById('video-container').style.display = 'none'; // hide video container
+    document.getElementById('nb-container').style.display = 'block'; // show nb container
     updateNotebook();
 }
 
 // Main notebook button functionality
-mainNbButton.addEventListener('click', displayNbMainButtonOnClick, { passive : false});
+document.getElementById('main-nb').addEventListener('click', displayNbMainButtonOnClick, { passive : false});
