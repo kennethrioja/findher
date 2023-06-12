@@ -328,6 +328,7 @@ function handleVideo(mediaCode, mediaNum) {
     videoSource.type = "video/mp4";
     json.isSeen(mediaCode, mediaNum); // change red dot
     document.getElementById('video-player').load();
+    document.getElementById('video-player').style.height = "85vh";
     document.getElementById('video-player').play();
 }
 
@@ -367,7 +368,7 @@ function handleImage(mediaCode, mediaNum) {
     getImgSrcSuffix(img, prefixImgSrc); // change src to correct one
     console.log('ignore errors with either .png or .jpg, img has been found : ' + img.src); // can add to json "extension" to be able add it directly
     json.isSeen(mediaCode, mediaNum); // change red dot
-    img.style.height = '400px';
+    img.style.height = '85vh';
     img.style.width = 'auto';
     // TODO : add alt
 }
