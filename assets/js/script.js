@@ -59,10 +59,9 @@ class Json {
     getSeen() {
         let n = 0;
         for (let i = 0; i < this.json.length; i++) {
-            for (let j = 0; j < this.json[i].keywords.length; j++) {
-                if (this.json[i].seen === true) {
-                    n++;
-                }
+            if (this.json[i].seen === true) {
+                console.log(this.json[i].code);
+                n++;
             }
         }
         return (n);
@@ -136,17 +135,7 @@ class Json {
                     loop++;
                     if (loop === n && this.json[i].seen === false) {
                         var redDot = document.getElementById('dot' + (n + 1));
-                        // fade in the red dot : https://stackoverflow.com/questions/6121203/how-to-do-fade-in-and-fade-out-with-javascript-and-css
-                        var op = 0.1;  // initial opacity
-                        redDot.style.backgroundColor = '#fa3e3e';
-                        var timer = setInterval(function () {
-                            if (op >= 1){
-                                clearInterval(timer);
-                            }
-                            redDot.style.opacity = op;
-                            redDot.style.filter = 'alpha(opacity=' + op * 100 + ")";
-                            op += op * 0.1;
-                        }, 10);
+                        animFadeIn(redDot, '#fa3e3e');
                         return ;
                     }
                 }
@@ -162,6 +151,7 @@ class Json {
                 if (mediaCode === this.json[i].code) {
                     this.json[i].seen = true;
                     document.getElementById('dot' + mediaNum).style.backgroundColor = 'transparent';
+                    return;
                 }
             }
         }
@@ -206,7 +196,6 @@ class Notebook {
     }
 
     addEntryToHistory(searchWord, isInJson) {
-        searchWord === 'caca' ? searchWord = '💩' : null;
         if (!this.isInNotebook(searchWord)) { // if new entry
             this.#addNewEntryToHistory(searchWord, isInJson);
         } else { // else if already in entry
@@ -214,6 +203,7 @@ class Notebook {
         }
         // change words progression
         this.#updateWordProgress();
+        
     }
 
     countTrueWords() {
@@ -249,7 +239,8 @@ class Notebook {
         var percentage = Math.round(this.countTrueWords() / json.getKeyWordListNoDup().length * 100)
         console.log(this.countTrueWords() + "true words / " + json.getKeyWordListNoDup().length);
         cWord.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
-        cWordDiv.innerHTML = "Word<br>" + this.countTrueWords() + '/' + json.getKeyWordListNoDup().length;
+        var displayTrueWords = this.countTrueWords() === undefined ? 0 : this.countTrueWords()
+        cWordDiv.innerHTML = "Word<br>" + displayTrueWords + '/' + json.getKeyWordListNoDup().length;
     }
 
     #isAllSeen(searchWord) { // where is the best to put this ?
@@ -262,6 +253,20 @@ var notebook = new Notebook();
 // ###########
 // ## UTILS ##
 // ###########
+
+// fade in animation : https://stackoverflow.com/questions/6121203/how-to-do-fade-in-and-fade-out-with-javascript-and-css
+function animFadeIn(e, col) {
+    var op = 0.1;  // initial opacity
+    e.style.backgroundColor = col;
+    var timer = setInterval(function () {
+        if (op >= 1){
+            clearInterval(timer);
+        }
+        e.style.opacity = op;
+        e.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += op * 0.1;
+    }, 10);
+}
 
 // browser detection : https://stackoverflow.com/questions/2400935/browser-detection-in-javascript
 navigator.saysWho = (() => { 
@@ -315,9 +320,10 @@ console.log(navigator.saysWho);
 function updateMediaProgress() {
     var cMedia = document.getElementById('circle-media');
     var cMediaDiv = document.getElementById('circle-media-div');
-    var percentage = Math.round(json.getSeen() / json.length() * 100)
+    var countSeen = json.getSeen();
+    var percentage = Math.round(countSeen / json.length() * 100);
     cMedia.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
-    cMediaDiv.innerHTML = "Media<br>" + json.getSeen() + '/' + json.length();
+    cMediaDiv.innerHTML = "Media<br>" + countSeen + '/' + json.length();
 }
 
 // close popup functionality
@@ -424,6 +430,10 @@ function mediaBtnBehavior(searchWord) {
             mediaBtnArray[i].id += json.getMediaCode(searchWord, i, ' '); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
             mediaBtnArray[i].innerHTML = "Search Result " + (i + 1); // change label of button
             mediaBtnArray[i].style.cursor = 'pointer';
+            mediaBtnArray[i].animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
+                  opacity: [0.3, 1], // [ from, to ]
+                  color: ["#fff", "#000"], // [ from, to ]
+                },750);
             json.handleRedDot(searchWord, i); // display red dot if never seen media
         } else { // virus here
             mediaBtnHandleListener('remove', searchWord, i)
@@ -463,10 +473,10 @@ function mainInterfaceFct(searchWord) {
     } else {
         // NOTEBOOK : KEEP INPUT. notebook.falseWord(searchWord);
         notebook.addEntryToHistory(searchWord, false);
-        if (searchWord != "caca") {
+        if (searchWord != "42") {
             searchInput.placeholder = "No media found on word '" + searchWord + "', try again.";
         } else {
-            searchInput.placeholder = "CONGRATS ! You won the 'caca' badge ! English people do not understand what this means... However, it appears to be a bit smelly. Try again."; // easter egg
+            searchInput.placeholder = "Wanna seek the truth right ? Aren't we all looking for it ?"; // easter egg
         }
         searchInput.value = '';            
     }
