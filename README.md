@@ -78,11 +78,11 @@ h :
 - 30min: notebook interface in popup window
 - 1h : progress bar
 - 1h30 : compteur mot-clés, circular progress bars for media and word
+- 30min : new media added fade in for red dot
 
 TODO :
 mandatory : 
 - how to finish the game
-- conpteur mot clés
 - error handling : minuscules
 - JOURNAL DE CONCEPTION
 

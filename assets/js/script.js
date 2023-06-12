@@ -135,7 +135,18 @@ class Json {
                 if (searchWord === this.json[i].keywords[j]) {
                     loop++;
                     if (loop === n && this.json[i].seen === false) {
-                        document.getElementById('dot' + (n + 1)).style.backgroundColor = '#fa3e3e';
+                        var redDot = document.getElementById('dot' + (n + 1));
+                        // fade in the red dot : https://stackoverflow.com/questions/6121203/how-to-do-fade-in-and-fade-out-with-javascript-and-css
+                        var op = 0.1;  // initial opacity
+                        redDot.style.backgroundColor = '#fa3e3e';
+                        var timer = setInterval(function () {
+                            if (op >= 1){
+                                clearInterval(timer);
+                            }
+                            redDot.style.opacity = op;
+                            redDot.style.filter = 'alpha(opacity=' + op * 100 + ")";
+                            op += op * 0.1;
+                        }, 10);
                         return ;
                     }
                 }
@@ -447,19 +458,17 @@ function mainInterfaceFct(searchWord) {
             searchInput.value = '';
         }
         notebook.addEntryToHistory(searchWord, true);
-        console.log(notebook.history);
         mediaBtnBehavior(searchWord);
+        
     } else {
         // NOTEBOOK : KEEP INPUT. notebook.falseWord(searchWord);
         notebook.addEntryToHistory(searchWord, false);
-        console.log(notebook.history);
-        searchInput.value = '';
         if (searchWord != "caca") {
             searchInput.placeholder = "No media found on word '" + searchWord + "', try again.";
         } else {
             searchInput.placeholder = "CONGRATS ! You won the 'caca' badge ! English people do not understand what this means... However, it appears to be a bit smelly. Try again."; // easter egg
         }
-            
+        searchInput.value = '';            
     }
 }
 

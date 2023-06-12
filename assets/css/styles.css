@@ -142,8 +142,8 @@ body {
 
 .dot {
   /* https://stackoverflow.com/questions/5747863/easiest-css-for-red-notification-badge-with-count */
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 20px;
   background-color: transparent;
   border-radius: 50%;
   display: inline-block;
