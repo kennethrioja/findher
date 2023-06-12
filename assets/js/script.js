@@ -485,7 +485,7 @@ function mainInterfaceFct(searchWord) {
 // Search bar functionality
 searchInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') { // when clicking enter in the input
-        mainInterfaceFct(searchInput.value.trim());
+        mainInterfaceFct(searchInput.value.trim().toLowerCase());
     }
 });
 

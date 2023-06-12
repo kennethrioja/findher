@@ -79,11 +79,12 @@ h :
 - 1h : progress bar
 - 1h30 : compteur mot-clés, circular progress bars for media and word
 - 30min : new media added fade in for red dot
+- 30min : fixed media progression bug
+- 5min : error handling minuscules
 
 TODO :
 mandatory : 
 - how to finish the game
-- error handling : minuscules
 - JOURNAL DE CONCEPTION
 
 useful to play : 
