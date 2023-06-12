@@ -1,10 +1,5 @@
 import localJson from '../json/dictionary.json' assert {type: 'json'};
 
-// DOM
-var mediaBtnArray = [document.getElementById('media-btn-1'), 
-                        document.getElementById('media-btn-2'),
-                        document.getElementById('media-btn-3')];
-
 // #############
 // ## CLASSES ##
 // #############
@@ -25,6 +20,7 @@ class Json {
     getSeen() {
         const jsonData = this.json;
         let n = 0;
+
         for (let i = 0; i < jsonData.length; i++) {
             if (jsonData[i].seen === true) {
                 n++;
@@ -36,6 +32,7 @@ class Json {
     getKeyWordListRaw() {
         const jsonData = this.json;
         let list = [];
+
         for (let i = 0; i < jsonData.length; i++) {
             for (let j = 0; j < jsonData[i].keywords.length; j++) {
                 list.push(jsonData[i].keywords[j]);
@@ -52,6 +49,7 @@ class Json {
     getOccurrences(searchWord) {
         const jsonData = this.json;
         let n = 0;
+
         for (let i = 0; i < jsonData.length; i++) {
             for (let j = 0; j < jsonData[i].keywords.length; j++) {
                 if (searchWord === jsonData[i].keywords[j] && jsonData[i].keywords[0]) { // GESTION ERREUR : what if jon au lieu de john ?
@@ -66,6 +64,7 @@ class Json {
     getMediaType(searchWord, occ) {
         const jsonData = this.json;
         let loop = -1;
+
         for (let i = 0; i < jsonData.length; i++) {
             for (let j = 0; j < jsonData[i].keywords.length; j++) {
                 if (searchWord === jsonData[i].keywords[j]) {
@@ -83,6 +82,7 @@ class Json {
     getMediaCode(searchWord, n, prefix) {
         const jsonData = this.json;
         let loop = -1;
+
         for (let i = 0; i < jsonData.length; i++) {
             for (let j = 0; j < jsonData[i].keywords.length; j++) {
                 if (searchWord === jsonData[i].keywords[j]) {
@@ -100,6 +100,7 @@ class Json {
     handleRedDot(searchWord, n) {
         const jsonData = this.json;
         let loop = -1;
+
         for (let i = 0; i < jsonData.length; i++) {
             for (let j = 0; j < jsonData[i].keywords.length; j++) {
                 if (searchWord === jsonData[i].keywords[j]) {
@@ -118,6 +119,7 @@ class Json {
     // mark as 'true' the media that has been seen and hide dot
     isSeen(mediaCode, mediaNum) {
         const jsonData = this.json;
+
         for (let i = 0; i < jsonData.length; i++) {
             for (let j = 0; j < jsonData[i].keywords.length; j++) {
                 if (mediaCode === jsonData[i].code) {
@@ -133,6 +135,7 @@ class Json {
     // if 'autoplay' === true, then autoplay, ha.
     isAutoplay(mediaCode, audioPlayer) {
         const jsonData = this.json;
+
         for (let i = 0; i < jsonData.length; i++) {
             for (let j = 0; j < jsonData[i].keywords.length; j++) {
                 if (mediaCode === jsonData[i].code
@@ -161,6 +164,7 @@ class Notebook {
 
     isInNotebook(searchWord) { // update #maxAttempt and update attemptNumber
         const historyData = this.history;
+
         for (let i = 0; i < historyData.length; i++) {
             if (searchWord === historyData[i].word) {
                 return (true);
@@ -182,7 +186,8 @@ class Notebook {
 
     countTrueWords() {
         const historyData = this.history;
-        var rez = {};
+        let rez = {};
+
         historyData.forEach(function(item){
           rez[item.true] ? rez[item.true]++ :  rez[item.true] = 1;
         });
@@ -191,6 +196,7 @@ class Notebook {
 
     #addNewEntryToHistory(searchWord, isInJson, notebook) {
         const historyData = this.history;
+
         this.#maxAttempt++;
         let newHistory = {
             word : searchWord,
@@ -202,6 +208,7 @@ class Notebook {
 
     #addNotNewEntryToHistory(searchWord) {
         const historyData = this.history;
+
         for (let i = 0; i < historyData.length; i++) {
             if (searchWord === historyData[i].word) {
                 this.#maxAttempt++;
@@ -211,13 +218,14 @@ class Notebook {
     }
 
     #updateWordProgress() {
-        var cWord = document.getElementById('circle-word');
-        var cWordDiv = document.getElementById('circle-word-div');
+        let cWord = document.getElementById('circle-word');
+        let cWordDiv = document.getElementById('circle-word-div');
         const countTrueWords = this.countTrueWords();
         const getKeyWordListNoDupLen = json.getKeyWordListNoDup().length;
-        var percentage = Math.round(countTrueWords / getKeyWordListNoDupLen * 100)
+        const percentage = Math.round(countTrueWords / getKeyWordListNoDupLen * 100)
+        const displayTrueWords = countTrueWords === undefined ? 0 : countTrueWords
+
         cWord.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
-        var displayTrueWords = countTrueWords === undefined ? 0 : countTrueWords
         cWordDiv.innerHTML = "Word<br>" + displayTrueWords + '/' + getKeyWordListNoDupLen;
     }
 
@@ -228,15 +236,24 @@ class Notebook {
 // instanciate notebook
 var notebook = new Notebook();
 
+// #########
+// ## DOM ##
+// #########
+
+var mediaBtnArray = [document.getElementById('media-btn-1'), 
+                        document.getElementById('media-btn-2'),
+                        document.getElementById('media-btn-3')];
+
 // ###########
 // ## UTILS ##
 // ###########
 
 // fade in animation : https://stackoverflow.com/questions/6121203/how-to-do-fade-in-and-fade-out-with-javascript-and-css
 function animFadeIn(e, col) {
-    var op = 0.1;  // initial opacity
+    let op = 0.1;  // initial opacity
+
     e.style.backgroundColor = col;
-    var timer = setInterval(function () {
+    let timer = setInterval(function () {
         if (op >= 1){
             clearInterval(timer);
         }
@@ -286,7 +303,8 @@ console.log(navigator.saysWho);
 
 // set clock to current time of player : https://stackoverflow.com/questions/28415178/how-do-you-show-the-current-time-on-a-web-page
 (function () {
-    var clockElement = document.getElementById('clock');
+    let clockElement = document.getElementById('clock');
+
     function updateClock ( clock ) {
         clock.innerHTML = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     }
@@ -295,11 +313,13 @@ console.log(navigator.saysWho);
     }, 1000);
 }());
 
+// update media's circular progress bar
 function updateMediaProgress() {
-    var cMedia = document.getElementById('circle-media');
-    var cMediaDiv = document.getElementById('circle-media-div');
-    var countSeen = json.getSeen();
-    var percentage = Math.round(countSeen / json.length() * 100);
+    let cMedia = document.getElementById('circle-media');
+    let cMediaDiv = document.getElementById('circle-media-div');
+    const countSeen = json.getSeen();
+    const percentage = Math.round(countSeen / json.length() * 100);
+
     cMedia.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
     cMediaDiv.innerHTML = "Media<br>" + countSeen + '/' + json.length();
 }
@@ -321,9 +341,15 @@ closePopup(document.getElementById('popup'));
 // ## FUNCTIONS ##
 // ###############
 
+///////////
+// VIDEO //
+///////////
+
+// handle video player
 function handleVideo(mediaCode, mediaNum) {
     const videoSource = document.getElementById('video-source');
     const videoPath = './assets/media/video/' + mediaCode + '.mp4' // write complete src, there are only mp4
+
     videoSource.src = videoPath;
     videoSource.type = "video/mp4";
     json.isSeen(mediaCode, mediaNum); // change red dot
@@ -343,15 +369,11 @@ function displayVideoButtonOnClick(event) {
     document.getElementById('nb-container').style.display = 'none'; // hide nb container
 }
 
-function handleAudio(mediaCode, mediaNum) {
-    const audioSource = document.getElementById('audio-source');
-    const audioPath = './assets/media/audio/' + mediaCode + '.mp3' // write complete src, there are only mp3
-    audioSource.src = audioPath;
-    audioSource.type = "audio/mp3";
-    document.getElementById('audio-player').load();
-    json.isAutoplay(mediaCode, document.getElementById('audio-player'));
-}
+///////////////////
+// IMAGE + AUDIO //
+///////////////////
 
+// check for image suffix
 function getImgSrcSuffix(img, name) { // https://stackoverflow.com/questions/32772218/how-to-set-an-img-src-without-knowing-the-file-extension-in-javascript
     img.src = name + '.png';
     img.onerror = function() {
@@ -362,6 +384,17 @@ function getImgSrcSuffix(img, name) { // https://stackoverflow.com/questions/327
     };
 } // this gives a lot of errors, try to make it softer, can add to json "extension" to be able add it directly
 
+// handle audio : change source & type, load and play audio
+function handleAudio(mediaCode, mediaNum) {
+    const audioSource = document.getElementById('audio-source');
+    const audioPath = './assets/media/audio/' + mediaCode + '.mp3' // write complete src, there are only mp3
+    audioSource.src = audioPath;
+    audioSource.type = "audio/mp3";
+    document.getElementById('audio-player').load();
+    json.isAutoplay(mediaCode, document.getElementById('audio-player'));
+}
+
+// handle image : change source & style
 function handleImage(mediaCode, mediaNum) {
     const img = document.getElementById('image') // get image DOM
     const prefixImgSrc = './assets/media/img/' + mediaCode // write src without file extension
@@ -373,39 +406,56 @@ function handleImage(mediaCode, mediaNum) {
     // TODO : add alt
 }
 
-// listener function : display image container only
+// image listener function onclick
 function displayImageButtonOnClick(event) {
+    // displays image only
     document.getElementById('popup').style.display = 'block'; // show popup
     document.getElementById('image-container').style.display = 'block'; // show image container
     const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
     const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
+    // calls right image with few style modifications
     handleImage(mediaCode, mediaNum);
+    // calls right audio with few style modifications
     handleAudio(mediaCode, mediaNum);
-    document.getElementById('video-container').style.display = 'none'; // hide video container
-    document.getElementById('nb-container').style.display = 'none'; // hide nb container
+    // hide video, nb and exercise container
+    document.getElementById('video-container').style.display = 'none';
+    document.getElementById('nb-container').style.display = 'none';
+    ///// hide exercise container 
 }
 
+// when clicking on a media button, chooses whether to show image, video or exercise
 function mediaBtnHandleListener(flag, searchWord, i) {
     const type = json.getMediaType(searchWord, i);
-    if (flag === 'add') {
-        if (type === 'image') { // begin listener onclick for image
+
+    if (flag === 'media') {
+        // remove exercise listener
+        // mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
+        // begin image listener onclick
+        if (type === 'image') {
             mediaBtnArray[i].addEventListener('click', displayImageButtonOnClick, { passive : false});
-            mediaBtnArray[i].id
-        } else if (type === 'video') { // begin listener onclick for video
+        // begin video listener onclick
+        } else if (type === 'video') {
             mediaBtnArray[i].addEventListener('click', displayVideoButtonOnClick, { passive : false});
         }
-    } else if (flag === 'remove') { // remove all listeners
+        // remove exercise listener
+    } else if (flag === 'exercise') { 
+        // remove image and video listeners
         mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
         mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);
     }
 }
 
-// for each media btn, adds image, video or virus 
+// changes each media btn visually 
 function mediaBtnBehavior(searchWord) {
     let i = -1;
-    while (++i < mediaBtnArray.length) { // for each media btn
-        if (i < json.getOccurrences(searchWord)) { // for the media matching the searchword and by order
-            mediaBtnHandleListener('add', searchWord, i); // add listeners when clicking media-btn-(i+1)
+
+    // for each media btn
+    while (++i < mediaBtnArray.length) {
+        // if the slot has a media
+        if (i < json.getOccurrences(searchWord)) {
+            // initiate media btn listener
+            mediaBtnHandleListener('media', searchWord, i);
+            // UI : notification of a new media to be clicked
             mediaBtnArray[i].id += json.getMediaCode(searchWord, i, ' '); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
             mediaBtnArray[i].innerHTML = "Search Result " + (i + 1); // change label of button
             mediaBtnArray[i].style.cursor = 'pointer';
@@ -414,10 +464,12 @@ function mediaBtnBehavior(searchWord) {
                   color: ["#fff", "#000"], // [ from, to ]
                 },750);
             json.handleRedDot(searchWord, i); // display red dot if never seen media
-        } else { // virus here
-            mediaBtnHandleListener('remove', searchWord, i)
+        // else exercise here    
+        } else { 
+            // initiate exercise btn listener
+            mediaBtnHandleListener('exercise', searchWord, i)
+            // UI : notification of an exercise to be done
             mediaBtnArray[i].id = 'media-btn-' + (i + 1); // get back to normal id
-            // mediaBtnArray[i].innerHTML = 'EmptyMedia' + (i + 1); // change this to an empty like container (css)
             mediaBtnArray[i].innerHTML = ''; // change this to an empty like container (css)
             mediaBtnArray[i].style.cursor = '';
             json.handleRedDot(searchWord, i); // no red dot on empty media
@@ -426,32 +478,25 @@ function mediaBtnBehavior(searchWord) {
     return (i);
 }
 
-function isFound(searchWord) {
-    if (json.getOccurrences(searchWord) > 0) { // if strictly more than 0 occurrences of searchWord in json, then true
-        return (true);
-    }
-    return (false);
-}
-
-
-//////////
-// MAIN //
-//////////
-
+// main interface function
+// handles search bar UI
 function mainInterfaceFct(searchWord) {
     const searchInput = document.getElementById('search-input');
-    if (isFound(searchWord)) { // can be shortened
-        // NOTEBOOK : KEEP INPUT. notebook.trueWord(searchWord);
-        // for first interaction
+
+    // if the word is found at least once
+    if (json.getOccurrences(searchWord) > 0) {
         if (searchWord === 'begin') {
             searchInput.placeholder = 'Search';
             searchInput.value = '';
         }
+        // keep this TRUE word in notebook
         notebook.addEntryToHistory(searchWord, true);
+        // UI : media buttons are changed
         mediaBtnBehavior(searchWord);
     } else {
-        // NOTEBOOK : KEEP INPUT. notebook.falseWord(searchWord);
+        // keep this FALSE word in notebook
         notebook.addEntryToHistory(searchWord, false);
+        // UI : ask for retry through search bar
         if (searchWord != "42") {
             searchInput.placeholder = "No media found on word '" + searchWord + "', try again.";
         } else {
@@ -462,15 +507,21 @@ function mainInterfaceFct(searchWord) {
 }
 
 // Search bar functionality
-document.getElementById('search-input').addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') { // when clicking enter in the input
-        mainInterfaceFct(document.getElementById('search-input').value.trim().toLowerCase());
+document.getElementById('search-input').addEventListener(
+    // when clicking enter in the input
+    'keydown', (event) => { 
+        if (event.key === 'Enter') {
+            // do the main interface function
+            mainInterfaceFct(document.getElementById('search-input').value.trim().toLowerCase());
     }
 });
 
 // Search icon functionality
-document.querySelector('.search-icon').addEventListener('click', (event) => { // when clicking on the search-icon
-    mainInterfaceFct(document.getElementById('search-input').value.trim());
+document.querySelector('.search-icon').addEventListener(
+    // when clicking on the search-icon
+    'click', (event) => {
+        // do the main interface function
+        mainInterfaceFct(document.getElementById('search-input').value.trim());
 });
 
 //////////////
@@ -494,12 +545,14 @@ function updateNotebook() {
 
 // listener function : display image container only
 function displayNbMainButtonOnClick(event) {
+    updateNotebook();
     document.getElementById('popup').style.display = 'block'; // show popup
     document.getElementById('image-container').style.display = 'none'; // hide image container
     document.getElementById('video-container').style.display = 'none'; // hide video container
     document.getElementById('nb-container').style.display = 'block'; // show nb container
-    updateNotebook();
 }
 
 // Main notebook button functionality
-document.getElementById('main-nb').addEventListener('click', displayNbMainButtonOnClick, { passive : false});
+document.getElementById('main-nb').addEventListener(
+    // when clicking on 'Notebook' button
+    'click', displayNbMainButtonOnClick, { passive : false});
