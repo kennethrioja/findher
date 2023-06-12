@@ -76,7 +76,6 @@ TODO :
 mandatory : 
 - how to finish the game
 - greater font size on search bar
-- notebook interface
 - conpteur mot clés
 - error handling : minuscules
 - JOURNAL DE CONCEPTION
@@ -89,6 +88,7 @@ useful to play :
 
 details : 
 - css, styling
+- searchbar icon hover
 
 to check after finishing :
 - criminal 3 marche pas

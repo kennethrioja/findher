@@ -50,6 +50,25 @@ class Json {
         this.json = json;
     }
 
+    // length
+    length() {
+        return (this.json.length);
+    }
+
+    // count seen
+    getSeen() {
+        let n = 0;
+        for (let i = 0; i < this.json.length; i++) {
+            for (let j = 0; j < this.json[i].keywords.length; j++) {
+                if (this.json[i].seen === true) {
+                    n++;
+                }
+            }
+        }
+        return (n);
+    }
+
+
     // count occurrences of searchWord in json
     getOccurrences(searchWord) {
         let n = 0;
@@ -250,12 +269,21 @@ console.log(navigator.saysWho);
     }, 1000);
 }());
 
+function updateProgress() {
+    var pBar = document.getElementById('p-bar');
+    var percentage = Math.round(json.getSeen() / json.length() * 100)
+    pBar.style.width = percentage + '%';
+    pBar.innerHTML = percentage + '%';
+}
+
 // close popup functionality
 function closePopup(element) {
     element.addEventListener('click', () => {
         popup.style.display = 'none';
         audioPlayer.pause();
         videoPlayer.pause();
+        // update progress bar
+        updateProgress();  
     });
 }
 closePopup(closeBtn);
@@ -264,8 +292,6 @@ closePopup(popup);
 // ###############
 // ## FUNCTIONS ##
 // ###############
-
-// toNotebook();
 
 function handleVideo(mediaCode, mediaNum) {
     const videoSource = document.getElementById('video-source');
@@ -345,9 +371,9 @@ function mediaBtnHandleListener(flag, searchWord, i) {
     }
 }
 
+// for each media btn, adds image, video or virus 
 function mediaBtnBehavior(searchWord) {
-    // changes media accordingly
-     let i = -1;
+    let i = -1;
     while (++i < mediaBtnArray.length) { // for each media btn
         if (i < json.getOccurrences(searchWord)) { // for the media matching the searchword and by order
             mediaBtnHandleListener('add', searchWord, i); // add listeners when clicking media-btn-(i+1)
@@ -355,7 +381,7 @@ function mediaBtnBehavior(searchWord) {
             mediaBtnArray[i].innerHTML = "Search Result " + (i + 1); // change label of button
             mediaBtnArray[i].style.cursor = 'pointer';
             json.handleRedDot(searchWord, i); // display red dot if never seen media
-        } else {
+        } else { // virus here
             mediaBtnHandleListener('remove', searchWord, i)
             mediaBtnArray[i].id = 'media-btn-' + (i + 1); // get back to normal id
             // mediaBtnArray[i].innerHTML = 'EmptyMedia' + (i + 1); // change this to an empty like container (css)
@@ -374,7 +400,11 @@ function isFound(searchWord) {
     return (false);
 }
 
-// main
+
+//////////
+// MAIN //
+//////////
+
 function mainInterfaceFct(searchWord) {
     if (isFound(searchWord)) { // can be shortened
         // NOTEBOOK : KEEP INPUT. notebook.trueWord(searchWord);
@@ -412,6 +442,10 @@ searchIcon.addEventListener('click', (event) => { // when clicking on the search
     mainInterfaceFct(searchInput.value.trim());
 });
 
+//////////////
+// NOTEBOOK //
+//////////////
+
 function updateNotebook() {
     let correctWords = [];
     let wrongWords = [];
@@ -440,24 +474,3 @@ function displayNbMainButtonOnClick(event) {
 
 // Main notebook button functionality
 mainNbButton.addEventListener('click', displayNbMainButtonOnClick, { passive : false});
-
-// Return button functionality
-returnButton.addEventListener('click', () => {
-    console.log("yoooo");
-    // mainInterface.style.display = 'block';
-    // nbInterface.style.display = 'none';
-    // returnButton.style.display = 'none';
-});
-
-///////////////////////////////////////////////////////////////
-
-// Apps button functionality
-// mainMsgButton.addEventListener('click', () => {
-//   mainInterface.style.display = 'none';
-//   msgInterface.style.display = 'block';
-// });
-
-// mainOptButton.addEventListener('click', () => {
-//   mainInterface.style.display = 'none';
-//   optionsInterface.style.display = 'block';
-// });
