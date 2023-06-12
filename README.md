@@ -81,7 +81,7 @@ h :
 - 30min : new media added fade in for red dot
 - 30min : fixed media progression bug
 - 5min : error handling minuscules
-- asked chatgpt to find leaks in js code, fixed them.
+- 30min : asked chatgpt to find leaks in js code, he did not find leaks but ways to improve the code, which I did so.
 
 TODO :
 mandatory : 

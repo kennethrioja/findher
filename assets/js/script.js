@@ -23,10 +23,10 @@ class Json {
 
     // count seen
     getSeen() {
+        const jsonData = this.json;
         let n = 0;
-        for (let i = 0; i < this.json.length; i++) {
-            if (this.json[i].seen === true) {
-                console.log(this.json[i].code);
+        for (let i = 0; i < jsonData.length; i++) {
+            if (jsonData[i].seen === true) {
                 n++;
             }
         }
@@ -34,10 +34,11 @@ class Json {
     }
 
     getKeyWordListRaw() {
+        const jsonData = this.json;
         let list = [];
-        for (let i = 0; i < this.json.length; i++) {
-            for (let j = 0; j < this.json[i].keywords.length; j++) {
-                list.push(this.json[i].keywords[j]);
+        for (let i = 0; i < jsonData.length; i++) {
+            for (let j = 0; j < jsonData[i].keywords.length; j++) {
+                list.push(jsonData[i].keywords[j]);
             }
         }
         return (list);
@@ -49,10 +50,11 @@ class Json {
 
     // count occurrences of searchWord in json
     getOccurrences(searchWord) {
+        const jsonData = this.json;
         let n = 0;
-        for (let i = 0; i < this.json.length; i++) {
-            for (let j = 0; j < this.json[i].keywords.length; j++) {
-                if (searchWord === this.json[i].keywords[j] && this.json[i].keywords[0]) { // GESTION ERREUR : what if jon au lieu de john ?
+        for (let i = 0; i < jsonData.length; i++) {
+            for (let j = 0; j < jsonData[i].keywords.length; j++) {
+                if (searchWord === jsonData[i].keywords[j] && jsonData[i].keywords[0]) { // GESTION ERREUR : what if jon au lieu de john ?
                     n++;
                 }
             }
@@ -62,13 +64,14 @@ class Json {
 
     // get media type from the expected occurrence (occ)
     getMediaType(searchWord, occ) {
+        const jsonData = this.json;
         let loop = -1;
-        for (let i = 0; i < this.json.length; i++) {
-            for (let j = 0; j < this.json[i].keywords.length; j++) {
-                if (searchWord === this.json[i].keywords[j]) {
+        for (let i = 0; i < jsonData.length; i++) {
+            for (let j = 0; j < jsonData[i].keywords.length; j++) {
+                if (searchWord === jsonData[i].keywords[j]) {
                     loop++;
                     if (loop === occ) {
-                        return (this.json[i].type);
+                        return (jsonData[i].type);
                     }
                 }
             }
@@ -78,13 +81,14 @@ class Json {
 
     // get media code from the expected occurrence (n)
     getMediaCode(searchWord, n, prefix) {
+        const jsonData = this.json;
         let loop = -1;
-        for (let i = 0; i < this.json.length; i++) {
-            for (let j = 0; j < this.json[i].keywords.length; j++) {
-                if (searchWord === this.json[i].keywords[j]) {
+        for (let i = 0; i < jsonData.length; i++) {
+            for (let j = 0; j < jsonData[i].keywords.length; j++) {
+                if (searchWord === jsonData[i].keywords[j]) {
                     loop++;
                     if (loop === n) {
-                        return (prefix  + this.json[i].code);
+                        return (prefix  + jsonData[i].code);
                     }
                 }
             }
@@ -94,12 +98,13 @@ class Json {
 
     // show red dot / notification badge when never seen, else hide it
     handleRedDot(searchWord, n) {
+        const jsonData = this.json;
         let loop = -1;
-        for (let i = 0; i < this.json.length; i++) {
-            for (let j = 0; j < this.json[i].keywords.length; j++) {
-                if (searchWord === this.json[i].keywords[j]) {
+        for (let i = 0; i < jsonData.length; i++) {
+            for (let j = 0; j < jsonData[i].keywords.length; j++) {
+                if (searchWord === jsonData[i].keywords[j]) {
                     loop++;
-                    if (loop === n && this.json[i].seen === false) {
+                    if (loop === n && jsonData[i].seen === false) {
                         var redDot = document.getElementById('dot' + (n + 1));
                         animFadeIn(redDot, '#fa3e3e');
                         return ;
@@ -112,10 +117,11 @@ class Json {
 
     // mark as 'true' the media that has been seen and hide dot
     isSeen(mediaCode, mediaNum) {
-        for (let i = 0; i < this.json.length; i++) {
-            for (let j = 0; j < this.json[i].keywords.length; j++) {
-                if (mediaCode === this.json[i].code) {
-                    this.json[i].seen = true;
+        const jsonData = this.json;
+        for (let i = 0; i < jsonData.length; i++) {
+            for (let j = 0; j < jsonData[i].keywords.length; j++) {
+                if (mediaCode === jsonData[i].code) {
+                    jsonData[i].seen = true;
                     document.getElementById('dot' + mediaNum).style.backgroundColor = 'transparent';
                     return;
                 }
@@ -125,11 +131,12 @@ class Json {
     }
 
     // if 'autoplay' === true, then autoplay, ha.
-    isAutoplay(mediaCode, mediaNum, audioPlayer) {
-        for (let i = 0; i < this.json.length; i++) {
-            for (let j = 0; j < this.json[i].keywords.length; j++) {
-                if (mediaCode === this.json[i].code
-                    && this.json[i].autoplay === true) {
+    isAutoplay(mediaCode, audioPlayer) {
+        const jsonData = this.json;
+        for (let i = 0; i < jsonData.length; i++) {
+            for (let j = 0; j < jsonData[i].keywords.length; j++) {
+                if (mediaCode === jsonData[i].code
+                    && jsonData[i].autoplay === true) {
                     audioPlayer.play();
                 }
             }
@@ -153,8 +160,9 @@ class Notebook {
     }
 
     isInNotebook(searchWord) { // update #maxAttempt and update attemptNumber
-        for (let i = 0; i < this.history.length; i++) {
-            if (searchWord === this.history[i].word) {
+        const historyData = this.history;
+        for (let i = 0; i < historyData.length; i++) {
+            if (searchWord === historyData[i].word) {
                 return (true);
             }
         }
@@ -173,28 +181,31 @@ class Notebook {
     }
 
     countTrueWords() {
+        const historyData = this.history;
         var rez = {};
-        this.history.forEach(function(item){
+        historyData.forEach(function(item){
           rez[item.true] ? rez[item.true]++ :  rez[item.true] = 1;
         });
         return(rez.true);
     }
 
     #addNewEntryToHistory(searchWord, isInJson, notebook) {
+        const historyData = this.history;
         this.#maxAttempt++;
         let newHistory = {
             word : searchWord,
             attemptArray : [this.#maxAttempt],
             true : isInJson
         };
-        this.history[this.history.length] = newHistory;
+        historyData[historyData.length] = newHistory;
     }
 
     #addNotNewEntryToHistory(searchWord) {
-        for (let i = 0; i < this.history.length; i++) {
-            if (searchWord === this.history[i].word) {
+        const historyData = this.history;
+        for (let i = 0; i < historyData.length; i++) {
+            if (searchWord === historyData[i].word) {
                 this.#maxAttempt++;
-                this.history[i].attemptArray.push(this.#maxAttempt);
+                historyData[i].attemptArray.push(this.#maxAttempt);
             }
         }
     }
@@ -202,11 +213,12 @@ class Notebook {
     #updateWordProgress() {
         var cWord = document.getElementById('circle-word');
         var cWordDiv = document.getElementById('circle-word-div');
-        var percentage = Math.round(this.countTrueWords() / json.getKeyWordListNoDup().length * 100)
-        console.log(this.countTrueWords() + "true words / " + json.getKeyWordListNoDup().length);
+        const countTrueWords = this.countTrueWords();
+        const getKeyWordListNoDupLen = json.getKeyWordListNoDup().length;
+        var percentage = Math.round(countTrueWords / getKeyWordListNoDupLen * 100)
         cWord.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
-        var displayTrueWords = this.countTrueWords() === undefined ? 0 : this.countTrueWords()
-        cWordDiv.innerHTML = "Word<br>" + displayTrueWords + '/' + json.getKeyWordListNoDup().length;
+        var displayTrueWords = countTrueWords === undefined ? 0 : countTrueWords
+        cWordDiv.innerHTML = "Word<br>" + displayTrueWords + '/' + getKeyWordListNoDupLen;
     }
 
     #isAllSeen(searchWord) { // where is the best to put this ?
@@ -336,7 +348,7 @@ function handleAudio(mediaCode, mediaNum) {
     audioSource.src = audioPath;
     audioSource.type = "audio/mp3";
     document.getElementById('audio-player').load();
-    json.isAutoplay(mediaCode, mediaNum, document.getElementById('audio-player'));
+    json.isAutoplay(mediaCode, document.getElementById('audio-player'));
 }
 
 function getImgSrcSuffix(img, name) { // https://stackoverflow.com/questions/32772218/how-to-set-an-img-src-without-knowing-the-file-extension-in-javascript
@@ -474,7 +486,6 @@ function updateNotebook() {
             wrongWords.push(notebook.history[i].word + '(tries : ' + notebook.history[i].attemptArray.length + ') ');
         }
     }
-    console.log("heyy");
     document.querySelector('.nb-true-list').innerHTML = correctWords;
     document.querySelector('.nb-false-list').innerHTML = wrongWords;
     return (false);
@@ -482,7 +493,6 @@ function updateNotebook() {
 
 // listener function : display image container only
 function displayNbMainButtonOnClick(event) {
-    console.log("yo");
     document.getElementById('popup').style.display = 'block'; // show popup
     document.getElementById('image-container').style.display = 'none'; // hide image container
     document.getElementById('video-container').style.display = 'none'; // hide video container
