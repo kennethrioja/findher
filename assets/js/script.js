@@ -96,51 +96,15 @@ class Json {
         return (null);
     }
 
-    // show red dot / notification badge when never seen, else hide it
-    handleRedDot(searchWord, n) {
-        const jsonData = this.json;
-        let loop = -1;
-
-        for (let i = 0; i < jsonData.length; i++) {
-            for (let j = 0; j < jsonData[i].keywords.length; j++) {
-                if (searchWord === jsonData[i].keywords[j]) {
-                    loop++;
-                    if (loop === n && jsonData[i].seen === false) {
-                        var redDot = document.getElementById('dot' + (n + 1));
-                        animFadeIn(redDot, '#fa3e3e');
-                        return ;
-                    }
-                }
-            }
-        }
-        document.getElementById('dot' + (n + 1)).style.backgroundColor = 'transparent';
-    }
-
     // mark as 'true' the media that has been seen and hide dot
-    isSeen(mediaCode, mediaNum) {
+    isSeen(mediaCode) {
         const jsonData = this.json;
 
         for (let i = 0; i < jsonData.length; i++) {
             for (let j = 0; j < jsonData[i].keywords.length; j++) {
                 if (mediaCode === jsonData[i].code) {
                     jsonData[i].seen = true;
-                    document.getElementById('dot' + mediaNum).style.backgroundColor = 'transparent';
-                    return;
-                }
-            }
-        }
-        return (0);
-    }
-
-    // if 'autoplay' === true, then autoplay, ha.
-    isAutoplay(mediaCode, audioPlayer) {
-        const jsonData = this.json;
-
-        for (let i = 0; i < jsonData.length; i++) {
-            for (let j = 0; j < jsonData[i].keywords.length; j++) {
-                if (mediaCode === jsonData[i].code
-                    && jsonData[i].autoplay === true) {
-                    audioPlayer.play();
+                    return (1);
                 }
             }
         }
@@ -345,82 +309,93 @@ closePopup(document.getElementById('popup'));
 // VIDEO //
 ///////////
 
-// handle video player
-function handleVideo(mediaCode, mediaNum) {
+// handle video : change source, type
+function handleVideo(mediaCode) {
     const videoSource = document.getElementById('video-source');
+    const videoPlayer = document.getElementById('video-player');
     const videoPath = './assets/media/video/' + mediaCode + '.mp4' // write complete src, there are only mp4
 
     videoSource.src = videoPath;
     videoSource.type = "video/mp4";
-    json.isSeen(mediaCode, mediaNum); // change red dot
-    document.getElementById('video-player').load();
-    document.getElementById('video-player').style.height = "85vh";
-    document.getElementById('video-player').play();
+    videoPlayer.style.height = "85vh";
+    videoPlayer.load();
+    videoPlayer.play();
 }
 
-// listener function : display video container only
+// video listener onclick
 function displayVideoButtonOnClick(event) {
-    document.getElementById('popup').style.display = 'block'; // show popup
-    document.getElementById('video-container').style.display = 'block'; // show video container
     const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
     const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
+
+    // display video only
+    document.getElementById('popup').style.display = 'block'; // show popup
+    document.getElementById('video-container').style.display = 'block'; // show video container
+    // call right video with few style modifications
     handleVideo(mediaCode, mediaNum);
+    // as media is seen, hide red dot
+    if (json.isSeen(mediaCode)) {
+        document.getElementById('dot' + mediaNum).style.backgroundColor = 'transparent';
+    }
+    // hide video, nb and exercise container
     document.getElementById('image-container').style.display = 'none'; // hide image container
     document.getElementById('nb-container').style.display = 'none'; // hide nb container
+    document.getElementById('ex-container').style.display = 'none'; // hide nb container
 }
 
 ///////////////////
 // IMAGE + AUDIO //
 ///////////////////
 
-// check for image suffix
-function getImgSrcSuffix(img, name) { // https://stackoverflow.com/questions/32772218/how-to-set-an-img-src-without-knowing-the-file-extension-in-javascript
-    img.src = name + '.png';
-    img.onerror = function() {
-        img.src = name + '.jpg';
-        img.onerror = function() {
-            img.src = name + '.gif';
-        };
-    };
-} // this gives a lot of errors, try to make it softer, can add to json "extension" to be able add it directly
-
 // handle audio : change source & type, load and play audio
 function handleAudio(mediaCode, mediaNum) {
     const audioSource = document.getElementById('audio-source');
+    const audioPlayer = document.getElementById('audio-player');
     const audioPath = './assets/media/audio/' + mediaCode + '.mp3' // write complete src, there are only mp3
+
     audioSource.src = audioPath;
     audioSource.type = "audio/mp3";
-    document.getElementById('audio-player').load();
-    json.isAutoplay(mediaCode, document.getElementById('audio-player'));
+    audioPlayer.load();
+    audioPlayer.play();
 }
 
 // handle image : change source & style
-function handleImage(mediaCode, mediaNum) {
+function handleImage(mediaCode) {
     const img = document.getElementById('image') // get image DOM
     const prefixImgSrc = './assets/media/img/' + mediaCode // write src without file extension
-    getImgSrcSuffix(img, prefixImgSrc); // change src to correct one
+
+    img.src = prefixImgSrc + '.png';
+    img.onerror = function() {
+        img.src = prefixImgSrc + '.jpg';
+        img.onerror = function() {
+            img.src = prefixImgSrc + '.gif';
+        };
+    }; // this gives a lot of errors, try to make it softer, can add to json "extension" to be able add it directly
     console.log('ignore errors with either .png or .jpg, img has been found : ' + img.src); // can add to json "extension" to be able add it directly
-    json.isSeen(mediaCode, mediaNum); // change red dot
     img.style.height = '85vh';
     img.style.width = 'auto';
     // TODO : add alt
 }
 
-// image listener function onclick
+// image listener onclick
 function displayImageButtonOnClick(event) {
-    // displays image only
-    document.getElementById('popup').style.display = 'block'; // show popup
-    document.getElementById('image-container').style.display = 'block'; // show image container
     const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
     const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
-    // calls right image with few style modifications
+
+    // display image only
+    document.getElementById('popup').style.display = 'block'; // show popup
+    document.getElementById('image-container').style.display = 'block'; // show image container
+    // call right image with few style modifications
     handleImage(mediaCode, mediaNum);
-    // calls right audio with few style modifications
+    // call right audio with few style modifications
     handleAudio(mediaCode, mediaNum);
+    // as media is seen, hide red dot
+    if (json.isSeen(mediaCode)) {
+        document.getElementById('dot' + mediaNum).style.backgroundColor = 'transparent';
+    }
     // hide video, nb and exercise container
     document.getElementById('video-container').style.display = 'none';
     document.getElementById('nb-container').style.display = 'none';
-    ///// hide exercise container 
+    document.getElementById('ex-container').style.display = 'none';
 }
 
 // when clicking on a media button, chooses whether to show image, video or exercise
@@ -445,6 +420,25 @@ function mediaBtnHandleListener(flag, searchWord, i) {
     }
 }
 
+ // show red dot / notification badge when never seen, else hide it
+function handleRedDot(searchWord, n) {
+    const jsonData = json.json;
+    let loop = -1;
+
+    for (let i = 0; i < jsonData.length; i++) {
+        for (let j = 0; j < jsonData[i].keywords.length; j++) {
+            if (searchWord === jsonData[i].keywords[j]) {
+                loop++;
+                if (loop === n && jsonData[i].seen === false) {
+                    animFadeIn(document.getElementById('dot' + (n + 1)), '#fa3e3e');
+                    return ;
+                }
+            }
+        }
+    }
+    document.getElementById('dot' + (n + 1)).style.backgroundColor = 'transparent';
+}
+
 // changes each media btn visually 
 function mediaBtnBehavior(searchWord) {
     let i = -1;
@@ -463,7 +457,7 @@ function mediaBtnBehavior(searchWord) {
                   opacity: [0.3, 1], // [ from, to ]
                   color: ["#fff", "#000"], // [ from, to ]
                 },750);
-            json.handleRedDot(searchWord, i); // display red dot if never seen media
+            handleRedDot(searchWord, i); // display red dot if never seen media
         // else exercise here    
         } else { 
             // initiate exercise btn listener
@@ -472,7 +466,7 @@ function mediaBtnBehavior(searchWord) {
             mediaBtnArray[i].id = 'media-btn-' + (i + 1); // get back to normal id
             mediaBtnArray[i].innerHTML = ''; // change this to an empty like container (css)
             mediaBtnArray[i].style.cursor = '';
-            json.handleRedDot(searchWord, i); // no red dot on empty media
+            handleRedDot(searchWord, i); // no red dot on empty media
         }
     }
     return (i);

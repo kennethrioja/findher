@@ -82,7 +82,8 @@ h :
 - 30min : fixed media progression bug
 - 5min : error handling minuscules
 - 1h : asked chatgpt to find leaks in js code, he did not find leaks but ways to improve the code, which I did so.
-- 2h48
+- 2h : clean code before doing begin and end
+- 
 
 TODO :
 mandatory : 
