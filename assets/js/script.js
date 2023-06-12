@@ -68,6 +68,19 @@ class Json {
         return (n);
     }
 
+    getKeyWordListRaw() {
+        let list = [];
+        for (let i = 0; i < this.json.length; i++) {
+            for (let j = 0; j < this.json[i].keywords.length; j++) {
+                list.push(this.json[i].keywords[j]);
+            }
+        }
+        return (list);
+    }
+
+    getKeyWordListNoDup() { // https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
+        return(this.getKeyWordListRaw().filter((v,i,a)=>a.indexOf(v)==i));
+    }
 
     // count occurrences of searchWord in json
     getOccurrences(searchWord) {
@@ -165,14 +178,14 @@ class Notebook {
         // word : searchWord,
         // attemptArray : [this.maxAttempt],
         // true : isInJson
-    maxAttempt;
+    #maxAttempt;
 
     constructor() {
         this.history = [];
-        this.maxAttempt = 0;
+        this.#maxAttempt = 0;
     }
 
-    isInNotebook(searchWord) { // update maxAttempt and update attemptNumber
+    isInNotebook(searchWord) { // update #maxAttempt and update attemptNumber
         for (let i = 0; i < this.history.length; i++) {
             if (searchWord === this.history[i].word) {
                 return (true);
@@ -188,13 +201,23 @@ class Notebook {
         } else { // else if already in entry
             this.#addNotNewEntryToHistory(searchWord);
         }
+        // change words progression
+        this.#updateWordProgress();
+    }
+
+    countTrueWords() {
+        var rez = {};
+        this.history.forEach(function(item){
+          rez[item.true] ? rez[item.true]++ :  rez[item.true] = 1;
+        });
+        return(rez.true);
     }
 
     #addNewEntryToHistory(searchWord, isInJson, notebook) {
-        this.maxAttempt++;
+        this.#maxAttempt++;
         let newHistory = {
             word : searchWord,
-            attemptArray : [this.maxAttempt],
+            attemptArray : [this.#maxAttempt],
             true : isInJson
         };
         this.history[this.history.length] = newHistory;
@@ -203,10 +226,19 @@ class Notebook {
     #addNotNewEntryToHistory(searchWord) {
         for (let i = 0; i < this.history.length; i++) {
             if (searchWord === this.history[i].word) {
-                this.maxAttempt++;
-                this.history[i].attemptArray.push(this.maxAttempt);
+                this.#maxAttempt++;
+                this.history[i].attemptArray.push(this.#maxAttempt);
             }
         }
+    }
+
+    #updateWordProgress() {
+        var cWord = document.getElementById('circle-word');
+        var cWordDiv = document.getElementById('circle-word-div');
+        var percentage = Math.round(this.countTrueWords() / json.getKeyWordListNoDup().length * 100)
+        console.log(this.countTrueWords() + "true words / " + json.getKeyWordListNoDup().length);
+        cWord.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
+        cWordDiv.innerHTML = "Word<br>" + this.countTrueWords() + '/' + json.getKeyWordListNoDup().length;
     }
 
     #isAllSeen(searchWord) { // where is the best to put this ?
@@ -269,11 +301,12 @@ console.log(navigator.saysWho);
     }, 1000);
 }());
 
-function updateProgress() {
-    var pBar = document.getElementById('p-bar');
+function updateMediaProgress() {
+    var cMedia = document.getElementById('circle-media');
+    var cMediaDiv = document.getElementById('circle-media-div');
     var percentage = Math.round(json.getSeen() / json.length() * 100)
-    pBar.style.width = percentage + '%';
-    pBar.innerHTML = percentage + '%';
+    cMedia.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
+    cMediaDiv.innerHTML = "Media<br>" + json.getSeen() + '/' + json.length();
 }
 
 // close popup functionality
@@ -282,8 +315,8 @@ function closePopup(element) {
         popup.style.display = 'none';
         audioPlayer.pause();
         videoPlayer.pause();
-        // update progress bar
-        updateProgress();  
+        // update media progression
+        updateMediaProgress();  
     });
 }
 closePopup(closeBtn);

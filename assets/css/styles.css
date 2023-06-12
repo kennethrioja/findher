@@ -20,6 +20,52 @@ body {
   height: 20px;
 }
 
+/* circular progress bar : https://alvarotrigo.com/blog/progress-bar-css/#9.-circular-progress-bar-with-numbers */
+.wrap-circles {
+  display: flex;
+  min-height: 10vh;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0.5rem;
+  border-radius: 50%;
+  background: #ffcdb2;
+  overflow: hidden;
+}
+
+#circle-media {
+  background-image: conic-gradient(#b5838d 0%, #ffcdb2 0);
+}
+
+#circle-word {
+  background-image: conic-gradient(#b5838d 0%, #ffcdb2 0);
+}
+
+.circle .inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 115px;
+  height: 115px;
+  background: rgb(87, 105, 106);
+  border-radius: 50%;
+  font-size: 1.85em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.75);
+}
+
 .interface {
   height: 90vh;
   display: flex;
@@ -70,7 +116,7 @@ body {
 }
 
 .media-btn {
-  width: 25vh;
+  width: 40vh;
   height: 40px;
   background: #f1fff1;
   border-radius: 20px;
@@ -91,9 +137,8 @@ body {
 
 #main-nb:hover,
 .return-btn:hover {
-  cursor:pointer;
+  cursor: pointer;
 }
-
 
 .dot {
   /* https://stackoverflow.com/questions/5747863/easiest-css-for-red-notification-badge-with-count */
@@ -179,15 +224,15 @@ body {
 }
 
 .nb-true-list {
-    font-style: italic;
-    background-color: black;
-    color: green;
+  font-style: italic;
+  background-color: black;
+  color: green;
 }
 
 .nb-false-list {
-    font-style: italic;
-    background-color: black;
-    color: red;
+  font-style: italic;
+  background-color: black;
+  color: red;
 }
 
 .opt-btn {

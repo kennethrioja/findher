@@ -70,12 +70,18 @@ A faire ensuite :
 
 ## 11.06.2023 : 
 
-- : autoplay true, 
+1h : think about virus implementation, autoplay true
+
+## 12.06.2023 : 
+
+h :
+- 30min: notebook interface in popup window
+- 1h : progress bar
+- 1h30 : compteur mot-clés, circular progress bars for media and word
 
 TODO :
 mandatory : 
 - how to finish the game
-- greater font size on search bar
 - conpteur mot clés
 - error handling : minuscules
 - JOURNAL DE CONCEPTION
