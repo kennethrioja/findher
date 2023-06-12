@@ -58,7 +58,7 @@
       "keywords": ["brain","scan"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -82,7 +82,7 @@
       "keywords": ["neuroscience","science","lab"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -121,7 +121,7 @@
       "keywords": ["project","interview"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -129,7 +129,7 @@
       "keywords": ["doctor","appointment","health"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -137,7 +137,7 @@
       "keywords": ["pain"],
       "seen" : false,
       "type": "gif",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -145,7 +145,7 @@
       "keywords": ["visit","appointment"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -185,7 +185,7 @@
       "keywords": ["anniversary","happy","wine"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -193,7 +193,7 @@
       "keywords": ["test","like","lily"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -257,7 +257,7 @@
       "keywords": ["secret","vacation","pain"],
       "seen" : false,
       "type": "gif",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -337,7 +337,7 @@
       "keywords": ["secret","help"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -345,7 +345,7 @@
       "keywords": ["ambition","visit","criminal","accept","sick"],
       "seen" : false,
       "type": "gif",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -353,7 +353,7 @@
       "keywords": ["stranger","drunk","safety"],
       "seen" : false,
       "type": "gif",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -377,7 +377,7 @@
       "keywords": ["explain","wine","anniversary","alice"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -393,7 +393,7 @@
       "keywords": ["vacation","dinner"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -425,7 +425,7 @@
       "keywords": ["absence","wife","lie","upset"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -433,7 +433,7 @@
       "keywords": ["vacation","charles"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
 
@@ -441,7 +441,7 @@
       "keywords": ["safety","mail","alice"],
       "seen" : false,
       "type": "image",
-      "autoplay": false
+      "autoplay": true
     },
     {
       "code": "56",

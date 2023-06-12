@@ -43,9 +43,9 @@
           </div>
         </div>
         <div class='footer'>
-          <button class='main-btn' id='main-msg'>X</button>
-          <button class='main-btn' id='main-nb'>Update Notebook</button>
-          <button class='main-btn' id='main-opt'>X</button>
+          <!-- <button class='main-btn' id='main-msg'>X</button> -->
+          <button class='main-btn' id='main-nb'>Notebook</button>
+          <!-- <button class='main-btn' id='main-opt'>X</button> -->
         </div>
       </div>
 
@@ -54,36 +54,45 @@
         <div id='image-container' class='image-container'>
           <img id='image'/> 
           <audio id='audio-player' controls>
-          <!-- to remove when coded -->
             <source id="audio-source"/>
-            <!-- <source id='audio' src="./assets/media/audio/01.mp3" type="audio/mp3"/> -->
           </audio>
           <button id='close-button'>Close</button>
         </div>
         <div id='video-container' class='video-container'>
           <video id='video-player' width='320' height='240' controls>
-          <!-- to remove when coded -->
-            <!-- <source id='video-source' src='./assets/media/video/' type='video/mp4' /> -->
             <source id='video-source' />
           </video>
           <button id='close-button'>Close</button>
         </div>
+        <div class='nb-container' id='nb-container'>
+            <h1>Notebook</h1>
+            <div class='nb-true'>
+              <p>Correct keywords</p>
+              <div class='nb-true-list'></div>
+            </div>
+            <div class='nb-false'>
+              <p>Wrong keywords</p>
+              <div class='nb-false-list'></div>
+            </div>
+        </div>
       </div>
+    </div>
+
 
       <!-- msg interface -->
-      <div class='msg-interface'>
-        <button class='return-btn'>Return</button>
+      <!-- <div class='msg-interface'>
+        <button class='return-btn' id="return-btn">Return</button>
         <h1>Messenger</h1>
         <div class='msgs'>
           <button class='msg-btn' id='msg-btn-1'>EmptyMsg1</button>
           <button class='msg-btn' id='msg-btn-2'>EmptyMsg2</button>
           <button class='msg-btn' id='msg-btn-3'>EmptyMsg3</button>
         </div>
-      </div>
+      </div> -->
 
       <!-- notebook interface -->
-      <div class='nb-interface'>
-        <!-- <button class='return-btn'>Return</button> -->
+      <!-- <div class='nb-interface'>
+        <button hidden class='return-btn' id="return-btn">Return</button>
         <h1>Notebook</h1>
         <div class='nb-true'>
           <p>Correct keywords</p>
@@ -93,17 +102,16 @@
           <p>Wrong keywords</p>
           <div class='nb-false-list'></div>
         </div>
-      </div>
+      </div> -->
 
       <!-- option interface -->
-      <div class='opt-interface'>
-        <button class='return-btn'>Return</button>
+      <!-- <div class='opt-interface'>
+        <button class='return-btn' id="return-btn">Return</button>
         <h1>Options</h1>
         <button class='opt-btn' id='opt-btn-home'>Home</button>
         <button class='opt-btn' id='opt-btn-credits'>Credits</button>
-      </div>
+      </div> -->
     
-    </div>
   </body>
   <script type='module' src='./assets/js/script.js'></script>
 </html>

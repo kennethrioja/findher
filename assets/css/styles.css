@@ -79,7 +79,8 @@ body {
 
 #search-input:hover,
 .media-btn:hover,
-#main-nb:hover {
+#main-nb:hover,
+.return-btn:hover {
   -webkit-filter: brightness(70%);
   -webkit-transition: all 0s ease;
   -moz-transition: all 0s ease;
@@ -88,7 +89,8 @@ body {
   transition: all 0s ease;
 }
 
-#main-nb:hover {
+#main-nb:hover,
+.return-btn:hover {
   cursor:pointer;
 }
 
@@ -117,7 +119,8 @@ body {
 }
 
 .image-container,
-.video-container {
+.video-container,
+.nb-container {
   display: none;
   position: relative;
   top: 50%;
@@ -164,7 +167,7 @@ body {
 }
 
 .msg-interface,
-/* .nb-interface, */
+.nb-interface,
 .opt-interface {
   display: none;
   position: fixed;

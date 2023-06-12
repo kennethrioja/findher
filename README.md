@@ -68,17 +68,31 @@ A faire ensuite :
 - 9:56, 30min: new history for each input entered, don't know where to put the mirador-like to check if all media from a keyword are already seen to be able to put it in green in notebook.
 - 10:31, 1h, notebook behavior
 
+## 11.06.2023 : 
+
+- : autoplay true, 
+
 TODO :
+mandatory : 
 - how to finish the game
-- met pourcentage video seen qqpart
+- greater font size on search bar
+- notebook interface
+- conpteur mot clés
 - error handling : minuscules
+- JOURNAL DE CONCEPTION
+
+useful to play : 
+- chapter pages
+- after begin help do something (les petites bulles d'info en itération)
+- intrigue video always accessible
+- 
+
+details : 
+- css, styling
+
+to check after finishing :
 - criminal 3 marche pas
 - drunk 2 marche pas
-- notebook interface
-- after begin help do something (les petits pushs)
-- css, styling
-- met autoplay toujours
-- JOURNAL DE CONCEPTION
 
 # Attributions : 
 

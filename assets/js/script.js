@@ -6,7 +6,7 @@ var mediaBtnArray = [document.getElementById('media-btn-1'),
                         document.getElementById('media-btn-2'),
                         document.getElementById('media-btn-3')];
 
-var mainInterface = document.querySelector('.main-interface');
+var mainInterface = document.querySelector('.interface');
 var searchIcon = document.querySelector('.search-icon');
 
 const popup = document.getElementById('popup');
@@ -21,7 +21,7 @@ var mainMsgButton = document.getElementById('main-msg');
 var mainNbButton = document.getElementById('main-nb');
 var mainOptButton = document.getElementById('main-opt');
 
-var returnButton = document.querySelector('.return-btn');
+var returnButton = document.getElementById('return-btn');
 
 var msgInterface = document.querySelector('.msg-interface');
 var msgBtn2 = document.getElementById('msg-btn-2');
@@ -29,6 +29,7 @@ var msgBtn3 = document.getElementById('msg-btn-3');
 var msgBtn1 = document.getElementById('msg-btn-1');
 
 var nbInterface = document.querySelector('.nb-interface');
+var nbContainer = document.getElementById('nb-container');
 var nbTrue = document.querySelector('.nb-true');
 var nbTrueList = document.querySelector('.nb-true-list');
 var nbfalse = document.querySelector('.nb-false');
@@ -284,6 +285,7 @@ function displayVideoButtonOnClick(event) {
     const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
     handleVideo(mediaCode, mediaNum);
     imageContainer.style.display = 'none'; // hide image container
+    nbContainer.style.display = 'none'; // hide nb container
 }
 
 function handleAudio(mediaCode, mediaNum) {
@@ -325,6 +327,7 @@ function displayImageButtonOnClick(event) {
     handleImage(mediaCode, mediaNum);
     handleAudio(mediaCode, mediaNum);
     videoContainer.style.display = 'none'; // hide video container
+    nbContainer.style.display = 'none'; // hide nb container
 }
 
 function mediaBtnHandleListener(flag, searchWord, i) {
@@ -419,31 +422,32 @@ function updateNotebook() {
             wrongWords.push(notebook.history[i].word + '(tries : ' + notebook.history[i].attemptArray.length + ') ');
         }
     }
+    console.log("heyy");
     nbTrueList.innerHTML = correctWords;
     nbFalseList.innerHTML = wrongWords;
     return (false);
 }
 
-function notebookInterface() {
+// listener function : display image container only
+function displayNbMainButtonOnClick(event) {
     console.log("yo");
-    // mainInterface.style.display = 'none';
-    // nbInterface.style.display = 'block';
-    // returnButton.style.display = 'block';
+    popup.style.display = 'block'; // show popup
+    imageContainer.style.display = 'none'; // hide image container
+    videoContainer.style.display = 'none'; // hide video container
+    nbContainer.style.display = 'block'; // show nb container
     updateNotebook();
 }
-// Main notebook button functionality
-mainNbButton.addEventListener('click', () => {
-    notebookInterface();    
-});
 
-// // Return button functionality // DOES NOT WORK YET
-// returnButton.addEventListener('click', () => {
-//     console.log("yoooo");
-//     mainInterface.style.display = 'block';
-//     // msgInterface.style.display = 'none';
-//     nbInterface.style.display = 'none';
-//     // optInterface.style.display = 'none';
-// });
+// Main notebook button functionality
+mainNbButton.addEventListener('click', displayNbMainButtonOnClick, { passive : false});
+
+// Return button functionality
+returnButton.addEventListener('click', () => {
+    console.log("yoooo");
+    // mainInterface.style.display = 'block';
+    // nbInterface.style.display = 'none';
+    // returnButton.style.display = 'none';
+});
 
 ///////////////////////////////////////////////////////////////
 
