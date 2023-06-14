@@ -1,0 +1,910 @@
+[
+    {
+        "keyword" : "happy",
+        "exText" : "Choose the right word to complete the phrase. Today, I told John that we ____ be expecting a baby.",
+        "answer" : 
+        [
+            {
+                "num" : 1,
+                "text" : "should"
+            },
+            {
+                "num" : 2,
+                "text" : "may"
+            },
+            {
+                "num" : 3,
+                "text" : "could"
+            },
+            {
+                "num" : 4,
+                "text" : "would"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 2,
+        "trueFeedback" : "Good job ! You can now continue the exploration!",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "article",
+        "exText" : "Choose the right part to complete the phrase. _____about the link between criminality and the brain structure.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "I'm reading"
+            },
+            {
+                "num" : 2,
+                "text" : "I'm read"
+            },
+            {
+                "num" : 3,
+                "text" : "I was reading"
+            },
+            {
+                "num" : 4,
+                "text" : "I will read"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "ambition",
+        "exText" : "Choose the right word to complete the phrase. If I had known what he was capable of doing for his ambition, I _____ never have accepted in the first place.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "can"
+            },
+            {
+                "num" : 2,
+                "text" : "could"
+            },
+            {
+                "num" : 3,
+                "text" : "may"
+            },
+            {
+                "num" : 4,
+                "text" : "would"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 4,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "plan",
+        "exText" : "Choose the sentence without errors",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "I can’t be lost now. I need plan. A plan to collect all the evidence, to reveal all his lies and to save my child."
+            },
+            {
+                "num" : 2,
+                "text" : "I can’t be lost now. I need an plan. A plan to collect all the evidence, to reveal all his lies and to save my child."
+            },
+            {
+                "num" : 3,
+                "text" : "I can’t be lost now. I need a plan. The plan to collect all the evidence, to reveal all his lies and to save my child."
+            },
+            {
+                "num" : 4,
+                "text" : " I can’t be lost now. I need a plan. A plan to collect all the evidence, to reveal all his lies and to save my child."
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 4,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "believe",
+        "exText" : "Choose the part of this sentence that is in the present simple: Today, I talked to the doctor about John’s ambition in our career. We might have a baby on the way.I don’t know if it’s the right time for his big plan.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "Today, I talked to the doctor about John’s ambition in our career"
+            },
+            {
+                "num" : 2,
+                "text" : "We might have a baby on the way"
+            },
+            {
+                "num" : 3,
+                "text" : "I don’t know if it’s the right time for his big plan"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 3,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "scan",
+        "exText" : "Choose the sentence that is in the present conditional tense.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "If you had some time this afternoon, you could come see me to get a brain scan."
+            },
+            {
+                "num" : 2,
+                "text" : "If you had had some time this afternoon, you could have come to see me to get a brain scan."
+            },
+            {
+                "num" : 3,
+                "text" : "If you will have some time this afternoon, you will be able to come see me to get a brain scan."
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "work",
+        "exText" : "Choose the correct option to complete the sentence: I'm _______ concerned as normally she would have informed us of her absence.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "quite"
+            },
+            {
+                "num" : 2,
+                "text" : "very"
+            },
+            {
+                "num" : 3,
+                "text" : "a little"
+            },
+            {
+                "num" : 4,
+                "text" : "extremely"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 3,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "idea",
+        "exText" : "Choose the correct adverb to complete the sentence: I can accept your idea but only on one condition. I think we’d better talk …. in person about this.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "quietly"
+            },
+            {
+                "num" : 2,
+                "text" : "briefly"
+            },
+            {
+                "num" : 3,
+                "text" : "seriously"
+            },
+            {
+                "num" : 4,
+                "text" : "happily"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 3,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "neuroscience",
+        "exText" : "Choose the correct part to complete the sentence: Thank you all for joining our lab. _____ together for new achievements in the field of neuroscience.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "We'll work"
+            },
+            {
+                "num" : 2,
+                "text" : "We work"
+            },
+            {
+                "num" : 3,
+                "text" : "We are going to working"
+            },
+            {
+                "num" : 4,
+                "text" : "We are working"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "interest",
+        "exText" : "Choose the correct word to complete the sentence: I understand _____ lab’s work is overwhelming these days.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "which"
+            },
+            {
+                "num" : 2,
+                "text" : "that"
+            },
+            {
+                "num" : 3,
+                "text" : "what"
+            },
+            {
+                "num" : 4,
+                "text" : "when"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 2,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "suggestion",
+        "exText" : "Choose the correct word to complete the sentence: I need to keep some distance from John. I know _____ he really did.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "which"
+            },
+            {
+                "num" : 2,
+                "text" : "what"
+            },
+            {
+                "num" : 3,
+                "text" : "that"
+            },
+            {
+                "num" : 4,
+                "text" : "whose"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 2,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "lost",
+        "exText" : "Select the correct form of the verb to complete the sentence: I can't be lost now. I _____ a plan.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "needs"
+            },
+            {
+                "num" : 2,
+                "text" : "needed"
+            },
+            {
+                "num" : 3,
+                "text" : "needing"
+            },
+            {
+                "num" : 4,
+                "text" : "need"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 4,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "interview",
+        "exText" : "Select the correct word to complete the sentence: I’m very glad that we ……  finally work on our own projects in our own lab.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "can"
+            },
+            {
+                "num" : 2,
+                "text" : "would"
+            },
+            {
+                "num" : 3,
+                "text" : "should"
+            },
+            {
+                "num" : 4,
+                "text" : "may"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "visit",
+        "exText" : "Choose the sentence that uses the correct adverb.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "I would often have accepted in the first place."
+            },
+            {
+                "num" : 2,
+                "text" : "I would sometimes have accepted in the first place."
+            },
+            {
+                "num" : 3,
+                "text" : "I would never have accepted in the first place."
+            },
+            {
+                "num" : 4,
+                "text" : "I would rarely have accepted in the first place."
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 3,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "anniversary",
+        "exText" : "Choose the right part to complete the sentence:Hi honey, Lily might have catched a little cold. I don’t want to leave her with the nanny. I know it’s our anniversary. But let’s keep it simple this year. ____ happy if there is my favorite wine.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "I will be."
+            },
+            {
+                "num" : 2,
+                "text" : "I am."
+            },
+            {
+                "num" : 3,
+                "text" : "I'm go to be"
+            },
+            {
+                "num" : 4,
+                "text" : "I'm to be"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "test",
+        "exText" : "Choose the right question tag to complete the sentence :Lily, look at Daddy, look at me. (ring the bell) This sounds beautiful, ____ .",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "isn't it?"
+            },
+            {
+                "num" : 2,
+                "text" : "aren't they?"
+            },
+            {
+                "num" : 3,
+                "text" : "can't she"
+            },
+            {
+                "num" : 4,
+                "text" : "doesn't it"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 4,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "like",
+        "exText" : "Is this sentence exclusively in present tense? :Lily, look at Daddy, look at me. This sounds beautiful, doesn’t it? You like it ,huh? I can see you are smiling. Now let’s go. Where is the bell going? Good, good, you are following me perfectly.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "Yes"
+            },
+            {
+                "num" : 2,
+                "text" : "No"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 2,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "dear",
+        "exText" : "Convert the following sentence into imperative: Would you mind standing up now, my dear?",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "Now, my dear, please stand up."
+            },
+            {
+                "num" : 2,
+                "text" : "I kindly request that you stand up now, my dear"
+            },
+            {
+                "num" : 3,
+                "text" : "Could you do me a favor by standing up now, my dear"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "ice cream",
+        "exText" : "Which form correctly expresses the simultaneous action in the given sentence?",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "Ask for it in this way and convince me."
+            },
+            {
+                "num" : 2,
+                "text" : "Asked for it in this way but didn't convince me."
+            },
+            {
+                "num" : 3,
+                "text" : "Asking for it in this way doesn't convince me."
+            },
+            {
+                "num" : 4,
+                "text" : "Asking for it in this way and convinced me."
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 3,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "yummy",
+        "exText" : "Transform the following sentence into imperative: If you don't give it to me, I won't talk to you anymore.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "Give it to me or I’m not going to talk to you anymore!"
+            },
+            {
+                "num" : 2,
+                "text" : "Unless you give it to me, I will no longer engage in conversation with you."
+            },
+            {
+                "num" : 3,
+                "text" : "If you refuse to give it to me, I'll cease communication with you."
+            },
+            {
+                "num" : 4,
+                "text" : "In the event that you don't hand it over, I'll discontinue any further communication with you."
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "secret",
+        "exText" : "Choose the correct option to complete the sentence: Doctor, I don’t think I can bear this terrible secret anymore. I have been living in great pain ever ____ that decision was made. It's been almost 17 years. ",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "since"
+            },
+            {
+                "num" : 2,
+                "text" : "for"
+            },
+            {
+                "num" : 3,
+                "text" : "already"
+            },
+            {
+                "num" : 4,
+                "text" : "yet"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "fun",
+        "exText" : "Choose the correct option to complete the sentence: She ____have lived a much better life if she hadn’t been born in this family. ",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "could"
+            },
+            {
+                "num" : 2,
+                "text" : "should"
+            },
+            {
+                "num" : 3,
+                "text" : "may"
+            },
+            {
+                "num" : 4,
+                "text" : "must"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "challenge",
+        "exText" : "Choose the correct part to complete the sentence:Today ____ something fun! I got you some very interesting questions full of puzzles and brain teasers to crack. Are you ready for this challenge?",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "we are going to"
+            },
+            {
+                "num" : 2,
+                "text" : "we do"
+            },
+            {
+                "num" : 3,
+                "text" : "we'll to do"
+            },
+            {
+                "num" : 4,
+                "text" : "we are doing"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "party",
+        "exText" : "Choose the correct word to complete the sentence:She ____ have  beautiful dresses, birthday parties, fun trips...",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "would"
+            },
+            {
+                "num" : 2,
+                "text" : "might"
+            },
+            {
+                "num" : 3,
+                "text" : "must"
+            },
+            {
+                "num" : 4,
+                "text" : "could"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 4,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "trip",
+        "exText" : "Choose the correct word to complete the sentence:Did mom ____a big Christmas dinner three years ago?",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "do"
+            },
+            {
+                "num" : 2,
+                "text" : "make"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 2,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "birthday",
+        "exText" : "Transform the following sentence into imperative: You can bring it on!",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "Ready to bring it on."
+            },
+            {
+                "num" : 2,
+                "text" : "Ready, bring it on."
+            },
+            {
+                "num" : 3,
+                "text" : "Brought it on."
+            },
+            {
+                "num" : 4,
+                "text" : "Bringing it on."
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 2,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "dress",
+        "exText" : "Is STAIN a regular or irregular verb : Well, this is a white dress stained with red wine and blood spots.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "regular"
+            },
+            {
+                "num" : 2,
+                "text" : "irregular"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "blood",
+        "exText" : "Choose the right question tag to complete the sentence :when it comes to health, we have to take it seriously, ____ .",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "isn't it?"
+            },
+            {
+                "num" : 2,
+                "text" : "do we?"
+            },
+            {
+                "num" : 3,
+                "text" : "aren't we?"
+            },
+            {
+                "num" : 4,
+                "text" : "don't we?"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 4,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "drunk",
+        "exText" : "Choose the right past tense form to complete the sentence: He _____ into such anger when I confronted him.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "burst"
+            },
+            {
+                "num" : 2,
+                "text" : "bursted"
+            },
+            {
+                "num" : 3,
+                "text" : "burstted"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "stranger",
+        "exText" : "Choose the right past tense form to complete the sentence: Subject 18 dealt with the situation with more reasoning while subject 19 ___ to run away",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "tred"
+            },
+            {
+                "num" : 2,
+                "text" : "tryed"
+            },
+            {
+                "num" : 3,
+                "text" : "tried"
+            },
+            {
+                "num" : 4,
+                "text" : "try"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 3,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "save",
+        "exText" : "Based on the story's context, choose the right modal verb to complete the sentence: I ___ save her!",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "will"
+            },
+            {
+                "num" : 2,
+                "text" : "can"
+            },
+            {
+                "num" : 3,
+                "text" : "may"
+            },
+            {
+                "num" : 4,
+                "text" : "must"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 4,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "wife",
+        "exText" : "Choose the right relative pronoun to complete the sentence: I think the doctor’s suggestion is right. I need to keep some distance from John. I know what he really did. ____ knows what he is capable of doing to me. To him, I’m now more of a threat than a wife.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "Which"
+            },
+            {
+                "num" : 2,
+                "text" : "Who"
+            },
+            {
+                "num" : 3,
+                "text" : "Whose"
+            },
+            {
+                "num" : 4,
+                "text" : "What"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 2,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "safe",
+        "exText" : "Based on the story's context, choose the right adverb to complete the sentence: ____ I can figure out a way to deal with the virus.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "Accidentally"
+            },
+            {
+                "num" : 2,
+                "text" : "Luckily"
+            },
+            {
+                "num" : 3,
+                "text" : "Maybe"
+            },
+            {
+                "num" : 4,
+                "text" : "Finally"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 3,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    },
+    {
+        "keyword" : "charles",
+        "exText" : "Choose the correct adverb to complete each sentence: Alice is not feeling very _______ today so she decided to take some days off as well.",
+        "answer" :
+        [
+            {
+                "num" : 1,
+                "text" : "well"
+            },
+            {
+                "num" : 2,
+                "text" : "good"
+            },
+            {
+                "num" : 3,
+                "text" : "finely"
+            }
+        ],
+        "help" : "règle…",
+        "trueAnswer" : 1,
+        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
+        "done" : false
+    }
+]

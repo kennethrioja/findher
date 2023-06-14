@@ -1,28 +1,40 @@
-import localJson from '../json/dictionary.json' assert {type: 'json'};
+import dictionary from '../json/dictionary.json' assert {type: 'json'};
+import exercises from '../json/exercises.json' assert {type: 'json'};
 
 // #############
 // ## CLASSES ##
 // #############
 
-class Json {
-    json;
+class Dictionary {
+    dic;
 
-    constructor(json) {
-        this.json = json;
+    constructor(dic, ex) {
+        const exo = ex;
+        // this is hideous sorry
+        for (let i = 0; i < exo.ex.length; i++) {
+            for (let j = 0; j < dic.length; j++) {
+                for (let k = 0; k < dic[j].keywords.length; k++) {
+                    if (exo.ex[i].keyword === dic[j].keywords[k]) {
+                        dic[j].virus = true;
+                    }
+                }
+            }
+        }
+        this.dic = dic;
     }
 
     // length
     length() {
-        return (this.json.length);
+        return (this.dic.length);
     }
 
     // count seen
     getSeen() {
-        const jsonData = this.json;
+        const dicData = this.dic;
         let n = 0;
 
-        for (let i = 0; i < jsonData.length; i++) {
-            if (jsonData[i].seen === true) {
+        for (let i = 0; i < dicData.length; i++) {
+            if (dicData[i].seen === true) {
                 n++;
             }
         }
@@ -30,12 +42,12 @@ class Json {
     }
 
     getKeyWordListRaw() {
-        const jsonData = this.json;
+        const dicData = this.dic;
         let list = [];
 
-        for (let i = 0; i < jsonData.length; i++) {
-            for (let j = 0; j < jsonData[i].keywords.length; j++) {
-                list.push(jsonData[i].keywords[j]);
+        for (let i = 0; i < dicData.length; i++) {
+            for (let j = 0; j < dicData[i].keywords.length; j++) {
+                list.push(dicData[i].keywords[j]);
             }
         }
         return (list);
@@ -45,14 +57,14 @@ class Json {
         return(this.getKeyWordListRaw().filter((v,i,a)=>a.indexOf(v)==i));
     }
 
-    // count occurrences of searchWord in json
+    // count occurrences of searchWord in dic
     getOccurrences(searchWord) {
-        const jsonData = this.json;
+        const dicData = this.dic;
         let n = 0;
 
-        for (let i = 0; i < jsonData.length; i++) {
-            for (let j = 0; j < jsonData[i].keywords.length; j++) {
-                if (searchWord === jsonData[i].keywords[j] && jsonData[i].keywords[0]) { // GESTION ERREUR : what if jon au lieu de john ?
+        for (let i = 0; i < dicData.length; i++) {
+            for (let j = 0; j < dicData[i].keywords.length; j++) {
+                if (searchWord === dicData[i].keywords[j] && dicData[i].keywords[0]) { // ERROR HANDLING : what if jon au lieu de john ?
                     n++;
                 }
             }
@@ -62,15 +74,15 @@ class Json {
 
     // get media type from the expected occurrence (occ)
     getMediaType(searchWord, occ) {
-        const jsonData = this.json;
+        const dicData = this.dic;
         let loop = -1;
 
-        for (let i = 0; i < jsonData.length; i++) {
-            for (let j = 0; j < jsonData[i].keywords.length; j++) {
-                if (searchWord === jsonData[i].keywords[j]) {
+        for (let i = 0; i < dicData.length; i++) {
+            for (let j = 0; j < dicData[i].keywords.length; j++) {
+                if (searchWord === dicData[i].keywords[j]) {
                     loop++;
                     if (loop === occ) {
-                        return (jsonData[i].type);
+                        return (dicData[i].type);
                     }
                 }
             }
@@ -79,46 +91,66 @@ class Json {
     }
 
     // get media code from the expected occurrence (n)
-    getMediaCode(searchWord, n, prefix) {
-        const jsonData = this.json;
+    getMediaBtnSuffix(searchWord, n, prefix) {
+        const dicData = this.dic;
         let loop = -1;
 
-        for (let i = 0; i < jsonData.length; i++) {
-            for (let j = 0; j < jsonData[i].keywords.length; j++) {
-                if (searchWord === jsonData[i].keywords[j]) {
+        for (let i = 0; i < dicData.length; i++) {
+            for (let j = 0; j < dicData[i].keywords.length; j++) {
+                if (searchWord === dicData[i].keywords[j]) {
                     loop++;
                     if (loop === n) {
-                        return (prefix  + jsonData[i].code);
+                        return (prefix  + dicData[i].code);
                     }
                 }
             }
         }
-        return (null);
+        return (prefix + searchWord);
     }
 
     // mark as 'true' the media that has been seen and hide dot
     isSeen(mediaCode) {
-        const jsonData = this.json;
+        const dicData = this.dic;
 
-        for (let i = 0; i < jsonData.length; i++) {
-            for (let j = 0; j < jsonData[i].keywords.length; j++) {
-                if (mediaCode === jsonData[i].code) {
-                    jsonData[i].seen = true;
+        for (let i = 0; i < dicData.length; i++) {
+            for (let j = 0; j < dicData[i].keywords.length; j++) {
+                if (mediaCode === dicData[i].code) {
+                    dicData[i].seen = true;
                     return (1);
                 }
             }
         }
         return (0);
     }
+
+    // get virus
+    getVirus(searchWord, n) {
+        const dicData = this.dic;
+        let loop = -1;
+
+        for (let i = 0; i < dicData.length; i++) {
+            for (let j = 0; j < dicData[i].keywords.length; j++) {
+                if (searchWord === dicData[i].keywords[j]) {
+                    loop++;
+                    if (loop === n) {
+                        return (dicData[i].virus);
+                    }
+                }
+            }
+        }
+        return (0);
+    }
 }
-// instanciate json
-var json = new Json(localJson);
+
+// #################### //
+// #################### //
+// #################### //
 
 class Notebook {
     history;
         // word : searchWord,
         // attemptArray : [this.maxAttempt],
-        // true : isInJson
+        // true : isIndic
     #maxAttempt;
 
     constructor() {
@@ -137,9 +169,9 @@ class Notebook {
         return (false);
     }
 
-    addEntryToHistory(searchWord, isInJson) {
+    addEntryToHistory(searchWord, isIndic) {
         if (!this.isInNotebook(searchWord)) { // if new entry
-            this.#addNewEntryToHistory(searchWord, isInJson);
+            this.#addNewEntryToHistory(searchWord, isIndic);
         } else { // else if already in entry
             this.#addNotNewEntryToHistory(searchWord);
         }
@@ -158,14 +190,14 @@ class Notebook {
         return(rez.true);
     }
 
-    #addNewEntryToHistory(searchWord, isInJson, notebook) {
+    #addNewEntryToHistory(searchWord, isIndic, notebook) {
         const historyData = this.history;
 
         this.#maxAttempt++;
         let newHistory = {
             word : searchWord,
             attemptArray : [this.#maxAttempt],
-            true : isInJson
+            true : isIndic
         };
         historyData[historyData.length] = newHistory;
     }
@@ -185,19 +217,72 @@ class Notebook {
         let cWord = document.getElementById('circle-word');
         let cWordDiv = document.getElementById('circle-word-div');
         const countTrueWords = this.countTrueWords();
-        const getKeyWordListNoDupLen = json.getKeyWordListNoDup().length;
+        const getKeyWordListNoDupLen = dic.getKeyWordListNoDup().length;
         const percentage = Math.round(countTrueWords / getKeyWordListNoDupLen * 100)
         const displayTrueWords = countTrueWords === undefined ? 0 : countTrueWords
 
         cWord.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
         cWordDiv.innerHTML = "Word<br>" + displayTrueWords + '/' + getKeyWordListNoDupLen;
     }
-
-    #isAllSeen(searchWord) { // where is the best to put this ?
-        return (null);
-    }
 }
-// instanciate notebook
+
+// #################### //
+// #################### //
+// #################### //
+
+class Exercises {
+    ex;
+
+    constructor(ex) {
+        this.ex = ex;
+    }
+
+    getExText(kw) {
+        const exData = this.ex;
+        for (let i = 0; i < exData.length; i++) {
+            if (exData[i].keyword === kw) {
+                return (exData[i].exText);
+            }
+        }
+        return ("undefined, please contact the support team");
+    }
+
+    getAnswer(kw) {
+        const exData = this.ex;
+        for (let i = 0; i < exData.length; i++) {
+            if (exData[i].keyword === kw) {
+                return (exData[i].answer);
+            }
+        }
+        return ("undefined, please contact the support team");
+    }
+
+    getAnswerText(kw, i) {
+        return (this.getAnswer(kw)[i].text);
+    }
+
+    getHelp(kw) {}
+
+    getTrueAnswer(kw) {
+        const exData = this.ex;
+        for (let i = 0; i < exData.length; i++) {
+            if (exData[i].keyword === kw) {
+                return (exData[i].trueAnswer);
+            }
+        }
+        return ("undefined, please contact the support team");
+    }
+    
+    getTrueFeedback(kw) {}
+
+    getFalseFeedback(kw) {}
+
+    getDone(kw) {}
+}
+
+// instantiate exercises, dic and notebook
+var ex = new Exercises(exercises);
+var dic = new Dictionary(dictionary, ex); // dictionary relies on exercises to set codes affected by virus (if ex.word, then set to true all dic.words === ex.word)
 var notebook = new Notebook();
 
 // #########
@@ -207,6 +292,12 @@ var notebook = new Notebook();
 var mediaBtnArray = [document.getElementById('media-btn-1'), 
                         document.getElementById('media-btn-2'),
                         document.getElementById('media-btn-3')];
+
+var exBtnArray = [document.getElementById('ex-btn-1'), 
+                    document.getElementById('ex-btn-2'),
+                    document.getElementById('ex-btn-3'),
+                    document.getElementById('ex-btn-4')];
+
 
 // ###########
 // ## UTILS ##
@@ -281,25 +372,32 @@ console.log(navigator.saysWho);
 function updateMediaProgress() {
     let cMedia = document.getElementById('circle-media');
     let cMediaDiv = document.getElementById('circle-media-div');
-    const countSeen = json.getSeen();
-    const percentage = Math.round(countSeen / json.length() * 100);
+    const countSeen = dic.getSeen();
+    const percentage = Math.round(countSeen / dic.length() * 100);
 
     cMedia.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
-    cMediaDiv.innerHTML = "Media<br>" + countSeen + '/' + json.length();
+    cMediaDiv.innerHTML = "Media<br>" + countSeen + '/' + dic.length();
 }
 
 // close popup functionality
-function closePopup(element) {
-    element.addEventListener('click', () => {
-        document.getElementById('popup').style.display = 'none';
-        document.getElementById('audio-player').pause();
-        document.getElementById('video-player').pause();
-        // update media progression
-        updateMediaProgress();  
-    });
+function closePopupp() {
+    document.getElementById('popup').style.display = 'none';
+    document.getElementById('audio-player').pause();
+    document.getElementById('video-player').pause();
+    // update media progression
+    updateMediaProgress();  
 }
+
+function closePopup(element) {
+    element.addEventListener('click', closePopupp);
+    window.onkeydown = function(event) {
+        if ( event.keyCode == 27  && document.getElementById('popup').style.display === 'block') {
+            closePopupp();
+        }
+    };    
+}
+
 closePopup(document.getElementById('close-button'));
-closePopup(document.getElementById('popup'));
 
 // ###############
 // ## FUNCTIONS ##
@@ -325,16 +423,16 @@ function handleVideo(mediaCode) {
 // video listener onclick
 function displayVideoButtonOnClick(event) {
     const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
-    const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
+    const btnNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
 
     // display video only
     document.getElementById('popup').style.display = 'block'; // show popup
     document.getElementById('video-container').style.display = 'block'; // show video container
     // call right video with few style modifications
-    handleVideo(mediaCode, mediaNum);
+    handleVideo(mediaCode, btnNum);
     // as media is seen, hide red dot
-    if (json.isSeen(mediaCode)) {
-        document.getElementById('dot' + mediaNum).style.backgroundColor = 'transparent';
+    if (dic.isSeen(mediaCode)) {
+        document.getElementById('dot' + btnNum).style.backgroundColor = 'transparent';
     }
     // hide video, nb and exercise container
     document.getElementById('image-container').style.display = 'none'; // hide image container
@@ -347,7 +445,7 @@ function displayVideoButtonOnClick(event) {
 ///////////////////
 
 // handle audio : change source & type, load and play audio
-function handleAudio(mediaCode, mediaNum) {
+function handleAudio(mediaCode) {
     const audioSource = document.getElementById('audio-source');
     const audioPlayer = document.getElementById('audio-player');
     const audioPath = './assets/media/audio/' + mediaCode + '.mp3' // write complete src, there are only mp3
@@ -369,8 +467,8 @@ function handleImage(mediaCode) {
         img.onerror = function() {
             img.src = prefixImgSrc + '.gif';
         };
-    }; // this gives a lot of errors, try to make it softer, can add to json "extension" to be able add it directly
-    console.log('ignore errors with either .png or .jpg, img has been found : ' + img.src); // can add to json "extension" to be able add it directly
+    }; // this gives a lot of errors, try to make it softer, can add to dic "extension" to be able add it directly
+    console.log('ignore errors with either .png or .jpg, img has been found : ' + img.src); // can add to dic "extension" to be able add it directly
     img.style.height = '85vh';
     img.style.width = 'auto';
     // TODO : add alt
@@ -379,18 +477,18 @@ function handleImage(mediaCode) {
 // image listener onclick
 function displayImageButtonOnClick(event) {
     const mediaCode = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
-    const mediaNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
+    const btnNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
 
     // display image only
     document.getElementById('popup').style.display = 'block'; // show popup
     document.getElementById('image-container').style.display = 'block'; // show image container
     // call right image with few style modifications
-    handleImage(mediaCode, mediaNum);
+    handleImage(mediaCode, btnNum);
     // call right audio with few style modifications
-    handleAudio(mediaCode, mediaNum);
+    handleAudio(mediaCode, btnNum);
     // as media is seen, hide red dot
-    if (json.isSeen(mediaCode)) {
-        document.getElementById('dot' + mediaNum).style.backgroundColor = 'transparent';
+    if (dic.isSeen(mediaCode)) {
+        document.getElementById('dot' + btnNum).style.backgroundColor = 'transparent';
     }
     // hide video, nb and exercise container
     document.getElementById('video-container').style.display = 'none';
@@ -398,38 +496,117 @@ function displayImageButtonOnClick(event) {
     document.getElementById('ex-container').style.display = 'none';
 }
 
-// when clicking on a media button, chooses whether to show image, video or exercise
-function mediaBtnHandleListener(flag, searchWord, i) {
-    const type = json.getMediaType(searchWord, i);
+//////////////
+// EXERCISE //
+//////////////
 
-    if (flag === 'media') {
-        // remove exercise listener
-        // mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
-        // begin image listener onclick
-        if (type === 'image') {
-            mediaBtnArray[i].addEventListener('click', displayImageButtonOnClick, { passive : false});
-        // begin video listener onclick
-        } else if (type === 'video') {
-            mediaBtnArray[i].addEventListener('click', displayVideoButtonOnClick, { passive : false});
-        }
-        // remove exercise listener
-    } else if (flag === 'exercise') { 
-        // remove image and video listeners
-        mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
-        mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);
+// handle feedback
+function displayExFeedbackOnClick(event){
+    const kw = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
+    const btnNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
+
+    console.log(btnNum + " " + kw);
+    // if click on right button
+    if (btnNum === ex.getTrueAnswer(kw)) {
+        // display true feedback
+        // enable the btn1 and btn2 media
+        // change btn-media virus to DONE
     }
 }
 
- // show red dot / notification badge when never seen, else hide it
+// handle exercise : change source & style
+function handleExercise(exKeyword) {
+    const exText = document.getElementById('ex-text');
+    const exHelpBtn = document.getElementById('ex-help-btn');
+    const exHelpText = document.getElementById('ex-help-text');
+    const exFeedback = document.getElementById('ex-feedback');
+
+    console.log();
+    // change exercise text
+    exText.innerHTML = ex.getExText(exKeyword);
+    // change buttons text
+    for (let i = 0; i < exBtnArray.length; i++) {
+        if (i < ex.getAnswer(exKeyword).length) {
+            exBtnArray[i].innerHTML = ex.getAnswerText(exKeyword, i);
+            exBtnArray[i].id = "ex-btn-" + (i+1);
+            exBtnArray[i].id += " " + exKeyword; // add keyword after ex button id, to be able to search for trueAnswer
+            exBtnArray[i].style.display = 'block';
+            // listener to right answer
+            exBtnArray[i].addEventListener('click', displayExFeedbackOnClick, { passive : false});
+        } else {
+            exBtnArray[i].style.display = 'none';
+        }
+    }
+
+    // help
+}
+
+// exercise listener onclick
+function displayExerciseButtonOnClick(event) {
+    const exKeyword = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
+
+    // display exercise only
+    document.getElementById('popup').style.display = 'block'; // show popup
+    document.getElementById('ex-container').style.display = 'block'; // show exercise container
+    // call right exercise
+    handleExercise(exKeyword);
+    // hide image, video and nb container
+    document.getElementById('image-container').style.display = 'none';
+    document.getElementById('video-container').style.display = 'none';
+    document.getElementById('nb-container').style.display = 'none';
+}
+
+///////////////////////
+// BTN CHOOSE HANDLE //
+///////////////////////
+
+// when clicking on ONE button, chooses whether to show nothing, image, video or exercise
+function mediaBtnHandleListener(flag, searchWord, i) {
+    const type = dic.getMediaType(searchWord, i);
+
+    console.log(mediaBtnArray[i].id);
+    if (flag === 'media' && dic.getOccurrences(searchWord) === 3) {
+        // remove exercise listener
+        mediaBtnArray[i].removeEventListener('click', displayExerciseButtonOnClick);
+        // if media is part of virus exercise, cannot interact with button
+        if (dic.getVirus(searchWord, i)) {
+            mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);
+            mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
+        // if media is image, begin image listener onclick
+        } else if (type === 'image') {
+            mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);
+            mediaBtnArray[i].addEventListener('click', displayImageButtonOnClick, { passive : false});
+        // if media is video, begin video listener onclick
+        } else if (type === 'video') {
+            mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
+            mediaBtnArray[i].addEventListener('click', displayVideoButtonOnClick, { passive : false});
+        }
+    // if btn is exercise
+    } else if (flag === 'exercise') { 
+        // // remove image and video listeners of each btn
+        // for (let i = 0; i < 3; i++) {
+        //     mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
+        //     mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);    
+        // }
+        // begin image listener onclick
+        mediaBtnArray[i].addEventListener('click', displayExerciseButtonOnClick, { passive : false});
+    }
+}
+
+////////////////
+// BUTTONS UI //
+////////////////
+
+// show red dot / notification badge when never seen, else hide it
 function handleRedDot(searchWord, n) {
-    const jsonData = json.json;
+    const dicData = dic.dic;
     let loop = -1;
 
-    for (let i = 0; i < jsonData.length; i++) {
-        for (let j = 0; j < jsonData[i].keywords.length; j++) {
-            if (searchWord === jsonData[i].keywords[j]) {
+    for (let i = 0; i < dicData.length; i++) {
+        for (let j = 0; j < dicData[i].keywords.length; j++) {
+            if (searchWord === dicData[i].keywords[j]) {
                 loop++;
-                if (loop === n && jsonData[i].seen === false) {
+                if (loop === n && dicData[i].seen === false) {
                     animFadeIn(document.getElementById('dot' + (n + 1)), '#fa3e3e');
                     return ;
                 }
@@ -439,46 +616,73 @@ function handleRedDot(searchWord, n) {
     document.getElementById('dot' + (n + 1)).style.backgroundColor = 'transparent';
 }
 
-// changes each media btn visually 
-function mediaBtnBehavior(searchWord) {
-    let i = -1;
-
-    // for each media btn
-    while (++i < mediaBtnArray.length) {
-        // if the slot has a media
-        if (i < json.getOccurrences(searchWord)) {
-            // initiate media btn listener
-            mediaBtnHandleListener('media', searchWord, i);
-            // UI : notification of a new media to be clicked
-            mediaBtnArray[i].id += json.getMediaCode(searchWord, i, ' '); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
-            mediaBtnArray[i].innerHTML = "Search Result " + (i + 1); // change label of button
-            mediaBtnArray[i].style.cursor = 'pointer';
+// change only CSS of media-btn, if it is part of a virus exercise show it as 'virus-like', else show it as 'normal clickable button'
+function changeMediaBtnCSS(searchWord, i, flag) {
+    if (flag === 'media') {
+        // UI : notification of a new media to be clicked
+        mediaBtnArray[i].id = "media-btn-" + (i + 1);
+        mediaBtnArray[i].id += dic.getMediaBtnSuffix(searchWord, i, ' '); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
+        mediaBtnArray[i].innerHTML = "Search Result " + (i + 1); // change label of button        
+        // if the media is blocked by virus
+        if (dic.getVirus(searchWord, i)) {
+            mediaBtnArray[i].style.backgroundColor = '#8e4c98';
             mediaBtnArray[i].animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
-                  opacity: [0.3, 1], // [ from, to ]
-                  color: ["#fff", "#000"], // [ from, to ]
-                },750);
-            handleRedDot(searchWord, i); // display red dot if never seen media
-        // else exercise here    
-        } else { 
-            // initiate exercise btn listener
-            mediaBtnHandleListener('exercise', searchWord, i)
-            // UI : notification of an exercise to be done
-            mediaBtnArray[i].id = 'media-btn-' + (i + 1); // get back to normal id
-            mediaBtnArray[i].innerHTML = ''; // change this to an empty like container (css)
-            mediaBtnArray[i].style.cursor = '';
-            handleRedDot(searchWord, i); // no red dot on empty media
+                opacity: [0.1, 1], // [ from, to ]
+                color: ["#8e4c98", "#000"], // [ from, to ]
+                },750);  // timing
+        } else {
+            mediaBtnArray[i].style.cursor = 'pointer';
+            mediaBtnArray[i].style.backgroundColor = '#f1fff1';
+            mediaBtnArray[i].animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
+                opacity: [0.3, 1], // [ from, to ]
+                color: ["#fff", "#000"], // [ from, to ]
+                },750);    
         }
+    } else if (flag === 'exercise') {
+        // UI : notification of an exercise to be done
+        mediaBtnArray[i].id += dic.getMediaBtnSuffix(searchWord, i, ' '); // add keyword to be able to display exercise
+        mediaBtnArray[i].innerHTML = "VIRUS Exercise"; // change label of button
+        mediaBtnArray[i].style.cursor = 'pointer';
+        mediaBtnArray[i].style.backgroundColor = '#ee82ee';
+        mediaBtnArray[i].animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
+                opacity: [0.1, 1], // [ from, to ]
+                color: ["#ee82ee", "#000"], // [ from, to ]
+            },750);
     }
-    return (i);
 }
 
-// main interface function
+// changes each media btn visually 
+function mediaBtnBehavior(searchWord) {
+    // for each media btn
+    for (let i = 0; i < mediaBtnArray.length; i++) {
+        // if the slot has a media
+        if (i < dic.getOccurrences(searchWord)) {
+            // change media btn css for MEDIA
+            changeMediaBtnCSS(searchWord, i, 'media');
+            // initiate MEDIA btn listener
+            mediaBtnHandleListener('media', searchWord, i);
+        // else it is an exercise    
+        } else { 
+            // change media btn css for EXERCISE
+            changeMediaBtnCSS(searchWord, i, 'exercise');
+            // initiate EXERCISE btn listener
+            mediaBtnHandleListener('exercise', searchWord, i)
+        }
+        // in any case : display red dot if never seen media
+        handleRedDot(searchWord, i); 
+    }
+}
+
+/////////////////////////////
+// MAIN INTERFACE FUNCTION //
+/////////////////////////////
+
 // handles search bar UI
 function mainInterfaceFct(searchWord) {
     const searchInput = document.getElementById('search-input');
 
     // if the word is found at least once
-    if (json.getOccurrences(searchWord) > 0) {
+    if (dic.getOccurrences(searchWord) > 0) {
         if (searchWord === 'begin') {
             searchInput.placeholder = 'Search';
             searchInput.value = '';

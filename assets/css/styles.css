@@ -115,7 +115,8 @@ body {
   padding: 2px 5px; /* Add some padding so it looks nice */
 }
 
-.media-btn {
+.media-btn,
+.ex-btn {
   width: 40vh;
   height: 40px;
   background: #f1fff1;
@@ -126,6 +127,7 @@ body {
 #search-input:hover,
 .media-btn:hover,
 #main-nb:hover,
+.ex-btn:hover,
 .return-btn:hover {
   -webkit-filter: brightness(70%);
   -webkit-transition: all 0s ease;
@@ -136,7 +138,8 @@ body {
 }
 
 #main-nb:hover,
-.return-btn:hover {
+.return-btn:hover,
+.ex-btn:hover {
   cursor: pointer;
 }
 
@@ -165,7 +168,8 @@ body {
 
 .image-container,
 .video-container,
-.nb-container {
+.nb-container,
+.ex-container {
   display: none;
   position: relative;
   top: 50%;
@@ -177,16 +181,85 @@ body {
   max-width: 90%;
 }
 
+.ex-btn-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 #image-player,
 #video-player {
   width: 50%;
 }
 
-#close-button {
+.close-button {
+  z-index: 1;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 50px;
+  right: 50px;
 }
+
+/* close https://codepen.io/schneider/pen/jPNBqp */
+.close {
+  z-index: 1;
+  position: relative;
+  top: 10vh;
+  right: 15vh;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  display: inline-block;
+  float: right;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  box-shadow: inset 0px 0px 0px 2px #006e93;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.5s;
+}
+
+.close:after,
+.close:before {
+  position: absolute;
+  content: "";
+  background-color: #006e93;
+}
+
+.close:after {
+  width: 2px;
+  height: 40px;
+  top: 6px;
+  left: 25px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.close:before {
+  width: 40px;
+  height: 2px;
+  top: 25px;
+  left: 6px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.close:hover {
+  background: #e60500;
+  box-shadow: none;
+}
+
+.close:hover:after,
+.close:hover:before {
+  background: blue;
+}
+/* close */
 
 .footer {
   height: 10vh;

@@ -74,7 +74,7 @@ A faire ensuite :
 
 ## 12.06.2023 : 
 
-h :
+9h :
 - 30min: notebook interface in popup window
 - 1h : progress bar
 - 1h30 : compteur mot-clés, circular progress bars for media and word
@@ -83,13 +83,42 @@ h :
 - 5min : error handling minuscules
 - 1h : asked chatgpt to find leaks in js code, he did not find leaks but ways to improve the code, which I did so.
 - 2h : clean code before doing begin and end
-- 
+- 2h : begin exercise, create class, import json
+
+## 13.06.2023 : 
+
+h :
+- 8:30 exercise
 
 TODO :
 mandatory : 
 - how to begin the game
 - how to finish the game
+- exercise
+- help
+- guidage
 - JOURNAL DE CONCEPTION
+
+1ere mécanique (exercise): 
+- bloque media
+- 3 boutons
+- help pour règle
+- feedback positif et négatif
+- say VIRUS DONE
+- bloque other media (ex. happy 01 et 23)
+
+2è mécanique (help):
+virus intervient quand joueurs ont tapé 4 mots clés et n'ont rien trouvé, alors pop-up exercice et répondent, si bonne réponse le jeu propose par hasard un mot clé non utilisé.
+
+début jeu : 
+- chap1,2,3 (2 3 sont bloqués), clic sur chap1 -> video d'intro, ferme et interface du jeu
+
+finit : 
+- si 50% des média vus et le 56è media qui sort. 50% des média à découvrir !
+- lien avec le virus, vous avez vu 50% des media et fait 4 virus / X, un nouveau chapitre est débloqué mais vous pouvez encore trouver les virus et débloquer petit à petit le téléphone. 
+
+guidage jeu : 
+- popup sur barre recherche, media play etc.
 
 useful to play : 
 - chapter pages
