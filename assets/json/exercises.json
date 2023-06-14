@@ -23,7 +23,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 2,
-        "trueFeedback" : "Good job ! You can now continue the exploration!",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -51,7 +51,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -79,7 +79,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 4,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -107,7 +107,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 4,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -131,7 +131,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 3,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -155,7 +155,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -183,7 +183,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 3,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -211,7 +211,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 3,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -239,7 +239,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -267,7 +267,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 2,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -295,7 +295,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 2,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -323,7 +323,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 4,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -351,7 +351,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -379,7 +379,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 3,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -407,7 +407,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -435,7 +435,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 4,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -455,7 +455,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 2,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -479,7 +479,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -507,7 +507,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 3,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -535,7 +535,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -563,7 +563,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -591,7 +591,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -619,7 +619,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -647,7 +647,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 4,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -667,7 +667,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 2,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -695,7 +695,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 2,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -715,7 +715,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -743,7 +743,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 4,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -767,7 +767,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -795,7 +795,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 3,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -823,7 +823,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 4,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -851,7 +851,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 2,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -879,7 +879,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 3,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     },
@@ -903,7 +903,7 @@
         ],
         "help" : "règle…",
         "trueAnswer" : 1,
-        "trueFeedback" : "Good job ! You can now continue the exploration",
+        "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
         "done" : false
     }

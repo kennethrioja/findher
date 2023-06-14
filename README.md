@@ -94,18 +94,10 @@ TODO :
 mandatory : 
 - how to begin the game
 - how to finish the game
-- exercise
 - help
 - guidage
 - JOURNAL DE CONCEPTION
 
-1ere mécanique (exercise): 
-- bloque media
-- 3 boutons
-- help pour règle
-- feedback positif et négatif
-- say VIRUS DONE
-- bloque other media (ex. happy 01 et 23)
 
 2è mécanique (help):
 virus intervient quand joueurs ont tapé 4 mots clés et n'ont rien trouvé, alors pop-up exercice et répondent, si bonne réponse le jeu propose par hasard un mot clé non utilisé.

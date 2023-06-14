@@ -261,7 +261,15 @@ class Exercises {
         return (this.getAnswer(kw)[i].text);
     }
 
-    getHelp(kw) {}
+    getHelp(kw) {
+        const exData = this.ex;
+        for (let i = 0; i < exData.length; i++) {
+            if (exData[i].keyword === kw) {
+                return (exData[i].help);
+            }
+        }
+        return ("undefined, please contact the support team");
+    }
 
     getTrueAnswer(kw) {
         const exData = this.ex;
@@ -273,11 +281,37 @@ class Exercises {
         return ("undefined, please contact the support team");
     }
     
-    getTrueFeedback(kw) {}
+    getFeedback(kw, flag) {
+        const exData = this.ex;
+        for (let i = 0; i < exData.length; i++) {
+            if (exData[i].keyword === kw) {
+                if (flag === 'true') { return (exData[i].trueFeedback); }
+                else if (flag === 'false') { return (exData[i].falseFeedback); }
+            }
+        }
+        return ("undefined, please contact the support team");
+    }
 
-    getFalseFeedback(kw) {}
+    getCompleted(kw) {
+        const exData = this.ex;
+        for (let i = 0; i < exData.length; i++) {
+            if (exData[i].keyword === kw) {
+                return (exData[i].completed);
+            }
+        }
+        return ("undefined, please contact the support team");
+    }
 
-    getDone(kw) {}
+    setCompletedToTrue(kw) {
+        const exData = this.ex;
+        for (let i = 0; i < exData.length; i++) {
+            if (exData[i].keyword === kw) {
+                exData[i].completed = true;
+            }
+        }
+        return ("undefined, please contact the support team");
+    }
+
 }
 
 // instantiate exercises, dic and notebook
@@ -381,11 +415,11 @@ function updateMediaProgress() {
 
 // close popup functionality
 function closePopupp() {
-    document.getElementById('popup').style.display = 'none';
     document.getElementById('audio-player').pause();
     document.getElementById('video-player').pause();
+    document.getElementById('popup').style.display = 'none';
     // update media progression
-    updateMediaProgress();  
+    updateMediaProgress();
 }
 
 function closePopup(element) {
@@ -502,52 +536,87 @@ function displayImageButtonOnClick(event) {
 
 // handle feedback
 function displayExFeedbackOnClick(event){
+    const exFeedback = document.getElementById('ex-feedback');
     const kw = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
     const btnNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
 
     console.log(btnNum + " " + kw);
     // if click on right button
-    if (btnNum === ex.getTrueAnswer(kw)) {
+    if (+btnNum === ex.getTrueAnswer(kw)) {
         // display true feedback
-        // enable the btn1 and btn2 media
-        // change btn-media virus to DONE
+        exFeedback.innerHTML = ex.getFeedback(kw, 'true');
+        exFeedback.style.color = "green";
+        event.currentTarget.style.backgroundColor = "green";
+        // change css of the two first media-btn
+        changeMediaBtnCSS(kw, 0, 'media');
+        changeMediaBtnCSS(kw, 1, 'media');
+        // enable the two first media-btn1 and media-btn2
+        mediaBtnHandleListener('media', kw, 0);
+        mediaBtnHandleListener('media', kw, 1);
+        // change media-btn-3 virus to SUCCEED
+        mediaBtnArray[2].id = "media-btn-3";
+        mediaBtnArray[2].id += dic.getMediaBtnSuffix(kw, 2, ' '); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
+        mediaBtnArray[2].innerHTML = "EXERCISE SUCCEED"; // change label of button
+        mediaBtnArray[2].style.backgroundColor = "green"; // change label of button
+        // change ex
+        ex.setCompletedToTrue(kw);
+    } else {
+        exFeedback.innerHTML = ex.getFeedback(kw, 'false');
+        exFeedback.animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
+            opacity: [0.3, 1], // [ from, to ]
+            color: ["red", "black"], // [ from, to ]
+            },500);
+        event.currentTarget.animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
+            opacity: [0.3, 1], // [ from, to ]
+            backgroundColor: ["red", "#f1fff1"], // [ from, to ]
+            },500);
     }
 }
+// when click on help btn, handle help text/image
+function displayExHelpTextOnClick(event) {
+    document.getElementById('ex-help-text').style.display = 'block';
+}
 
-// handle exercise : change source & style
+// when click on btn, handle exercise : change source & style
 function handleExercise(exKeyword) {
     const exText = document.getElementById('ex-text');
     const exHelpBtn = document.getElementById('ex-help-btn');
     const exHelpText = document.getElementById('ex-help-text');
-    const exFeedback = document.getElementById('ex-feedback');
 
-    console.log();
-    // change exercise text
+    // text : change exercise text
     exText.innerHTML = ex.getExText(exKeyword);
-    // change buttons text
+    // buttons : show the right number of choices
     for (let i = 0; i < exBtnArray.length; i++) {
         if (i < ex.getAnswer(exKeyword).length) {
+            // change buttons text
             exBtnArray[i].innerHTML = ex.getAnswerText(exKeyword, i);
-            exBtnArray[i].id = "ex-btn-" + (i+1);
+            exBtnArray[i].id = "ex-btn-" + (i + 1);
             exBtnArray[i].id += " " + exKeyword; // add keyword after ex button id, to be able to search for trueAnswer
+            exBtnArray[i].style.backgroundColor = "#f1fff1";
             exBtnArray[i].style.display = 'block';
-            // listener to right answer
+            // listener to click on exercise button
             exBtnArray[i].addEventListener('click', displayExFeedbackOnClick, { passive : false});
         } else {
             exBtnArray[i].style.display = 'none';
         }
     }
-
-    // help
+    // help button : set message, hide it and add event listener to click on help button
+    exHelpText.innerHTML = ex.getHelp(exKeyword);
+    exHelpText.style.display = 'none';
+    exHelpBtn.addEventListener('click', displayExHelpTextOnClick, { passive : false});
 }
 
 // exercise listener onclick
 function displayExerciseButtonOnClick(event) {
     const exKeyword = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
+    const exFeedback = document.getElementById('ex-feedback');
 
     // display exercise only
     document.getElementById('popup').style.display = 'block'; // show popup
     document.getElementById('ex-container').style.display = 'block'; // show exercise container
+    // return to default exercise container style
+    exFeedback.style.color = "black";
+    exFeedback.innerHTML = "";
     // call right exercise
     handleExercise(exKeyword);
     // hide image, video and nb container
@@ -564,16 +633,12 @@ function displayExerciseButtonOnClick(event) {
 function mediaBtnHandleListener(flag, searchWord, i) {
     const type = dic.getMediaType(searchWord, i);
 
-    console.log(mediaBtnArray[i].id);
-    if (flag === 'media' && dic.getOccurrences(searchWord) === 3) {
+    // IF BUTTON IS A MEDIA
+    if (flag.split(" ")[0] === 'media') {
         // remove exercise listener
         mediaBtnArray[i].removeEventListener('click', displayExerciseButtonOnClick);
-        // if media is part of virus exercise, cannot interact with button
-        if (dic.getVirus(searchWord, i)) {
-            mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);
-            mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
         // if media is image, begin image listener onclick
-        } else if (type === 'image') {
+        if (type === 'image') {
             mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);
             mediaBtnArray[i].addEventListener('click', displayImageButtonOnClick, { passive : false});
         // if media is video, begin video listener onclick
@@ -581,13 +646,13 @@ function mediaBtnHandleListener(flag, searchWord, i) {
             mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
             mediaBtnArray[i].addEventListener('click', displayVideoButtonOnClick, { passive : false});
         }
-    // if btn is exercise
+    // IF BUTTON IS AN EXERCISE
     } else if (flag === 'exercise') { 
-        // // remove image and video listeners of each btn
-        // for (let i = 0; i < 3; i++) {
-        //     mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
-        //     mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);    
-        // }
+        // remove image and video listeners of each btn
+        for (let i = 0; i < 3; i++) {
+            mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
+            mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);    
+        }
         // begin image listener onclick
         mediaBtnArray[i].addEventListener('click', displayExerciseButtonOnClick, { passive : false});
     }
@@ -618,36 +683,45 @@ function handleRedDot(searchWord, n) {
 
 // change only CSS of media-btn, if it is part of a virus exercise show it as 'virus-like', else show it as 'normal clickable button'
 function changeMediaBtnCSS(searchWord, i, flag) {
-    if (flag === 'media') {
-        // UI : notification of a new media to be clicked
+    // IF BUTTON IS A MEDIA
+    if (flag.split(" ")[0] === 'media') {
         mediaBtnArray[i].id = "media-btn-" + (i + 1);
         mediaBtnArray[i].id += dic.getMediaBtnSuffix(searchWord, i, ' '); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
-        mediaBtnArray[i].innerHTML = "Search Result " + (i + 1); // change label of button        
-        // if the media is blocked by virus
-        if (dic.getVirus(searchWord, i)) {
+        mediaBtnArray[i].innerHTML = "Search Result " + (i + 1); // change label of button
+        // if flag = "media blocked" && exercise not completed, change css to virus-blocked
+        if (flag.split(" ").length === 2 && !ex.getCompleted(searchWord)) {
             mediaBtnArray[i].style.backgroundColor = '#8e4c98';
             mediaBtnArray[i].animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
                 opacity: [0.1, 1], // [ from, to ]
                 color: ["#8e4c98", "#000"], // [ from, to ]
                 },750);  // timing
-        } else {
-            mediaBtnArray[i].style.cursor = 'pointer';
+        // if flag = media, change css to normal button
+        } else { 
             mediaBtnArray[i].style.backgroundColor = '#f1fff1';
             mediaBtnArray[i].animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
                 opacity: [0.3, 1], // [ from, to ]
                 color: ["#fff", "#000"], // [ from, to ]
-                },750);    
+                },750);
+            mediaBtnArray[i].style.cursor = 'pointer';
         }
-    } else if (flag === 'exercise') {
-        // UI : notification of an exercise to be done
+    // IF BUTTON IS AN EXERCISE
+    } else if (flag.split(" ")[0] === 'exercise') {
+        mediaBtnArray[i].id = "media-btn-" + (i + 1);
         mediaBtnArray[i].id += dic.getMediaBtnSuffix(searchWord, i, ' '); // add keyword to be able to display exercise
-        mediaBtnArray[i].innerHTML = "VIRUS Exercise"; // change label of button
         mediaBtnArray[i].style.cursor = 'pointer';
-        mediaBtnArray[i].style.backgroundColor = '#ee82ee';
-        mediaBtnArray[i].animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
-                opacity: [0.1, 1], // [ from, to ]
-                color: ["#ee82ee", "#000"], // [ from, to ]
-            },750);
+        // if flag = "exercise completed", change css to exercise SUCCEED
+        if (flag.split(" ").length === 2 && ex.getCompleted(searchWord)) {
+            mediaBtnArray[2].innerHTML = "EXERCISE SUCCEED"; // change label of button
+            mediaBtnArray[i].style.backgroundColor = 'green';
+        // if ex not done purple
+        } else {
+            mediaBtnArray[i].innerHTML = "VIRUS Exercise"; // change label of button
+            mediaBtnArray[i].style.backgroundColor = '#ee82ee';
+            mediaBtnArray[i].animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
+                    opacity: [0.1, 1], // [ from, to ]
+                    color: ["#ee82ee", "#000"], // [ from, to ]
+                },750);
+        }
     }
 }
 
@@ -655,21 +729,19 @@ function changeMediaBtnCSS(searchWord, i, flag) {
 function mediaBtnBehavior(searchWord) {
     // for each media btn
     for (let i = 0; i < mediaBtnArray.length; i++) {
-        // if the slot has a media
-        if (i < dic.getOccurrences(searchWord)) {
-            // change media btn css for MEDIA
-            changeMediaBtnCSS(searchWord, i, 'media');
-            // initiate MEDIA btn listener
-            mediaBtnHandleListener('media', searchWord, i);
-        // else it is an exercise    
-        } else { 
-            // change media btn css for EXERCISE
-            changeMediaBtnCSS(searchWord, i, 'exercise');
-            // initiate EXERCISE btn listener
-            mediaBtnHandleListener('exercise', searchWord, i)
-        }
-        // in any case : display red dot if never seen media
+        // Is the slot linked with a media ? Yes, flag = media. No flag = exercise.
+        let flag = i < dic.getOccurrences(searchWord) ? 'media' : 'exercise';
+
+        // Is the media linked with an exercise ? Yes, flag = media block. No, flag = media.
+        flag = flag === 'media' && dic.getOccurrences(searchWord) <= 2 ? flag + ' blocked' : flag;
+        // Is the exercise completed ? Yes, flag = exercise completed. No, flag = exercise
+        flag = flag === 'exercise' && ex.getCompleted(searchWord) ? flag + ' completed' : flag;
+        // change media btn css depending on media or exercise
+        changeMediaBtnCSS(searchWord, i, flag);
+        // display red dot if never seen media
         handleRedDot(searchWord, i); 
+        // initiate btn listener depending on media or exercise
+        mediaBtnHandleListener(flag, searchWord, i)
     }
 }
 
