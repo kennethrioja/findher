@@ -437,6 +437,39 @@ closePopup(document.getElementById('close-button'));
 // ## FUNCTIONS ##
 // ###############
 
+//////////////
+// NOTEBOOK //
+//////////////
+
+function updateNotebook() {
+    let correctWords = [];
+    let wrongWords = [];
+    for (let i = 0; i < notebook.history.length; i++) {
+        if (notebook.history[i].true) {
+            correctWords.push(notebook.history[i].word + '(tries : ' + notebook.history[i].attemptArray.length + ') ');
+        } else {
+            wrongWords.push(notebook.history[i].word + '(tries : ' + notebook.history[i].attemptArray.length + ') ');
+        }
+    }
+    document.querySelector('.nb-true-list').innerHTML = correctWords;
+    document.querySelector('.nb-false-list').innerHTML = wrongWords;
+    return (false);
+}
+
+// listener function : display image container only
+function displayNbMainButtonOnClick(event) {
+    updateNotebook();
+    document.getElementById('popup').style.display = 'block'; // show popup
+    document.getElementById('image-container').style.display = 'none'; // hide image container
+    document.getElementById('video-container').style.display = 'none'; // hide video container
+    document.getElementById('nb-container').style.display = 'block'; // show nb container
+}
+
+// Main notebook button functionality
+document.getElementById('main-nb').addEventListener(
+    // when clicking on 'Notebook' button
+    'click', displayNbMainButtonOnClick, { passive : false});
+
 ///////////
 // VIDEO //
 ///////////
@@ -540,7 +573,6 @@ function displayExFeedbackOnClick(event){
     const kw = event.currentTarget.id.split(" ")[event.currentTarget.id.split(" ").length - 1];
     const btnNum = event.currentTarget.id.split(" ")[0][event.currentTarget.id.split(" ")[0].length - 1];
 
-    console.log(btnNum + " " + kw);
     // if click on right button
     if (+btnNum === ex.getTrueAnswer(kw)) {
         // display true feedback
@@ -558,9 +590,10 @@ function displayExFeedbackOnClick(event){
         mediaBtnArray[2].id += dic.getMediaBtnSuffix(kw, 2, ' '); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
         mediaBtnArray[2].innerHTML = "EXERCISE SUCCEED"; // change label of button
         mediaBtnArray[2].style.backgroundColor = "green"; // change label of button
-        // change ex
+        // set exercise to true
         ex.setCompletedToTrue(kw);
     } else {
+        // display a false animation
         exFeedback.innerHTML = ex.getFeedback(kw, 'false');
         exFeedback.animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
             opacity: [0.3, 1], // [ from, to ]
@@ -572,7 +605,8 @@ function displayExFeedbackOnClick(event){
             },500);
     }
 }
-// when click on help btn, handle help text/image
+
+// when click on help btn, display help text/image
 function displayExHelpTextOnClick(event) {
     document.getElementById('ex-help-text').style.display = 'block';
 }
@@ -794,35 +828,33 @@ document.querySelector('.search-icon').addEventListener(
         mainInterfaceFct(document.getElementById('search-input').value.trim());
 });
 
-//////////////
-// NOTEBOOK //
-//////////////
+// Intro (done on ChatGPT)
+// Chapter 1 button listener
+document.getElementById('chapter-btn-1').addEventListener('click', function() {
+    const introVideoContainer = document.getElementById('intro-video-container');
+    const introVideoPlayer = document.getElementById('intro-video-player');
 
-function updateNotebook() {
-    let correctWords = [];
-    let wrongWords = [];
-    for (let i = 0; i < notebook.history.length; i++) {
-        if (notebook.history[i].true) {
-            correctWords.push(notebook.history[i].word + '(tries : ' + notebook.history[i].attemptArray.length + ') ');
-        } else {
-            wrongWords.push(notebook.history[i].word + '(tries : ' + notebook.history[i].attemptArray.length + ') ');
-        }
-    }
-    document.querySelector('.nb-true-list').innerHTML = correctWords;
-    document.querySelector('.nb-false-list').innerHTML = wrongWords;
-    return (false);
-}
+    introVideoContainer.classList.add('show');
+    introVideoPlayer.load();
+    introVideoPlayer.play();
+});
 
-// listener function : display image container only
-function displayNbMainButtonOnClick(event) {
-    updateNotebook();
-    document.getElementById('popup').style.display = 'block'; // show popup
-    document.getElementById('image-container').style.display = 'none'; // hide image container
-    document.getElementById('video-container').style.display = 'none'; // hide video container
-    document.getElementById('nb-container').style.display = 'block'; // show nb container
-}
+// when video ends, shows "Let's find her"
+document.getElementById('intro-video-player').addEventListener('ended', function() {
+    const beginButton = document.getElementById('begin-button');
+    const introVideoPlayer = document.getElementById('intro-video-player')
 
-// Main notebook button functionality
-document.getElementById('main-nb').addEventListener(
-    // when clicking on 'Notebook' button
-    'click', displayNbMainButtonOnClick, { passive : false});
+    beginButton.style.display = 'block';
+    introVideoPlayer.removeAttribute("controls");
+});
+
+// "Let's find her" button listener
+document.getElementById('begin-button').addEventListener('click', function() {
+    const introVideoContainer = document.getElementById('intro-video-container');
+    const firstPage = document.getElementById('first-page');
+    const gameContainer = document.getElementById('game');
+
+    introVideoContainer.classList.remove('show');
+    firstPage.style.display = 'none';
+    gameContainer.removeAttribute('hidden');  
+  });

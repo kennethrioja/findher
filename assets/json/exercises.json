@@ -25,7 +25,7 @@
         "trueAnswer" : 2,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "article",
@@ -53,7 +53,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "ambition",
@@ -81,7 +81,7 @@
         "trueAnswer" : 4,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "plan",
@@ -109,7 +109,7 @@
         "trueAnswer" : 4,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "believe",
@@ -133,7 +133,7 @@
         "trueAnswer" : 3,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "scan",
@@ -157,7 +157,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "work",
@@ -185,7 +185,7 @@
         "trueAnswer" : 3,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "idea",
@@ -213,7 +213,7 @@
         "trueAnswer" : 3,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "neuroscience",
@@ -241,7 +241,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "interest",
@@ -269,7 +269,7 @@
         "trueAnswer" : 2,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "suggestion",
@@ -297,7 +297,7 @@
         "trueAnswer" : 2,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "lost",
@@ -325,7 +325,7 @@
         "trueAnswer" : 4,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "interview",
@@ -353,7 +353,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "visit",
@@ -381,7 +381,7 @@
         "trueAnswer" : 3,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "anniversary",
@@ -409,7 +409,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "test",
@@ -437,7 +437,7 @@
         "trueAnswer" : 4,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "like",
@@ -457,7 +457,7 @@
         "trueAnswer" : 2,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "dear",
@@ -481,7 +481,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "ice cream",
@@ -509,7 +509,7 @@
         "trueAnswer" : 3,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "yummy",
@@ -537,7 +537,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "secret",
@@ -565,7 +565,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "fun",
@@ -593,7 +593,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "challenge",
@@ -621,7 +621,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "party",
@@ -649,7 +649,7 @@
         "trueAnswer" : 4,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "trip",
@@ -669,7 +669,7 @@
         "trueAnswer" : 2,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "birthday",
@@ -697,7 +697,7 @@
         "trueAnswer" : 2,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "dress",
@@ -717,7 +717,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "blood",
@@ -745,7 +745,7 @@
         "trueAnswer" : 4,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "drunk",
@@ -769,7 +769,7 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "stranger",
@@ -797,7 +797,7 @@
         "trueAnswer" : 3,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "save",
@@ -825,7 +825,7 @@
         "trueAnswer" : 4,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "wife",
@@ -853,7 +853,7 @@
         "trueAnswer" : 2,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "safe",
@@ -881,7 +881,7 @@
         "trueAnswer" : 3,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     },
     {
         "keyword" : "charles",
@@ -905,6 +905,6 @@
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
-        "done" : false
+        "completed" : false
     }
 ]

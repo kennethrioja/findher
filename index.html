@@ -1,142 +1,177 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
   <head>
-    <link rel='stylesheet' type='text/css' href='./assets/css/styles.css' />
-    <link rel='stylesheet' type='text/css' href='./assets/css/w3.css' />
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/w3.css" />
   </head>
   <body>
     <!-- Intro -->
-    <!-- <div class='first-page'>
-    </div> -->
-
-    <!-- Game -->
-    <!-- header -->
-    <div class='header'>
-      <div class='header-icon' id='network'>
-        <img src='./assets/icons/wifi.png' alt="wifi icon" width='20px' />
+    <!-- first page -->
+    <div class="first-page" id='first-page'>
+      <div class="title">Find Her</div>
+      <div class="chapter" id="chapter-1">
+        <div class="chapter-btn" id="chapter-btn-1">Chapter 1</div>
       </div>
-      <div class='header-icon' id='wifi'>
-        <img src='./assets/icons/wifi.png' alt="wifi icon" width='20px' />
+      <div class="chapter" id="chapter-2">
+        <div class="chapter-btn" id="chapter-btn-2">Chapter 2</div>
       </div>
-      <div id='clock'></div>
-      <div class='header-icon' id='battery'>
-        <img src='./assets/icons/wifi.png' alt="wifi icon" width='20px' />
+      <div class="chapter" id="chapter-3">
+        <div class="chapter-btn" id="chapter-btn-3">Chapter 3</div>
       </div>
+      <div class="credits" id="credits-btn">Credits</div>
     </div>
 
-    <div class="wrap-circles">
+    <!-- first video  -->
+    <div class="intro-video-container" id="intro-video-container">
+      <video id="intro-video-player" height="500px" controls>
+        <source
+          id="intro-video-source"
+          src="./assets/media/video/00.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div class="begin-button" id="begin-button">Let's find her.</div>
+    </div>
+
+    <div hidden class="game" id="game">
+      <!-- Game -->
+      <!-- header -->
+      <div class="header">
+        <div class="header-icon" id="network">
+          <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+        </div>
+        <div class="header-icon" id="wifi">
+          <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+        </div>
+        <div id="clock"></div>
+        <div class="header-icon" id="battery">
+          <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+        </div>
+      </div>
+
+      <div class="wrap-circles">
         <div class="circle" id="circle-media">
-            <div class="inner" id="circle-media-div">Media<br>0</div>
+          <div class="inner" id="circle-media-div">Media<br />0</div>
         </div>
         <div class="circle" id="circle-word">
-            <div class="inner" id="circle-word-div">Words<br>0</div>
-        </div>
-    </div>
-
-    <div class='interface'>
-      <!-- main interface -->
-      <div class='main-interface'>
-        <div class='search-bar'>
-          <input type='text' id='search-input' placeholder="To begin the game, type 'begin' here and press enter. Good luck finding her." autocapitalize='none' autocomplete='off' autofocus />
-          <div class='search-icon'>
-            <img src='./assets/icons/search.png' alt="search icon" width='20px' />
-          </div>
-        </div>
-        <div class='media'>
-          <div class='button'>
-            <button class='media-btn' id='media-btn-1'></button>
-            <span class='dot' id='dot1'></span>
-          </div>
-          <div class='button'>
-            <button class='media-btn' id='media-btn-2'></button>
-            <span class='dot' id='dot2'></span>
-          </div>
-          <div class='button'>
-            <button class='media-btn' id='media-btn-3'></button>
-            <span class='dot' id='dot3'></span>
-          </div>
-        </div>
-        <div class='footer'>
-          <!-- <button class='main-btn' id='main-msg'>X</button> -->
-          <button class='main-btn' id='main-nb'>Notebook</button>
-          <!-- <button class='main-btn' id='main-opt'>X</button> -->
+          <div class="inner" id="circle-word-div">Words<br />0</div>
         </div>
       </div>
 
-      <!-- popup -->
-      <div id='popup' class='popup'>
-        <div class='close' id='close-button'></div>
-        <div class='image-container' id='image-container'>
-          <img id='image'/> 
-          <audio id='audio-player' controls>
-            <source id="audio-source"/>
-          </audio>
-        </div>
-        <div class='video-container' id='video-container'>
-          <video id='video-player' width='320' height='240' controls>
-            <source id='video-source' />
-          </video>
-        </div>
-        <div class='ex-container' id='ex-container'>
-            <div id='ex-text'>Text</div>
-            <button class='ex-btn' id='ex-help-btn'>Help</button>
-            <div id='ex-help-text'>help</div>
-            <div class='ex-btn-container'>
-                <button class='ex-btn' id='ex-btn-1'></button>
-                <button class='ex-btn' id='ex-btn-2'></button>
-                <button class='ex-btn' id='ex-btn-3'></button>
-                <button class='ex-btn' id='ex-btn-4'></button>    
+      <div class="interface">
+        <!-- main interface -->
+        <div class="main-interface">
+          <div class="search-bar">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="To begin the game, type 'begin' here and press enter. Good luck finding her."
+              autocapitalize="none"
+              autocomplete="off"
+              autofocus
+            />
+            <div class="search-icon">
+              <img
+                src="./assets/icons/search.png"
+                alt="search icon"
+                width="20px"
+              />
             </div>
-            <div id='ex-feedback'>feedback</div>
+          </div>
+          <div class="media">
+            <div class="button">
+              <button class="media-btn" id="media-btn-1"></button>
+              <span class="dot" id="dot1"></span>
+            </div>
+            <div class="button">
+              <button class="media-btn" id="media-btn-2"></button>
+              <span class="dot" id="dot2"></span>
+            </div>
+            <div class="button">
+              <button class="media-btn" id="media-btn-3"></button>
+              <span class="dot" id="dot3"></span>
+            </div>
+          </div>
+          <div class="footer">
+            <!-- <button class='main-btn' id='main-msg'>X</button> -->
+            <button class="main-btn" id="main-nb">Notebook</button>
+            <!-- <button class='main-btn' id='main-opt'>X</button> -->
+          </div>
         </div>
-        <div class='nb-container' id='nb-container'>
+
+        <!-- popup -->
+        <div id="popup" class="popup">
+          <div class="close" id="close-button"></div>
+          <div class="image-container" id="image-container">
+            <img id="image" />
+            <audio id="audio-player" controls>
+              <source id="audio-source" />
+            </audio>
+          </div>
+          <div class="video-container" id="video-container">
+            <video id="video-player" width="320" height="240" controls>
+              <source id="video-source" />
+            </video>
+          </div>
+          <div class="ex-container" id="ex-container">
+            <div id="ex-text">Text</div>
+            <button class="ex-btn" id="ex-help-btn">Help</button>
+            <div id="ex-help-text">help</div>
+            <div class="ex-btn-container">
+              <button class="ex-btn" id="ex-btn-1"></button>
+              <button class="ex-btn" id="ex-btn-2"></button>
+              <button class="ex-btn" id="ex-btn-3"></button>
+              <button class="ex-btn" id="ex-btn-4"></button>
+            </div>
+            <div id="ex-feedback">feedback</div>
+          </div>
+          <div class="nb-container" id="nb-container">
             <h1>Notebook</h1>
-            <div class='nb-true'>
+            <div class="nb-true">
               <p>Correct keywords</p>
-              <div class='nb-true-list'></div>
+              <div class="nb-true-list"></div>
             </div>
-            <div class='nb-false'>
+            <div class="nb-false">
               <p>Wrong keywords</p>
-              <div class='nb-false-list'></div>
+              <div class="nb-false-list"></div>
             </div>
+          </div>
         </div>
       </div>
-    </div>
-
 
       <!-- msg interface -->
       <!-- <div class='msg-interface'>
-        <button class='return-btn' id="return-btn">Return</button>
-        <h1>Messenger</h1>
-        <div class='msgs'>
-          <button class='msg-btn' id='msg-btn-1'>EmptyMsg1</button>
-          <button class='msg-btn' id='msg-btn-2'>EmptyMsg2</button>
-          <button class='msg-btn' id='msg-btn-3'>EmptyMsg3</button>
-        </div>
-      </div> -->
+          <button class='return-btn' id="return-btn">Return</button>
+          <h1>Messenger</h1>
+          <div class='msgs'>
+            <button class='msg-btn' id='msg-btn-1'>EmptyMsg1</button>
+            <button class='msg-btn' id='msg-btn-2'>EmptyMsg2</button>
+            <button class='msg-btn' id='msg-btn-3'>EmptyMsg3</button>
+          </div>
+        </div> -->
 
       <!-- notebook interface -->
       <!-- <div class='nb-interface'>
-        <button hidden class='return-btn' id="return-btn">Return</button>
-        <h1>Notebook</h1>
-        <div class='nb-true'>
-          <p>Correct keywords</p>
-          <div class='nb-true-list'></div>
-        </div>
-        <div class='nb-false'>
-          <p>Wrong keywords</p>
-          <div class='nb-false-list'></div>
-        </div>
-      </div> -->
+          <button hidden class='return-btn' id="return-btn">Return</button>
+          <h1>Notebook</h1>
+          <div class='nb-true'>
+            <p>Correct keywords</p>
+            <div class='nb-true-list'></div>
+          </div>
+          <div class='nb-false'>
+            <p>Wrong keywords</p>
+            <div class='nb-false-list'></div>
+          </div>
+        </div> -->
 
       <!-- option interface -->
       <!-- <div class='opt-interface'>
-        <button class='return-btn' id="return-btn">Return</button>
-        <h1>Options</h1>
-        <button class='opt-btn' id='opt-btn-home'>Home</button>
-        <button class='opt-btn' id='opt-btn-credits'>Credits</button>
-      </div> -->
-    
+          <button class='return-btn' id="return-btn">Return</button>
+          <h1>Options</h1>
+          <button class='opt-btn' id='opt-btn-home'>Home</button>
+          <button class='opt-btn' id='opt-btn-credits'>Credits</button>
+        </div> -->
+    </div>
   </body>
-  <script type='module' src='./assets/js/script.js'></script>
+  <script type="module" src="./assets/js/script.js"></script>
 </html>

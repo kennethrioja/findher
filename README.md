@@ -87,8 +87,8 @@ A faire ensuite :
 
 ## 13.06.2023 : 
 
-h :
-- 8:30 exercise
+7h :
+- 7h exercise mechanic
 
 TODO :
 mandatory : 
@@ -98,16 +98,15 @@ mandatory :
 - guidage
 - JOURNAL DE CONCEPTION
 
-
-2è mécanique (help):
-virus intervient quand joueurs ont tapé 4 mots clés et n'ont rien trouvé, alors pop-up exercice et répondent, si bonne réponse le jeu propose par hasard un mot clé non utilisé.
-
 début jeu : 
 - chap1,2,3 (2 3 sont bloqués), clic sur chap1 -> video d'intro, ferme et interface du jeu
 
 finit : 
 - si 50% des média vus et le 56è media qui sort. 50% des média à découvrir !
 - lien avec le virus, vous avez vu 50% des media et fait 4 virus / X, un nouveau chapitre est débloqué mais vous pouvez encore trouver les virus et débloquer petit à petit le téléphone. 
+
+2è mécanique (help):
+virus intervient quand joueurs ont tapé 4 mots clés et n'ont rien trouvé, alors pop-up exercice et répondent, si bonne réponse le jeu propose par hasard un mot clé non utilisé.
 
 guidage jeu : 
 - popup sur barre recherche, media play etc.
