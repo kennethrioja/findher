@@ -478,7 +478,9 @@ document.getElementById('main-nb').addEventListener(
 function handleVideo(mediaCode) {
     const videoSource = document.getElementById('video-source');
     const videoPlayer = document.getElementById('video-player');
-    const videoPath = './assets/media/video/' + mediaCode + '.mp4' // write complete src, there are only mp4
+    const videoPath = mediaCode == 'main-first' ?
+                        './assets/media/video/00.mp4'
+                        : './assets/media/video/' + mediaCode + '.mp4' // write complete src, there are only mp4
 
     videoSource.src = videoPath;
     videoSource.type = "video/mp4";
@@ -783,7 +785,7 @@ function mediaBtnBehavior(searchWord) {
 // MAIN INTERFACE FUNCTION //
 /////////////////////////////
 
-// handles search bar UI
+// handle UI search bar
 function mainInterfaceFct(searchWord) {
     const searchInput = document.getElementById('search-input');
 
@@ -815,6 +817,8 @@ document.getElementById('search-input').addEventListener(
     // when clicking enter in the input
     'keydown', (event) => { 
         if (event.key === 'Enter') {
+            // remove the animation
+            document.querySelector('.search-bar').style.animation = ('unset');
             // do the main interface function
             mainInterfaceFct(document.getElementById('search-input').value.trim().toLowerCase());
     }
@@ -824,9 +828,14 @@ document.getElementById('search-input').addEventListener(
 document.querySelector('.search-icon').addEventListener(
     // when clicking on the search-icon
     'click', (event) => {
+        // remove the animation
+        document.querySelector('.search-bar').style.animation = ('unset');
         // do the main interface function
         mainInterfaceFct(document.getElementById('search-input').value.trim());
 });
+
+// Search icon functionality
+document.getElementById('main-first').addEventListener('click',displayVideoButtonOnClick, { passive : false}); 
 
 // Intro (done on ChatGPT)
 // Chapter 1 button listener
@@ -856,5 +865,5 @@ document.getElementById('begin-button').addEventListener('click', function() {
 
     introVideoContainer.classList.remove('show');
     firstPage.style.display = 'none';
-    gameContainer.removeAttribute('hidden');  
+    gameContainer.removeAttribute('hidden');
   });

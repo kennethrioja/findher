@@ -88,18 +88,21 @@ A faire ensuite :
 ## 13.06.2023 : 
 
 7h :
-- 7h exercise mechanic
+- 7h : exercise mechanic
+
+## 17.06.2023 :
+
+h : 
+- 1h30 : begin game/intro with chatGPT
+- 20min : keep Introduction video always at hand
 
 TODO :
 mandatory : 
-- how to begin the game
+- begin : block chap 2 and 3
 - how to finish the game
 - help
 - guidage
 - JOURNAL DE CONCEPTION
-
-début jeu : 
-- chap1,2,3 (2 3 sont bloqués), clic sur chap1 -> video d'intro, ferme et interface du jeu
 
 finit : 
 - si 50% des média vus et le 56è media qui sort. 50% des média à découvrir !

@@ -106,7 +106,7 @@ body {
   padding: 10px 20px;
   border-radius: 5px;
   z-index: 1;
-  animation: colorAnimation 2s linear infinite;
+  animation: colorBBAnimation 2s linear infinite;
 }
 
 .begin-button:hover {
@@ -114,7 +114,7 @@ body {
   color: #000;
 }
 
-@keyframes colorAnimation {
+@keyframes colorBBAnimation {
   0% {
     background-color: #f0f0f0; /* Start with white */
   }
@@ -195,6 +195,19 @@ body {
   align-items: center;
   padding: 0 10px;
   margin-bottom: 20px;
+  animation: colorSBAnimation 2s linear infinite;
+}
+
+@keyframes colorSBAnimation {
+  0% {
+    background-color: #f0f0f0; /* Start with white */
+  }
+  50% {
+    background-color: #edbbbb; /* Transition to grey */
+  }
+  100% {
+    background-color: #f0f0f0; /* Return to white */
+  }
 }
 
 #search-input {
@@ -232,7 +245,7 @@ body {
 
 #search-input:hover,
 .media-btn:hover,
-#main-nb:hover,
+.main-btn:hover,
 .ex-btn:hover,
 .return-btn:hover {
   -webkit-filter: brightness(70%);
@@ -243,7 +256,7 @@ body {
   transition: all 0s ease;
 }
 
-#main-nb:hover,
+.main-btn:hover,
 .return-btn:hover,
 .ex-btn:hover {
   cursor: pointer;
@@ -376,8 +389,8 @@ body {
 }
 
 .main-btn {
-  width: 100px;
-  height: 50px;
+  width: 100%;
+  height: 100%;
   background: #f1ff11;
   border-radius: 10px;
   padding: 0 10px;
