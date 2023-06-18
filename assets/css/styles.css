@@ -3,16 +3,24 @@ body {
   padding: 0;
   font-family: Arial, sans-serif;
   background-color: rgb(87, 105, 106);
+  /* Bei: added background image */
+  /* margin:auto;
+  background-image: url("../media/poster2.jpg");
+  background-position:center;
+  background-repeat:no-repeat;
+  background-position-y:top; */
 }
 
 .header {
-  height: 10vh;
-  background: black;
+  height: 5vh;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
+  /* Bei: padding changed to hold these elements inside the cellphone space */
+  background: black; /* remove background */
+  /* padding: 120px 600px 30px 600px; */
 }
 
 .header-icon {
@@ -109,11 +117,6 @@ body {
   animation: colorBBAnimation 2s linear infinite;
 }
 
-.begin-button:hover {
-  background-color: #ddd;
-  color: #000;
-}
-
 @keyframes colorBBAnimation {
   0% {
     background-color: #f0f0f0; /* Start with white */
@@ -124,6 +127,11 @@ body {
   100% {
     background-color: #f0f0f0; /* Return to white */
   }
+}
+
+.begin-button:hover {
+  background-color: #ddd;
+  color: #000;
 }
 
 /* circular progress bar : https://alvarotrigo.com/blog/progress-bar-css/#9.-circular-progress-bar-with-numbers */
@@ -173,7 +181,9 @@ body {
 }
 
 .interface {
-  height: 90vh;
+  height: 60vh;
+  /* Bei: height changed */
+  /* height: 55vh; */
   display: flex;
   flex-direction: column;
 }
@@ -187,6 +197,8 @@ body {
 }
 
 .search-bar {
+  /* Bei: width changed */
+  /* width: 20%; */
   width: 80%;
   height: 40px;
   background: #f1f1f1;
@@ -195,7 +207,10 @@ body {
   align-items: center;
   padding: 0 10px;
   margin-bottom: 20px;
-  animation: colorSBAnimation 2s linear infinite;
+}
+
+.search-bar.anim {
+  animation: colorSBAnimation 1.2s linear infinite;
 }
 
 @keyframes colorSBAnimation {
@@ -203,7 +218,7 @@ body {
     background-color: #f0f0f0; /* Start with white */
   }
   50% {
-    background-color: #edbbbb; /* Transition to grey */
+    background-color: #cc8e8e; /* Transition to grey */
   }
   100% {
     background-color: #f0f0f0; /* Return to white */
@@ -234,8 +249,18 @@ body {
   padding: 2px 5px; /* Add some padding so it looks nice */
 }
 
+.media-btn-truth {
+  width: 40vh;
+  height: 40px;
+  background: #9f9f9f;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
 .media-btn,
 .ex-btn {
+  /*Bei: width changed*/
+  /* width: 25vh; */
   width: 40vh;
   height: 40px;
   background: #f1fff1;
@@ -247,7 +272,8 @@ body {
 .media-btn:hover,
 .main-btn:hover,
 .ex-btn:hover,
-.return-btn:hover {
+.return-btn:hover,
+.media-btn-truth:hover {
   -webkit-filter: brightness(70%);
   -webkit-transition: all 0s ease;
   -moz-transition: all 0s ease;
@@ -256,9 +282,55 @@ body {
   transition: all 0s ease;
 }
 
+.truth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.guide-truth {
+  display: none;
+}
+
+.media-btn-truth:hover + .guide-truth {
+  display: block;
+}
+
+.media-btn-truth:hover + .guide-truth.no {
+  display: block;
+}
+
+#media-btn-truth.unlock-still {
+  background-color: #8bbdce;
+}
+
+#media-btn-truth.unlock-anim {
+  background-color: #8bbdce;
+  animation: colorMBTAnimation 2s linear infinite;
+}
+
+@keyframes colorMBTAnimation {
+  0% {
+    background-color: #8bbdce; /* Start with white */
+  }
+  50% {
+    background-color: #6a6aaa; /* Transition to grey */
+  }
+  100% {
+    background-color: #8bbdce; /* Return to white */
+  }
+}
+
+.media-btn-truth:hover + .guide-truth.no {
+  display: none;
+}
+
 .main-btn:hover,
 .return-btn:hover,
-.ex-btn:hover {
+.ex-btn:hover,
+#media-btn-truth.unlock-anim,
+#media-btn-truth.unlock-still {
   cursor: pointer;
 }
 
@@ -391,7 +463,7 @@ body {
 .main-btn {
   width: 100%;
   height: 100%;
-  background: #f1ff11;
+  /* background: #f1ff11; */
   border-radius: 10px;
   padding: 0 10px;
 }

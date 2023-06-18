@@ -92,40 +92,41 @@ A faire ensuite :
 
 ## 17.06.2023 :
 
-h : 
+5h : 
 - 1h30 : begin game/intro with chatGPT
 - 20min : keep Introduction video always at hand
+- 3h : how to finish the game
+
+## 18.06.2023 :
+
+h :
+- 1h : finish game
+- 1h : help mechanic
 
 TODO :
 mandatory : 
-- begin : block chap 2 and 3
-- how to finish the game
-- help
-- guidage
 - JOURNAL DE CONCEPTION
-
-finit : 
-- si 50% des média vus et le 56è media qui sort. 50% des média à découvrir !
-- lien avec le virus, vous avez vu 50% des media et fait 4 virus / X, un nouveau chapitre est débloqué mais vous pouvez encore trouver les virus et débloquer petit à petit le téléphone. 
-
-2è mécanique (help):
-virus intervient quand joueurs ont tapé 4 mots clés et n'ont rien trouvé, alors pop-up exercice et répondent, si bonne réponse le jeu propose par hasard un mot clé non utilisé.
-
-guidage jeu : 
-- popup sur barre recherche, media play etc.
+- css 
 
 useful to play : 
-- chapter pages
-- after begin help do something (les petites bulles d'info en itération)
-- intrigue video always accessible
+- credits
 
 details : 
+- searchbar icon hover (css styling)
 - css, styling
-- searchbar icon hover
+- begin : block chap 2 and 3
+- unlock chap 2 but say "TO BE CONTINUED"
+- début du jeu, media-btn are disabled (css styling)
 
 to check after finishing :
-- criminal 3 marche pas
+- criminal 3 marche pas / 43 marche pas
 - drunk 2 marche pas
+- 44
+
+
+Functionalities not included : 
+- save (includes cookies)
+- mobile 
 
 # Attributions : 
 

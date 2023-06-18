@@ -112,12 +112,11 @@ class Dictionary {
     isSeen(mediaCode) {
         const dicData = this.dic;
 
+        console.log(mediaCode);
         for (let i = 0; i < dicData.length; i++) {
-            for (let j = 0; j < dicData[i].keywords.length; j++) {
-                if (mediaCode === dicData[i].code) {
-                    dicData[i].seen = true;
-                    return (1);
-                }
+            if (mediaCode === dicData[i].code) {
+                dicData[i].seen = true;
+                return (1);
             }
         }
         return (0);
@@ -152,10 +151,16 @@ class Notebook {
         // attemptArray : [this.maxAttempt],
         // true : isIndic
     #maxAttempt;
+    #strikeFalse
 
     constructor() {
         this.history = [];
         this.#maxAttempt = 0;
+        this.#strikeFalse = 0;
+    }
+
+    getStrikeFalse() {
+        return (this.#strikeFalse);
     }
 
     isInNotebook(searchWord) { // update #maxAttempt and update attemptNumber
@@ -175,9 +180,7 @@ class Notebook {
         } else { // else if already in entry
             this.#addNotNewEntryToHistory(searchWord);
         }
-        // change words progression
-        this.#updateWordProgress();
-        
+        !isIndic ? this.#strikeFalse++ : this.#strikeFalse = 0; // if word is false, strikeFalse =+ 1, else 0
     }
 
     countTrueWords() {
@@ -211,18 +214,6 @@ class Notebook {
                 historyData[i].attemptArray.push(this.#maxAttempt);
             }
         }
-    }
-
-    #updateWordProgress() {
-        let cWord = document.getElementById('circle-word');
-        let cWordDiv = document.getElementById('circle-word-div');
-        const countTrueWords = this.countTrueWords();
-        const getKeyWordListNoDupLen = dic.getKeyWordListNoDup().length;
-        const percentage = Math.round(countTrueWords / getKeyWordListNoDupLen * 100)
-        const displayTrueWords = countTrueWords === undefined ? 0 : countTrueWords
-
-        cWord.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
-        cWordDiv.innerHTML = "Word<br>" + displayTrueWords + '/' + getKeyWordListNoDupLen;
     }
 }
 
@@ -312,6 +303,16 @@ class Exercises {
         return ("undefined, please contact the support team");
     }
 
+    // help mechanic : when more than 4 false words, show word which will display a virus
+    getClosestVirus() {
+        const exData = this.ex;
+        for (let i = 0; i < exData.length; i++) {
+            if (exData[i].completed === false) {
+                return (exData[i].keyword) // to improve : the keyword should be related to other TRUE words in notebook
+            }
+        }
+        return (null);
+    }
 }
 
 // instantiate exercises, dic and notebook
@@ -389,6 +390,9 @@ navigator.saysWho = (() => {
 })()
 console.log(navigator.saysWho);
 
+//////////////
+// UI UTILS //
+//////////////
 
 // set clock to current time of player : https://stackoverflow.com/questions/28415178/how-do-you-show-the-current-time-on-a-web-page
 (function () {
@@ -402,7 +406,20 @@ console.log(navigator.saysWho);
     }, 1000);
 }());
 
-// update media's circular progress bar
+// update word circular progress bar
+function updateWordProgress() {
+    let cWord = document.getElementById('circle-word');
+    let cWordDiv = document.getElementById('circle-word-div');
+    const countTrueWords = notebook.countTrueWords();
+    const getKeyWordListNoDupLen = dic.getKeyWordListNoDup().length;
+    const percentage = Math.round(countTrueWords / getKeyWordListNoDupLen * 100)
+    const displayTrueWords = countTrueWords === undefined ? 0 : countTrueWords
+
+    cWord.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
+    cWordDiv.innerHTML = "Word<br>" + displayTrueWords + '/' + getKeyWordListNoDupLen;
+}
+
+// update media circular progress bar
 function updateMediaProgress() {
     let cMedia = document.getElementById('circle-media');
     let cMediaDiv = document.getElementById('circle-media-div');
@@ -411,10 +428,20 @@ function updateMediaProgress() {
 
     cMedia.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
     cMediaDiv.innerHTML = "Media<br>" + countSeen + '/' + dic.length();
+    // FINISH GAME HERE
+    // if (countSeen === 3) {     // at the last media closing, if see half of total media
+    if (countSeen === Math.round(dic.length() / 2)) { // when player has unlocked at least 50% of media
+        // disable guide-truth
+        document.getElementById('guide-truth').classList.add('no');
+        // make the media-btn-truth blink
+        document.getElementById('media-btn-truth').classList.add('unlock-anim');
+        // media-btn-truth listener
+        document.getElementById('media-btn-truth').addEventListener('click', displayImageButtonOnClick);
+    }
 }
 
 // close popup functionality
-function closePopupp() {
+function closePopup2() {
     document.getElementById('audio-player').pause();
     document.getElementById('video-player').pause();
     document.getElementById('popup').style.display = 'none';
@@ -422,16 +449,32 @@ function closePopupp() {
     updateMediaProgress();
 }
 
-function closePopup(element) {
-    element.addEventListener('click', closePopupp);
-    window.onkeydown = function(event) {
+function closePopup1(element) {
+    element.addEventListener('click', closePopup2); // if close button onclick
+    window.onkeydown = function(event) { // if escape keypress
         if ( event.keyCode == 27  && document.getElementById('popup').style.display === 'block') {
-            closePopupp();
+            closePopup2();
         }
     };    
 }
 
-closePopup(document.getElementById('close-button'));
+closePopup1(document.getElementById('close-button')); // for close button or escape
+
+////////////
+// GUIDES //
+////////////
+
+// beginning : 
+
+// beginning : after clicking on Let's Find Her, wait 15 sec before search bar blinks in red : https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
+const guideSearchBar = async (time) => {
+    const searchBar = document.getElementById('search-bar');
+    setTimeout(function () {
+        searchBar.classList.add('anim');
+    }, time); //
+}
+
+// when 4 
 
 // ###############
 // ## FUNCTIONS ##
@@ -517,7 +560,9 @@ function displayVideoButtonOnClick(event) {
 function handleAudio(mediaCode) {
     const audioSource = document.getElementById('audio-source');
     const audioPlayer = document.getElementById('audio-player');
-    const audioPath = './assets/media/audio/' + mediaCode + '.mp3' // write complete src, there are only mp3
+    const audioPath = mediaCode === 'media-btn-truth' ?
+                        './assets/media/audio/56.mp3'
+                        : './assets/media/audio/' + mediaCode + '.mp3' // write complete src, there are only mp3
 
     audioSource.src = audioPath;
     audioSource.type = "audio/mp3";
@@ -528,7 +573,9 @@ function handleAudio(mediaCode) {
 // handle image : change source & style
 function handleImage(mediaCode) {
     const img = document.getElementById('image') // get image DOM
-    const prefixImgSrc = './assets/media/img/' + mediaCode // write src without file extension
+    const prefixImgSrc = mediaCode === 'media-btn-truth' ?
+                            './assets/media/img/56' // for truth
+                            : './assets/media/img/' + mediaCode // write src without file extension
 
     img.src = prefixImgSrc + '.png';
     img.onerror = function() {
@@ -558,6 +605,11 @@ function displayImageButtonOnClick(event) {
     // as media is seen, hide red dot
     if (dic.isSeen(mediaCode)) {
         document.getElementById('dot' + btnNum).style.backgroundColor = 'transparent';
+    }
+    if (mediaCode === 'media-btn-truth') { // when the 56th media displays on screen
+        dic.isSeen("56"); // mark media as seen
+        document.getElementById('media-btn-truth').classList.remove('unlock-anim'); // remove anim
+        document.getElementById('media-btn-truth').classList.add('unlock-still'); // and make the button still
     }
     // hide video, nb and exercise container
     document.getElementById('video-container').style.display = 'none';
@@ -797,6 +849,8 @@ function mainInterfaceFct(searchWord) {
         }
         // keep this TRUE word in notebook
         notebook.addEntryToHistory(searchWord, true);
+        // update word progression bar
+        updateWordProgress();
         // UI : media buttons are changed
         mediaBtnBehavior(searchWord);
     } else {
@@ -804,11 +858,19 @@ function mainInterfaceFct(searchWord) {
         notebook.addEntryToHistory(searchWord, false);
         // UI : ask for retry through search bar
         if (searchWord != "42") {
-            searchInput.placeholder = "No media found on word '" + searchWord + "', try again.";
+            const virusWord = ex.getClosestVirus();
+            if (notebook.getStrikeFalse() >= 4 && virusWord) { // help mechanic
+                // searchInput value with the closest word (from beginning of list or from what they have already found?)
+                searchInput.placeholder = "No media found on word '" + searchWord + "', try with this keyword : '" + virusWord + "'.";
+                // anim searchbar
+                guideSearchBar(0);
+            } else {
+                searchInput.placeholder = "No media found on word '" + searchWord + "', try again.";
+            }
         } else {
-            searchInput.placeholder = "Wanna seek the truth right ? Aren't we all looking for it ?"; // easter egg
+            searchInput.placeholder = "Wanna seek the truth right ? Aren't we all looking for it ?";
         }
-        searchInput.value = '';            
+        searchInput.value = ''; 
     }
 }
 
@@ -818,7 +880,8 @@ document.getElementById('search-input').addEventListener(
     'keydown', (event) => { 
         if (event.key === 'Enter') {
             // remove the animation
-            document.querySelector('.search-bar').style.animation = ('unset');
+            // document.getElementById('search-bar').style.animation = ('unset');
+            document.getElementById('search-bar').classList.remove('anim');
             // do the main interface function
             mainInterfaceFct(document.getElementById('search-input').value.trim().toLowerCase());
     }
@@ -829,16 +892,23 @@ document.querySelector('.search-icon').addEventListener(
     // when clicking on the search-icon
     'click', (event) => {
         // remove the animation
-        document.querySelector('.search-bar').style.animation = ('unset');
+        document.getElementById('search-bar').style.animation = ('unset');
         // do the main interface function
         mainInterfaceFct(document.getElementById('search-input').value.trim());
 });
 
-// Search icon functionality
+// First video always here
 document.getElementById('main-first').addEventListener('click',displayVideoButtonOnClick, { passive : false}); 
 
-// Intro (done on ChatGPT)
-// Chapter 1 button listener
+//////////////////
+// INTRODUCTION //
+//////////////////
+
+// lock chapter 2 and 3
+// enable it when game finishes
+// credits
+
+// "chapter 1" button listener
 document.getElementById('chapter-btn-1').addEventListener('click', function() {
     const introVideoContainer = document.getElementById('intro-video-container');
     const introVideoPlayer = document.getElementById('intro-video-player');
@@ -856,9 +926,9 @@ document.getElementById('intro-video-player').addEventListener('ended', function
     beginButton.style.display = 'block';
     introVideoPlayer.removeAttribute("controls");
 });
-
+  
 // "Let's find her" button listener
-document.getElementById('begin-button').addEventListener('click', function() {
+function toMain() {
     const introVideoContainer = document.getElementById('intro-video-container');
     const firstPage = document.getElementById('first-page');
     const gameContainer = document.getElementById('game');
@@ -866,4 +936,24 @@ document.getElementById('begin-button').addEventListener('click', function() {
     introVideoContainer.classList.remove('show');
     firstPage.style.display = 'none';
     gameContainer.removeAttribute('hidden');
-  });
+    guideSearchBar(20000); // make search bar anim after 20000ms
+}
+document.getElementById('begin-button').addEventListener('click', toMain);
+
+
+//////////////////////////////////////////////////////////
+
+// dev side
+function toIntro(a) {
+    if (!a)
+        return ;
+    const introVideoContainer = document.getElementById('intro-video-container');
+    const firstPage = document.getElementById('first-page');
+    const gameContainer = document.getElementById('game');
+
+    introVideoContainer.classList.remove('show');
+    firstPage.style.display = 'none';
+    gameContainer.removeAttribute('hidden');
+    guideSearchBar(20000); // make search bar anim after 20000ms
+}
+toIntro(1); // 0 to introduction, 1 to main interface
