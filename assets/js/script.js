@@ -406,6 +406,77 @@ console.log(navigator.saysWho);
     }, 1000);
 }());
 
+////////////
+// GUIDES //
+////////////
+
+// beginning : after clicking on Let's Find Her, wait 15 sec before search bar blinks in red : https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
+const guideSearchBar = async (time) => {
+    const searchBar = document.getElementById('search-bar');
+    setTimeout(function () {
+        searchBar.classList.add('anim');
+    }, time); //
+}
+
+// ###############
+// ## FUNCTIONS ##
+// ###############
+
+////////////
+// ENDING //
+////////////
+
+// // "Let's find her" button listener
+// function toMain() {
+//     const introVideoContainer = document.getElementById('intro-video-container');
+//     const firstPage = document.getElementById('first-page');
+//     const gameContainer = document.getElementById('game');
+
+//     introVideoContainer.classList.remove('show'); // remove intro video container
+//     firstPage.style.display = 'none'; // hide first page
+//     gameContainer.removeAttribute('hidden'); // display game interface
+//     guideSearchBar(20000); // guide : make search bar anim after 20000ms if did not search anything
+// }
+
+// // when video ends, shows "Let's find her"
+// document.getElementById('intro-video-player').addEventListener(
+//     'ended', function() { // when video ends
+//     const beginButton = document.getElementById('begin-button');
+//     const introVideoPlayer = document.getElementById('intro-video-player')
+
+//     beginButton.style.display = 'block'; // show begin button
+//     introVideoPlayer.removeAttribute("controls"); // remove controls from video
+//     // begin button listener is activated
+//     document.getElementById('begin-button').addEventListener('click', toMain);
+// });
+
+// // "chapter 1" button listener
+// document.getElementById('chapter-btn-1').addEventListener('click', function() {
+//     const introVideoContainer = document.getElementById('intro-video-container');
+//     const introVideoPlayer = document.getElementById('intro-video-player');
+
+//     // show introvideocontainer, black screen with first video, and plays it
+//     introVideoContainer.classList.add('show');
+//     introVideoPlayer.load();
+//     introVideoPlayer.play();
+// });
+
+function finishGame() {
+    // disable guide-truth
+    document.getElementById('guide-truth').classList.add('no');
+    // make the media-btn-truth blink
+    document.getElementById('media-btn-truth').classList.add('unlock-anim');
+    // media-btn-truth listener
+    document.getElementById('media-btn-truth').addEventListener('click', displayImageButtonOnClick);
+    // display black screen
+    // document.getElementById('media-btn-truth').addEventListener('click', displayTruthButtonOnClick);
+    // when video finishes, see Charles speaking "What is that ? ... I still don't understand who that girl is. Her mother died, but how is it related to Alice ?"
+}
+
+/////////////
+// UPDATES //
+/////////////
+
 // update word circular progress bar
 function updateWordProgress() {
     let cWord = document.getElementById('circle-word');
@@ -429,16 +500,15 @@ function updateMediaProgress() {
     cMedia.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
     cMediaDiv.innerHTML = "Media<br>" + countSeen + '/' + dic.length();
     // FINISH GAME HERE
-    // if (countSeen === 3) {     // at the last media closing, if see half of total media
-    if (countSeen === Math.round(dic.length() / 2)) { // when player has unlocked at least 50% of media
-        // disable guide-truth
-        document.getElementById('guide-truth').classList.add('no');
-        // make the media-btn-truth blink
-        document.getElementById('media-btn-truth').classList.add('unlock-anim');
-        // media-btn-truth listener
-        document.getElementById('media-btn-truth').addEventListener('click', displayImageButtonOnClick);
+    if (countSeen === 3) {     // at the last media closing, if see half of total media
+    // if (countSeen === Math.round(dic.length() / 2)) { // when player has unlocked at least 50% of media
+        finishGame();
     }
 }
+
+/////////////////
+// CLOSE POPUP //
+/////////////////
 
 // close popup functionality
 function closePopup2() {
@@ -459,26 +529,6 @@ function closePopup1(element) {
 }
 
 closePopup1(document.getElementById('close-button')); // for close button or escape
-
-////////////
-// GUIDES //
-////////////
-
-// beginning : 
-
-// beginning : after clicking on Let's Find Her, wait 15 sec before search bar blinks in red : https://stackoverflow.com/questions/14226803/wait-5-seconds-before-executing-next-line
-const guideSearchBar = async (time) => {
-    const searchBar = document.getElementById('search-bar');
-    setTimeout(function () {
-        searchBar.classList.add('anim');
-    }, time); //
-}
-
-// when 4 
-
-// ###############
-// ## FUNCTIONS ##
-// ###############
 
 //////////////
 // NOTEBOOK //
@@ -880,7 +930,6 @@ document.getElementById('search-input').addEventListener(
     'keydown', (event) => { 
         if (event.key === 'Enter') {
             // remove the animation
-            // document.getElementById('search-bar').style.animation = ('unset');
             document.getElementById('search-bar').classList.remove('anim');
             // do the main interface function
             mainInterfaceFct(document.getElementById('search-input').value.trim().toLowerCase());
@@ -908,38 +957,40 @@ document.getElementById('main-first').addEventListener('click',displayVideoButto
 // enable it when game finishes
 // credits
 
-// "chapter 1" button listener
-document.getElementById('chapter-btn-1').addEventListener('click', function() {
-    const introVideoContainer = document.getElementById('intro-video-container');
-    const introVideoPlayer = document.getElementById('intro-video-player');
-
-    introVideoContainer.classList.add('show');
-    introVideoPlayer.load();
-    introVideoPlayer.play();
-});
-
-// when video ends, shows "Let's find her"
-document.getElementById('intro-video-player').addEventListener('ended', function() {
-    const beginButton = document.getElementById('begin-button');
-    const introVideoPlayer = document.getElementById('intro-video-player')
-
-    beginButton.style.display = 'block';
-    introVideoPlayer.removeAttribute("controls");
-});
-  
 // "Let's find her" button listener
 function toMain() {
     const introVideoContainer = document.getElementById('intro-video-container');
     const firstPage = document.getElementById('first-page');
     const gameContainer = document.getElementById('game');
 
-    introVideoContainer.classList.remove('show');
-    firstPage.style.display = 'none';
-    gameContainer.removeAttribute('hidden');
-    guideSearchBar(20000); // make search bar anim after 20000ms
+    introVideoContainer.classList.remove('show'); // remove intro video container
+    firstPage.style.display = 'none'; // hide first page
+    gameContainer.removeAttribute('hidden'); // display game interface
+    guideSearchBar(5000); // guide : make search bar anim after 5000ms if did not search anything
 }
-document.getElementById('begin-button').addEventListener('click', toMain);
 
+// when video ends, shows "Let's find her"
+document.getElementById('intro-video-player').addEventListener(
+    'ended', function() { // when video ends
+    const beginButton = document.getElementById('begin-button');
+    const introVideoPlayer = document.getElementById('intro-video-player')
+
+    beginButton.style.display = 'block'; // show begin button
+    introVideoPlayer.removeAttribute("controls"); // remove controls from video
+    // begin button listener is activated
+    document.getElementById('begin-button').addEventListener('click', toMain);
+});
+
+// "chapter 1" button listener
+document.getElementById('chapter-btn-1').addEventListener('click', function() {
+    const introVideoContainer = document.getElementById('intro-video-container');
+    const introVideoPlayer = document.getElementById('intro-video-player');
+
+    // show introvideocontainer, black screen with first video, and plays it
+    introVideoContainer.classList.add('show');
+    introVideoPlayer.load();
+    introVideoPlayer.play();
+});
 
 //////////////////////////////////////////////////////////
 
@@ -954,6 +1005,6 @@ function toIntro(a) {
     introVideoContainer.classList.remove('show');
     firstPage.style.display = 'none';
     gameContainer.removeAttribute('hidden');
-    guideSearchBar(20000); // make search bar anim after 20000ms
+    guideSearchBar(5000); // make search bar anim after 5000ms
 }
-toIntro(1); // 0 to introduction, 1 to main interface
+toIntro(0); // 0 to introduction, 1 to main interface

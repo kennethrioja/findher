@@ -99,9 +99,9 @@ A faire ensuite :
 
 ## 18.06.2023 :
 
-h :
+3h :
 - 1h : finish game
-- 1h : help mechanic
+- 2h : help mechanic
 
 TODO :
 mandatory : 

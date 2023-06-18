@@ -1,14 +1,26 @@
-body {
+/*melina*/
+@font-face {
+    font-family: 'Typewriter';
+    src: url('../font/JMH\ Typewriter-Black.otf'),
+    url('../font/JMH\ Typewriter-Black.ttf'),
+    url('../font/JMH\ Typewriter-Bold.otf'),
+    url('../font/JMH\ Typewriter-Bold.ttf'),
+    url('../font/JMH\ Typewriter-Thin.otf'),
+    url('../font/JMH\ Typewriter-Thin.ttf'),
+    url('../font/JMH\ Typewriter.otf'),
+    url('../font/JMH\ Typewriter.ttf');
+  }
+  
+  body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: rgb(87, 105, 106);
   /* Bei: added background image */
-  /* margin:auto;
-  background-image: url("../media/poster2.jpg");
+  margin:auto;
+  background-image: url("../icons/background.jpg");
   background-position:center;
   background-repeat:no-repeat;
-  background-position-y:top; */
+  background-position-y:top;
 }
 
 .header {
@@ -17,10 +29,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
   /* Bei: padding changed to hold these elements inside the cellphone space */
-  background: black; /* remove background */
-  /* padding: 120px 600px 30px 600px; */
+  /* background: black; */
+  padding: 120px 600px 30px 600px;
 }
 
 .header-icon {
@@ -37,28 +48,34 @@ body {
 }
 
 .title {
-  font-family: "Arial", sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
+    font-family: "Typewriter", sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 4px 4px 8px rgba(0,0,0,1);
+    color: #fff;
 }
 
 .chapter-btn {
-  display: inline-block;
-  padding: 15px 30px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  background-color: #f0f0f0;
-  color: #000;
-  border: 1px solid #ccc;
-  cursor: pointer;
+    display: inline-block;
+    padding: 15px 30px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #e3e3e3;
+    color: #999;
+    border: 2px solid #999;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Typewriter', sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .chapter-btn:hover {
   background-color: #ddd;
   color: #000;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .intro-video-container {
@@ -117,6 +134,11 @@ body {
   animation: colorBBAnimation 2s linear infinite;
 }
 
+.begin-button:hover {
+  background-color: #ddd;
+  color: #000;
+}
+
 @keyframes colorBBAnimation {
   0% {
     background-color: #f0f0f0; /* Start with white */
@@ -136,6 +158,7 @@ body {
 
 /* circular progress bar : https://alvarotrigo.com/blog/progress-bar-css/#9.-circular-progress-bar-with-numbers */
 .wrap-circles {
+    /* margin-top: 100px; */
   display: flex;
   min-height: 10vh;
   flex-wrap: wrap;
@@ -198,8 +221,7 @@ body {
 
 .search-bar {
   /* Bei: width changed */
-  /* width: 20%; */
-  width: 80%;
+  width: 20%;
   height: 40px;
   background: #f1f1f1;
   border-radius: 20px;

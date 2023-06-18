@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="./assets/css/w3.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <!-- Intro -->
@@ -33,6 +34,18 @@
       <div class="begin-button" id="begin-button">Let's find her.</div>
     </div>
 
+    <!-- first video  -->
+    <div class="intro-video-container" id="intro-video-container">
+        <video id="intro-video-player" height="500px" controls>
+          <source
+            id="intro-video-source"
+            src="./assets/media/video/00.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <div class="begin-button" id="begin-button">Let's find her.</div>
+      </div>
+
     <div hidden class="game" id="game">
       <!-- Game -->
       <!-- header -->
@@ -57,8 +70,6 @@
           <div class="inner" id="circle-word-div">Words<br />0</div>
         </div>
       </div>
-
-      <div class="intro"></div>
 
       <div class="interface">
         <!-- main interface -->
