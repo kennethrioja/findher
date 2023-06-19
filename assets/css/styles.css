@@ -11,32 +11,55 @@
     url('../font/JMH\ Typewriter.ttf');
   }
   
+  html {
+    height: 100%;
+  }
+
   body {
-  margin: 0;
-  padding: 0;
   font-family: Arial, sans-serif;
   /* Bei: added background image */
-  margin:auto;
   background-image: url("../icons/background.jpg");
   background-position:center;
   background-repeat:no-repeat;
   background-position-y:top;
+  background-size: 100% auto;
+  margin: 0;
+}
+
+.game {
+padding-top: 7.6%;
+padding-bottom: 3.2%;
+padding-left: 38.7%;
+padding-right: 38.6%;
+height: 100%;
 }
 
 .header {
-  height: 5vh;
+  height: 10%;
   color: white;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  /* Bei: padding changed to hold these elements inside the cellphone space */
-  /* background: black; */
-  padding: 120px 600px 30px 600px;
+  background: red;
+}
+
+.h-left,
+.h-middle,
+.h-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.h-middle {
+    margin: 0 auto;
 }
 
 .header-icon {
-  width: 20px;
-  height: 20px;
+  width: auto;
+  height: 5%;
+  margin-left:5%
 }
 
 .first-page {
@@ -160,7 +183,7 @@
 .wrap-circles {
     /* margin-top: 100px; */
   display: flex;
-  min-height: 10vh;
+  /* min-height: 10%; */
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -169,8 +192,8 @@
 
 .circle {
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 10%;
+  height: 150%;
   margin: 0.5rem;
   border-radius: 50%;
   background: #ffcdb2;
@@ -472,14 +495,16 @@
 .close:hover:before {
   background: blue;
 }
-/* close */
 
 .footer {
-  height: 10vh;
+    left:0;
+    bottom:0;
+  height: 20%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 0 10px;
+  background-color: red;
 }
 
 .main-btn {

@@ -1007,4 +1007,4 @@ function toIntro(a) {
     gameContainer.removeAttribute('hidden');
     guideSearchBar(5000); // make search bar anim after 5000ms
 }
-toIntro(0); // 0 to introduction, 1 to main interface
+toIntro(1); // 0 to introduction, 1 to main interface

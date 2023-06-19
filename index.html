@@ -50,15 +50,21 @@
       <!-- Game -->
       <!-- header -->
       <div class="header">
-        <div class="header-icon" id="network">
-          <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+        <div class="h-left">
+          <div class="header-icon" id="network">
+            <img src="./assets/icons/signal.png" alt="signal icon" width="20px" />
+          </div>
+          <div class="header-icon" id="wifi">
+            <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+          </div>
         </div>
-        <div class="header-icon" id="wifi">
-          <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+        <div class="h-middle">
+          <div id="clock"></div>
         </div>
-        <div id="clock"></div>
-        <div class="header-icon" id="battery">
-          <img src="./assets/icons/wifi.png" alt="wifi icon" width="20px" />
+        <div class="h-right">
+          <div class="header-icon" id="battery">
+            <img src="./assets/icons/battery.png" alt="battery icon" width="20px" />
+          </div>
         </div>
       </div>
 
@@ -114,10 +120,8 @@
             </div>
           </div>
           <div class="footer">
-            <!-- <button class='main-btn' id='main-msg'>X</button> -->
             <img src="./assets/icons/notebook.svg" alt="notebook icon" class="main-btn" id="main-nb"></img>
             <img src="./assets/icons/intro-video.svg" alt="video icon" class="main-btn" id="main-first"></img>
-            <!-- <button class='main-btn' id='main-opt'>X</button> -->
           </div>
         </div>
 
@@ -161,38 +165,6 @@
         </div>
       </div>
 
-      <!-- msg interface -->
-      <!-- <div class='msg-interface'>
-          <button class='return-btn' id="return-btn">Return</button>
-          <h1>Messenger</h1>
-          <div class='msgs'>
-            <button class='msg-btn' id='msg-btn-1'>EmptyMsg1</button>
-            <button class='msg-btn' id='msg-btn-2'>EmptyMsg2</button>
-            <button class='msg-btn' id='msg-btn-3'>EmptyMsg3</button>
-          </div>
-        </div> -->
-
-      <!-- notebook interface -->
-      <!-- <div class='nb-interface'>
-          <button hidden class='return-btn' id="return-btn">Return</button>
-          <h1>Notebook</h1>
-          <div class='nb-true'>
-            <p>Correct keywords</p>
-            <div class='nb-true-list'></div>
-          </div>
-          <div class='nb-false'>
-            <p>Wrong keywords</p>
-            <div class='nb-false-list'></div>
-          </div>
-        </div> -->
-
-      <!-- option interface -->
-      <!-- <div class='opt-interface'>
-          <button class='return-btn' id="return-btn">Return</button>
-          <h1>Options</h1>
-          <button class='opt-btn' id='opt-btn-home'>Home</button>
-          <button class='opt-btn' id='opt-btn-credits'>Credits</button>
-        </div> -->
     </div>
   </body>
   <script type="module" src="./assets/js/script.js"></script>

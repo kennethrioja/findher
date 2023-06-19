@@ -99,11 +99,22 @@ A faire ensuite :
 
 ## 18.06.2023 :
 
-3h :
+5h :
 - 1h : finish game
 - 2h : help mechanic
+- 2h : team meeting on design
 
 TODO :
+
+html lien vers le fond
+virus exercise -> v alarm
+boutons : font gris-> noir et background stay light
+search - 3 btn - nb/1st vid - boutons ronds à la fin
+help à la fin dans exos
+EX SUCCEED -> ALARM REMOVED
+mettre help modal sur exercise
+mettre audio en dessous d'images
+
 mandatory : 
 - JOURNAL DE CONCEPTION
 - css 
@@ -128,8 +139,15 @@ Functionalities not included :
 - save (includes cookies)
 - mobile 
 
+Les mécaniques incluses dans cette version sont : 
+- exercise
+- help
+
+
 # Attributions : 
 
 Search icon : <a href="https://www.flaticon.com/free-icons/loupe" title="loupe icons">Loupe icons created by Fuzzee - Flaticon</a>
-Wifi icon : <a href="https://www.flaticon.com/free-icons/wifi-connection" title="wifi connection icons">Wifi connection icons created by Freepik - Flaticon</a>
+Wifi icon : <a href="https://www.flaticon.com/free-icons/wifi" title="wifi icons">Wifi icons created by Google - Flaticon</a>
+Signal icon : <a href="https://www.flaticon.com/free-icons/signal" title="signal icons">Signal icons created by Iconjam - Flaticon</a>
+Battery icon : <a href="https://www.flaticon.com/free-icons/half" title="half icons">Half icons created by Freepik - Flaticon</a>
 
