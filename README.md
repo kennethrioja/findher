@@ -109,23 +109,25 @@ A faire ensuite :
 4h : 
 - 4h html/css
 
-details : 
+# TODO
+
+## details : 
 - searchbar icon hover (css styling)
 - css, styling
 - begin : block chap 2 and 3
 - unlock chap 2 but say "TO BE CONTINUED"
 - début du jeu, media-btn are disabled (css styling)
 
-to check after finishing :
+## to check after finishing :
 - criminal 3 marche pas / 43 marche pas
 - drunk 2 marche pas
 - 44
 
-Functionalities not included : 
+## Functionalities not included : 
 - save (includes cookies)
 - mobile 
 
-Les mécaniques incluses dans cette version sont : 
+## Les mécaniques incluses dans cette version sont : 
 - exercise (quand keyword a 2 media, le 3è est un exercice)
 - help (après 4 mots faux, donne mot clé pour exercice)
 
@@ -136,4 +138,3 @@ Search icon : <a href="https://www.flaticon.com/free-icons/loupe" title="loupe i
 Wifi icon : <a href="https://www.flaticon.com/free-icons/wifi" title="wifi icons">Wifi icons created by Google - Flaticon</a>
 Signal icon : <a href="https://www.flaticon.com/free-icons/signal" title="signal icons">Signal icons created by Iconjam - Flaticon</a>
 Battery icon : <a href="https://www.flaticon.com/free-icons/half" title="half icons">Half icons created by Freepik - Flaticon</a>
-
