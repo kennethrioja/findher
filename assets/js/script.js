@@ -467,8 +467,8 @@ function updateMediaProgress() {
     pMediaBar.style.width = percentage + '%';
 
     // FINISH GAME HERE
-    if (countSeen === 3) {     // at the last media closing, if see half of total media
-    // if (countSeen === Math.round(dic.length() / 2)) { // when player has unlocked at least 50% of media
+    // if (countSeen === 3) {     // at the last media closing, if see half of total media
+    if (countSeen === Math.round(dic.length() / 2)) { // when player has unlocked at least 50% of media
         finishGame();
     }
 }
