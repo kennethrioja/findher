@@ -19,7 +19,10 @@
       <div class="chapter" id="chapter-3">
         <div class="chapter-btn" id="chapter-btn-3">Chapter 3</div>
       </div>
-      <div class="credits" id="credits-btn">Credits</div>
+      <div class="credits" id="credits-btn">
+        This game has been made by <a href="https://edutechwiki.unige.ch/fr/Utilisateur:Bei_Cai">Bei Cai</a>, <a href="https://edutechwiki.unige.ch/fr/Utilisateur:Melina_D">Mélina Doguet</a> and <a href="https://edutechwiki.unige.ch/fr/Utilisateur:Kenneth_Rioja">Kenneth Rioja</a>.<br>
+        In collaboration with <a href="https://www.bilingo.fr/">Bilingo</a>
+    </div>
     </div>
 
     <!-- first video  -->
@@ -68,26 +71,9 @@
         </div>
       </div>
 
-      <div class="wrap-circles">
-        <div class="circle" id="circle-media">
-          <div class="inner" id="circle-media-div">Media<br />0</div>
-        </div>
-        <div class="circle" id="circle-word">
-          <div class="inner" id="circle-word-div">Words<br />0</div>
-        </div>
-      </div>
-
       <div class="interface">
         <!-- main interface -->
         <div class="main-interface">
-          <div class="truth">
-            <button class="media-btn-truth" id="media-btn-truth">
-              The truth | Find me
-            </button>
-            <div class="guide-truth" id="guide-truth">
-              Unlock and see 50% of medias to unlock the truth.
-            </div>
-          </div>
           <div class="search-bar" id="search-bar">
             <input
               type="text"
@@ -123,6 +109,33 @@
             <img src="./assets/icons/notebook.svg" alt="notebook icon" class="main-btn" id="main-nb"></img>
             <img src="./assets/icons/intro-video.svg" alt="video icon" class="main-btn" id="main-first"></img>
           </div>
+          <div class="truth">
+            <button class="media-btn-truth" id="media-btn-truth">
+              Secret video
+            </button>
+            <div class="guide-truth" id="guide-truth">
+                See 50% of the total number of medias to unlock the secret video.
+              </div>  
+          </div>
+          <div class="progress">
+            <div class="progress-media-header" id="progress-media-header">Media</div>
+            <div class="w3-blue-gray" id="progress-media" style="border-radius: 25px">
+              <div class="w3-pale-green" id="progress-media-bar" style="height:24px;width:0%;border-radius: 25px"></div>
+            </div>
+            <div class="progress-header" id="progress-word-header">Word</div>
+            <div class="w3-blue-gray" id="progress-word" style="border-radius: 25px">
+              <div class="w3-pale-yellow" id="progress-word-bar" style="height:24px;width:0%;border-radius: 25px"></div>
+            </div>
+          </div>
+          
+          <div class="wrap-circles">
+            <div class="circle" id="circle-media">
+              <div class="inner" id="circle-media-div">Media<br />0</div>
+            </div>
+            <div class="circle" id="circle-word">
+              <div class="inner" id="circle-word-div">Words<br />0</div>
+            </div>
+          </div>
         </div>
 
         <!-- popup -->
@@ -135,14 +148,12 @@
             </audio>
           </div>
           <div class="video-container" id="video-container">
-            <video id="video-player" width="320" height="240" controls>
+            <video id="video-player" controls>
               <source id="video-source" />
             </video>
           </div>
           <div class="ex-container" id="ex-container">
             <div id="ex-text">Text</div>
-            <button class="ex-btn" id="ex-help-btn">Help</button>
-            <div id="ex-help-text">help</div>
             <div class="ex-btn-container">
               <button class="ex-btn" id="ex-btn-1"></button>
               <button class="ex-btn" id="ex-btn-2"></button>
@@ -150,9 +161,13 @@
               <button class="ex-btn" id="ex-btn-4"></button>
             </div>
             <div id="ex-feedback">feedback</div>
+            <button class="ex-btn" id="ex-help-btn">Help</button>
+            <div id="ex-help-text"></div>
+            <img id="ex-help-1-image" />
+            <img id="ex-help-2-image" />
           </div>
           <div class="nb-container" id="nb-container">
-            <h1>Notebook</h1>
+            <div class="nb-header">Notebook</div>
             <div class="nb-true">
               <p>Correct keywords</p>
               <div class="nb-true-list"></div>

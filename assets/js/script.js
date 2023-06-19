@@ -159,6 +159,10 @@ class Notebook {
         this.#strikeFalse = 0;
     }
 
+    getMaxAttempt() {
+        return (this.#maxAttempt);
+    }
+
     getStrikeFalse() {
         return (this.#strikeFalse);
     }
@@ -271,7 +275,7 @@ class Exercises {
         }
         return ("undefined, please contact the support team");
     }
-    
+
     getFeedback(kw, flag) {
         const exData = this.ex;
         for (let i = 0; i < exData.length; i++) {
@@ -303,7 +307,7 @@ class Exercises {
         return ("undefined, please contact the support team");
     }
 
-    // help mechanic : when more than 4 false words, show word which will display a virus
+    // help mechanic : when more than 4 incorrect words, show word which will display a virus
     getClosestVirus() {
         const exData = this.ex;
         for (let i = 0; i < exData.length; i++) {
@@ -324,11 +328,11 @@ var notebook = new Notebook();
 // ## DOM ##
 // #########
 
-var mediaBtnArray = [document.getElementById('media-btn-1'), 
+var mediaBtnArray = [document.getElementById('media-btn-1'),
                         document.getElementById('media-btn-2'),
                         document.getElementById('media-btn-3')];
 
-var exBtnArray = [document.getElementById('ex-btn-1'), 
+var exBtnArray = [document.getElementById('ex-btn-1'),
                     document.getElementById('ex-btn-2'),
                     document.getElementById('ex-btn-3'),
                     document.getElementById('ex-btn-4')];
@@ -354,38 +358,38 @@ function animFadeIn(e, col) {
 }
 
 // browser detection : https://stackoverflow.com/questions/2400935/browser-detection-in-javascript
-navigator.saysWho = (() => { 
+navigator.saysWho = (() => {
     const { userAgent } = navigator
     let match = userAgent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []
     let temp
-  
+
     if (/trident/i.test(match[1])) {
       temp = /\brv[ :]+(\d+)/g.exec(userAgent) || []
-  
+
       return `IE ${temp[1] || ''}`
     }
-  
+
     if (match[1] === 'Chrome') {
       temp = userAgent.match(/\b(OPR|Edge)\/(\d+)/)
-  
+
       if (temp !== null) {
         return temp.slice(1).join(' ').replace('OPR', 'Opera')
       }
-  
+
       temp = userAgent.match(/\b(Edg)\/(\d+)/)
-  
+
       if (temp !== null) {
         return temp.slice(1).join(' ').replace('Edg', 'Edge (Chromium)')
       }
     }
-  
+
     match = match[2] ? [ match[1], match[2] ] : [ navigator.appName, navigator.appVersion, '-?' ]
     temp = userAgent.match(/version\/(\d+)/i)
-  
+
     if (temp !== null) {
       match.splice(1, 1, temp[1])
     }
-  
+
     return match.join(' ')
 })()
 console.log(navigator.saysWho);
@@ -415,7 +419,7 @@ const guideSearchBar = async (time) => {
     const searchBar = document.getElementById('search-bar');
     setTimeout(function () {
         searchBar.classList.add('anim');
-    }, time); //
+    }, time);
 }
 
 // ###############
@@ -426,41 +430,6 @@ const guideSearchBar = async (time) => {
 // ENDING //
 ////////////
 
-// // "Let's find her" button listener
-// function toMain() {
-//     const introVideoContainer = document.getElementById('intro-video-container');
-//     const firstPage = document.getElementById('first-page');
-//     const gameContainer = document.getElementById('game');
-
-//     introVideoContainer.classList.remove('show'); // remove intro video container
-//     firstPage.style.display = 'none'; // hide first page
-//     gameContainer.removeAttribute('hidden'); // display game interface
-//     guideSearchBar(20000); // guide : make search bar anim after 20000ms if did not search anything
-// }
-
-// // when video ends, shows "Let's find her"
-// document.getElementById('intro-video-player').addEventListener(
-//     'ended', function() { // when video ends
-//     const beginButton = document.getElementById('begin-button');
-//     const introVideoPlayer = document.getElementById('intro-video-player')
-
-//     beginButton.style.display = 'block'; // show begin button
-//     introVideoPlayer.removeAttribute("controls"); // remove controls from video
-//     // begin button listener is activated
-//     document.getElementById('begin-button').addEventListener('click', toMain);
-// });
-
-// // "chapter 1" button listener
-// document.getElementById('chapter-btn-1').addEventListener('click', function() {
-//     const introVideoContainer = document.getElementById('intro-video-container');
-//     const introVideoPlayer = document.getElementById('intro-video-player');
-
-//     // show introvideocontainer, black screen with first video, and plays it
-//     introVideoContainer.classList.add('show');
-//     introVideoPlayer.load();
-//     introVideoPlayer.play();
-// });
-
 function finishGame() {
     // disable guide-truth
     document.getElementById('guide-truth').classList.add('no');
@@ -468,9 +437,6 @@ function finishGame() {
     document.getElementById('media-btn-truth').classList.add('unlock-anim');
     // media-btn-truth listener
     document.getElementById('media-btn-truth').addEventListener('click', displayImageButtonOnClick);
-    // display black screen
-    // document.getElementById('media-btn-truth').addEventListener('click', displayTruthButtonOnClick);
-    // when video finishes, see Charles speaking "What is that ? ... I still don't understand who that girl is. Her mother died, but how is it related to Alice ?"
 }
 
 /////////////
@@ -479,26 +445,27 @@ function finishGame() {
 
 // update word circular progress bar
 function updateWordProgress() {
-    let cWord = document.getElementById('circle-word');
-    let cWordDiv = document.getElementById('circle-word-div');
+    const pWordHeader = document.getElementById("progress-word-header");
+    const pWordBar = document.getElementById("progress-word-bar");
     const countTrueWords = notebook.countTrueWords();
     const getKeyWordListNoDupLen = dic.getKeyWordListNoDup().length;
     const percentage = Math.round(countTrueWords / getKeyWordListNoDupLen * 100)
     const displayTrueWords = countTrueWords === undefined ? 0 : countTrueWords
 
-    cWord.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
-    cWordDiv.innerHTML = "Word<br>" + displayTrueWords + '/' + getKeyWordListNoDupLen;
+    pWordHeader.innerHTML = "Word : " + displayTrueWords + '/' + getKeyWordListNoDupLen + " (" + percentage + "%)";
+    pWordBar.style.width = percentage + '%';
 }
 
 // update media circular progress bar
 function updateMediaProgress() {
-    let cMedia = document.getElementById('circle-media');
-    let cMediaDiv = document.getElementById('circle-media-div');
+    const pMediaHeader = document.getElementById("progress-media-header");
+    const pMediaBar = document.getElementById("progress-media-bar");
     const countSeen = dic.getSeen();
     const percentage = Math.round(countSeen / dic.length() * 100);
 
-    cMedia.style.backgroundImage = "conic-gradient(#b5838d " + percentage + "%, #ffcdb2 0)";
-    cMediaDiv.innerHTML = "Media<br>" + countSeen + '/' + dic.length();
+    pMediaHeader.innerHTML = "Media : " + countSeen + '/' + dic.length() + " (" + percentage + "%)";
+    pMediaBar.style.width = percentage + '%';
+
     // FINISH GAME HERE
     if (countSeen === 3) {     // at the last media closing, if see half of total media
     // if (countSeen === Math.round(dic.length() / 2)) { // when player has unlocked at least 50% of media
@@ -517,6 +484,9 @@ function closePopup2() {
     document.getElementById('popup').style.display = 'none';
     // update media progression
     updateMediaProgress();
+    // remove img source
+    document.getElementById('ex-help-1-image').src = '';
+    document.getElementById('ex-help-2-image').src = '';
 }
 
 function closePopup1(element) {
@@ -525,7 +495,7 @@ function closePopup1(element) {
         if ( event.keyCode == 27  && document.getElementById('popup').style.display === 'block') {
             closePopup2();
         }
-    };    
+    };
 }
 
 closePopup1(document.getElementById('close-button')); // for close button or escape
@@ -555,6 +525,7 @@ function displayNbMainButtonOnClick(event) {
     document.getElementById('popup').style.display = 'block'; // show popup
     document.getElementById('image-container').style.display = 'none'; // hide image container
     document.getElementById('video-container').style.display = 'none'; // hide video container
+    document.getElementById('ex-container').style.display = 'none'; // hide ex container
     document.getElementById('nb-container').style.display = 'block'; // show nb container
 }
 
@@ -692,7 +663,7 @@ function displayExFeedbackOnClick(event){
         // change media-btn-3 virus to SUCCEED
         mediaBtnArray[2].id = "media-btn-3";
         mediaBtnArray[2].id += dic.getMediaBtnSuffix(kw, 2, ' '); // add code number after button id, to be able to display the corresponding media in ButtonOnClick()
-        mediaBtnArray[2].innerHTML = "EXERCISE SUCCEED"; // change label of button
+        mediaBtnArray[2].innerHTML = "Alarm Removed Safely"; // change label of button
         mediaBtnArray[2].style.backgroundColor = "green"; // change label of button
         // set exercise to true
         ex.setCompletedToTrue(kw);
@@ -712,7 +683,16 @@ function displayExFeedbackOnClick(event){
 
 // when click on help btn, display help text/image
 function displayExHelpTextOnClick(event) {
-    document.getElementById('ex-help-text').style.display = 'block';
+    // document.getElementById('ex-help-text').style.display = 'block';
+    const img1 = document.getElementById('ex-help-1-image'); // get image DOM
+    const img2 = document.getElementById('ex-help-2-image'); // get image DOM
+
+    img1.src = './assets/media/help/modal-vb-1.jpg';
+    img2.src = './assets/media/help/modal-vb-2.jpg';
+    img1.style.height = '30vh';
+    img2.style.height = '20vh';
+    img1.style.width = 'auto';
+    img2.style.width = 'auto';
 }
 
 // when click on btn, handle exercise : change source & style
@@ -785,11 +765,11 @@ function mediaBtnHandleListener(flag, searchWord, i) {
             mediaBtnArray[i].addEventListener('click', displayVideoButtonOnClick, { passive : false});
         }
     // IF BUTTON IS AN EXERCISE
-    } else if (flag === 'exercise') { 
+    } else if (flag === 'exercise') {
         // remove image and video listeners of each btn
         for (let i = 0; i < 3; i++) {
             mediaBtnArray[i].removeEventListener('click', displayImageButtonOnClick);
-            mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);    
+            mediaBtnArray[i].removeEventListener('click', displayVideoButtonOnClick);
         }
         // begin image listener onclick
         mediaBtnArray[i].addEventListener('click', displayExerciseButtonOnClick, { passive : false});
@@ -834,7 +814,7 @@ function changeMediaBtnCSS(searchWord, i, flag) {
                 color: ["#8e4c98", "#000"], // [ from, to ]
                 },750);  // timing
         // if flag = media, change css to normal button
-        } else { 
+        } else {
             mediaBtnArray[i].style.backgroundColor = '#f1fff1';
             mediaBtnArray[i].animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
                 opacity: [0.3, 1], // [ from, to ]
@@ -853,7 +833,7 @@ function changeMediaBtnCSS(searchWord, i, flag) {
             mediaBtnArray[i].style.backgroundColor = 'green';
         // if ex not done purple
         } else {
-            mediaBtnArray[i].innerHTML = "VIRUS Exercise"; // change label of button
+            mediaBtnArray[i].innerHTML = "VIRUS Alarm"; // change label of button
             mediaBtnArray[i].style.backgroundColor = '#ee82ee';
             mediaBtnArray[i].animate({ // https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats
                     opacity: [0.1, 1], // [ from, to ]
@@ -863,7 +843,7 @@ function changeMediaBtnCSS(searchWord, i, flag) {
     }
 }
 
-// changes each media btn visually 
+// changes each media btn visually
 function mediaBtnBehavior(searchWord) {
     // for each media btn
     for (let i = 0; i < mediaBtnArray.length; i++) {
@@ -877,7 +857,7 @@ function mediaBtnBehavior(searchWord) {
         // change media btn css depending on media or exercise
         changeMediaBtnCSS(searchWord, i, flag);
         // display red dot if never seen media
-        handleRedDot(searchWord, i); 
+        handleRedDot(searchWord, i);
         // initiate btn listener depending on media or exercise
         mediaBtnHandleListener(flag, searchWord, i)
     }
@@ -911,26 +891,24 @@ function mainInterfaceFct(searchWord) {
             const virusWord = ex.getClosestVirus();
             if (notebook.getStrikeFalse() >= 4 && virusWord) { // help mechanic
                 // searchInput value with the closest word (from beginning of list or from what they have already found?)
-                searchInput.placeholder = "No media found on word '" + searchWord + "', try with this keyword : '" + virusWord + "'.";
-                // anim searchbar
-                guideSearchBar(0);
+                searchInput.placeholder = "Try : '" + virusWord + "'";
             } else {
-                searchInput.placeholder = "No media found on word '" + searchWord + "', try again.";
+                searchInput.placeholder = "Incorrect '" + searchWord + "' word, try again.";
             }
         } else {
             searchInput.placeholder = "Wanna seek the truth right ? Aren't we all looking for it ?";
         }
-        searchInput.value = ''; 
+        searchInput.value = '';
     }
 }
 
 // Search bar functionality
 document.getElementById('search-input').addEventListener(
     // when clicking enter in the input
-    'keydown', (event) => { 
+    'keydown', (event) => {
         if (event.key === 'Enter') {
-            // remove the animation
-            document.getElementById('search-bar').classList.remove('anim');
+            // remove search bar anim
+            document.getElementById('search-bar').style.animation = ('unset');
             // do the main interface function
             mainInterfaceFct(document.getElementById('search-input').value.trim().toLowerCase());
     }
@@ -940,14 +918,14 @@ document.getElementById('search-input').addEventListener(
 document.querySelector('.search-icon').addEventListener(
     // when clicking on the search-icon
     'click', (event) => {
-        // remove the animation
+        // remove search bar anim
         document.getElementById('search-bar').style.animation = ('unset');
         // do the main interface function
         mainInterfaceFct(document.getElementById('search-input').value.trim());
 });
 
 // First video always here
-document.getElementById('main-first').addEventListener('click',displayVideoButtonOnClick, { passive : false}); 
+document.getElementById('main-first').addEventListener('click',displayVideoButtonOnClick, { passive : false});
 
 //////////////////
 // INTRODUCTION //
@@ -966,7 +944,7 @@ function toMain() {
     introVideoContainer.classList.remove('show'); // remove intro video container
     firstPage.style.display = 'none'; // hide first page
     gameContainer.removeAttribute('hidden'); // display game interface
-    guideSearchBar(5000); // guide : make search bar anim after 5000ms if did not search anything
+    guideSearchBar(20000); // guide : make search bar anim after 5000ms if did not search anything
 }
 
 // when video ends, shows "Let's find her"
@@ -990,21 +968,22 @@ document.getElementById('chapter-btn-1').addEventListener('click', function() {
     introVideoContainer.classList.add('show');
     introVideoPlayer.load();
     introVideoPlayer.play();
+    introVideoPlayer.removeAttribute("controls"); // remove controls from video
 });
 
 //////////////////////////////////////////////////////////
 
 // dev side
-function toIntro(a) {
-    if (!a)
-        return ;
-    const introVideoContainer = document.getElementById('intro-video-container');
-    const firstPage = document.getElementById('first-page');
-    const gameContainer = document.getElementById('game');
+// function toIntro(a) {
+//     if (!a)
+//         return ;
+//     const introVideoContainer = document.getElementById('intro-video-container');
+//     const firstPage = document.getElementById('first-page');
+//     const gameContainer = document.getElementById('game');
 
-    introVideoContainer.classList.remove('show');
-    firstPage.style.display = 'none';
-    gameContainer.removeAttribute('hidden');
-    guideSearchBar(5000); // make search bar anim after 5000ms
-}
-toIntro(1); // 0 to introduction, 1 to main interface
+//     introVideoContainer.classList.remove('show');
+//     firstPage.style.display = 'none';
+//     gameContainer.removeAttribute('hidden');
+//     guideSearchBar(20000); // make search bar anim after 5000ms
+// }
+// toIntro(0); // 0 to introduction, 1 to main interface

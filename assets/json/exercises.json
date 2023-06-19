@@ -21,7 +21,7 @@
                 "text" : "would"
             }
         ],
-        "help" : "règle…",
+        "help" : "modal",
         "trueAnswer" : 2,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
@@ -77,7 +77,7 @@
                 "text" : "would"
             }
         ],
-        "help" : "règle…",
+        "help" : "modal",
         "trueAnswer" : 4,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
@@ -349,7 +349,7 @@
                 "text" : "may"
             }
         ],
-        "help" : "règle…",
+        "help" : "modal",
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
@@ -589,7 +589,7 @@
                 "text" : "must"
             }
         ],
-        "help" : "règle…",
+        "help" : "modal",
         "trueAnswer" : 1,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
@@ -645,7 +645,7 @@
                 "text" : "could"
             }
         ],
-        "help" : "règle…",
+        "help" : "modal",
         "trueAnswer" : 4,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",
@@ -821,7 +821,7 @@
                 "text" : "must"
             }
         ],
-        "help" : "règle…",
+        "help" : "modal",
         "trueAnswer" : 4,
         "trueFeedback" : "Good job ! You can now continue the exploration !",
         "falseFeedback" : "Oops, your answer isn't quite right. Retry or try to click on the help button.",

@@ -1,104 +1,92 @@
 /*melina*/
 @font-face {
-    font-family: 'Typewriter';
-    src: url('../font/JMH\ Typewriter-Black.otf'),
-    url('../font/JMH\ Typewriter-Black.ttf'),
-    url('../font/JMH\ Typewriter-Bold.otf'),
-    url('../font/JMH\ Typewriter-Bold.ttf'),
-    url('../font/JMH\ Typewriter-Thin.otf'),
-    url('../font/JMH\ Typewriter-Thin.ttf'),
-    url('../font/JMH\ Typewriter.otf'),
-    url('../font/JMH\ Typewriter.ttf');
-  }
-  
-  html {
-    height: 100%;
-  }
+  font-family: "Typewriter";
+  src: url("../font/JMH\ Typewriter-Black.otf"),
+    url("../font/JMH\ Typewriter-Black.ttf"),
+    url("../font/JMH\ Typewriter-Bold.otf"),
+    url("../font/JMH\ Typewriter-Bold.ttf"),
+    url("../font/JMH\ Typewriter-Thin.otf"),
+    url("../font/JMH\ Typewriter-Thin.ttf"), url("../font/JMH\ Typewriter.otf"),
+    url("../font/JMH\ Typewriter.ttf");
+}
+/* ********************** */
+/* ******** body ******** */
+/* ********************** */
 
-  body {
+html {
+  height: 100%;
+}
+
+body {
   font-family: Arial, sans-serif;
   /* Bei: added background image */
   background-image: url("../icons/background.jpg");
-  background-position:center;
-  background-repeat:no-repeat;
-  background-position-y:top;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position-y: top;
   background-size: 100% auto;
   margin: 0;
 }
 
-.game {
-padding-top: 7.6%;
-padding-bottom: 3.2%;
-padding-left: 38.7%;
-padding-right: 38.6%;
-height: 100%;
-}
-
-.header {
-  height: 10%;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background: red;
-}
-
-.h-left,
-.h-middle,
-.h-right {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.h-middle {
-    margin: 0 auto;
-}
-
-.header-icon {
-  width: auto;
-  height: 5%;
-  margin-left:5%
-}
+/* **************************** */
+/* ******** first page ******** */
+/* **************************** */
 
 .first-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 7.6%;
+  padding-bottom: 3.2%;
+  padding-left: 38.7%;
+  padding-right: 38.6%;
   height: 100vh;
 }
 
 .title {
-    font-family: "Typewriter", sans-serif;
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    text-shadow: 4px 4px 8px rgba(0,0,0,1);
-    color: #fff;
+  font-family: "Typewriter", sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 1);
+  color: #fff;
 }
 
 .chapter-btn {
-    display: inline-block;
-    padding: 15px 30px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    background-color: #e3e3e3;
-    color: #999;
-    border: 2px solid #999;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    font-family: 'Typewriter', sans-serif;
+  display: inline-block;
+  padding: 15px 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #e3e3e3;
+  color: #999;
+  border: 2px solid #999;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: "Typewriter", sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.chapter-btn:hover {
+#chapter-btn-1:hover {
+  cursor: pointer;
   background-color: #ddd;
   color: #000;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+#chapter-btn-2,
+#chapter-btn-3 {
+  cursor: not-allowed;
+}
+
+.credits {
+  font-family: "Typewriter", sans-serif;
+  width: 100%;
+  padding: 10px;
+  margin-top: 50px;
+  justify-content: center;
+  text-align: center;
 }
 
 .intro-video-container {
@@ -179,9 +167,278 @@ height: 100%;
   color: #000;
 }
 
-/* circular progress bar : https://alvarotrigo.com/blog/progress-bar-css/#9.-circular-progress-bar-with-numbers */
+/* ********************** */
+/* ******** game ******** */
+/* ********************** */
+
+.game {
+  padding-top: 7.6%;
+  padding-bottom: 3.2%;
+  padding-left: 38.7%;
+  padding-right: 38.6%;
+  height: 100%;
+}
+
+/* ************************ */
+/* ******** header ******** */
+/* ************************ */
+
+.header {
+  height: 10%;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* background: red; */
+}
+
+.h-left,
+.h-middle,
+.h-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.h-middle {
+  margin: 0 auto;
+}
+
+.header-icon {
+  width: auto;
+  height: 5%;
+  margin-left: 5%;
+}
+
+/* ******************************** */
+/* ******** main interface ******** */
+/* ******************************** */
+
+.interface {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-interface {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* **************************** */
+/* ******** search bar ******** */
+/* **************************** */
+
+.search-bar {
+  /* Bei: width changed */
+  width: 90%;
+  height: 40px;
+  background: #f1f1f1;
+  padding: 10px 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+#search-input {
+  width: 90%;
+  border-radius: 20px;
+  flex: 1;
+  border: none;
+  outline: none;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.search-bar.anim {
+  animation: colorSBAnimation 1.2s linear infinite;
+}
+
+@keyframes colorSBAnimation {
+  0% {
+    background-color: #f0f0f0; /* Start with white */
+  }
+  50% {
+    background-color: #cc8e8e; /* Transition to grey */
+  }
+  100% {
+    background-color: #f0f0f0; /* Return to white */
+  }
+}
+
+/* *********************** */
+/* ******** media ******** */
+/* *********************** */
+
+.media {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.button {
+  width: 100%;
+  color: white;
+  /* display: inline-block; Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+  /* All 'absolute'ly positioned elements are relative to this one */
+  position: relative;
+  /* padding: 2px 5px; Add some padding so it looks nice */
+}
+
+.media-btn,
+.ex-btn {
+  /*Bei: width changed*/
+  width: 100%;
+  height: 50px;
+  background: #f1fff1;
+  color: grey;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#search-input:hover,
+.media-btn:hover,
+.main-btn:hover,
+.ex-btn:hover,
+.return-btn:hover,
+.media-btn-truth:hover {
+  color: #000;
+}
+
+.dot {
+  /* https://stackoverflow.com/questions/5747863/easiest-css-for-red-notification-badge-with-count */
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute; /* Position the badge within the relatively positioned button*/
+  top: 0;
+  right: 0;
+}
+
+/* ************************** */
+/* ******** main btn ******** */
+/* ************************** */
+
+.footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 10px;
+  /* background-color: red; */
+  margin-bottom: 15%;
+}
+
+.main-btn {
+  width: 40%;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+/* *********************** */
+/* ******** truth ******** */
+/* *********************** */
+
+.truth {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-btn-truth {
+  width: 100%;
+  height: 30px;
+  background: #9f9f9f;
+  border-radius: 20px;
+}
+
+.guide-truth {
+  display: none;
+  font-size: small;
+}
+
+.media-btn-truth:hover + .guide-truth {
+  display: block;
+}
+
+.media-btn-truth:hover + .guide-truth.no {
+  display: block;
+}
+
+#media-btn-truth.unlock-still {
+  background-color: #8bbdce;
+}
+
+#media-btn-truth.unlock-anim {
+  background-color: #8bbdce;
+  animation: colorMBTAnimation 2s linear infinite;
+}
+
+@keyframes colorMBTAnimation {
+  0% {
+    background-color: #8bbdce; /* Start with white */
+  }
+  50% {
+    background-color: #6a6aaa; /* Transition to grey */
+  }
+  100% {
+    background-color: #8bbdce; /* Return to white */
+  }
+}
+
+.media-btn-truth:hover + .guide-truth.no {
+  display: none;
+}
+
+.main-btn:hover,
+.return-btn:hover,
+.ex-btn:hover,
+#media-btn-truth.unlock-anim,
+#media-btn-truth.unlock-still {
+  cursor: pointer;
+}
+
+.main-btn:hover {
+    background-color: #cc8e8e;
+  -webkit-filter: brightness(70%);
+  -webkit-transition: all 0s ease;
+  -moz-transition: all 0s ease;
+  -o-transition: all 0s ease;
+  -ms-transition: all 0s ease;
+  transition: all 0s ease;
+}
+
+/* ****************************** */
+/* ******** progress bar ******** */
+/* ****************************** */
+
+.progress {
+  width: 100%;
+}
+.w3-light-grey {
+  width: 100%;
+}
+
+/* https://alvarotrigo.com/blog/progress-bar-css/#9.-circular-progress-bar-with-numbers */
 .wrap-circles {
-    /* margin-top: 100px; */
+  width: 100%;
+  /* margin-top: 100px; */
   display: flex;
   /* min-height: 10%; */
   flex-wrap: wrap;
@@ -226,170 +483,9 @@ height: 100%;
   color: rgba(255, 255, 255, 0.75);
 }
 
-.interface {
-  height: 60vh;
-  /* Bei: height changed */
-  /* height: 55vh; */
-  display: flex;
-  flex-direction: column;
-}
-
-.main-interface {
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-bar {
-  /* Bei: width changed */
-  width: 20%;
-  height: 40px;
-  background: #f1f1f1;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  margin-bottom: 20px;
-}
-
-.search-bar.anim {
-  animation: colorSBAnimation 1.2s linear infinite;
-}
-
-@keyframes colorSBAnimation {
-  0% {
-    background-color: #f0f0f0; /* Start with white */
-  }
-  50% {
-    background-color: #cc8e8e; /* Transition to grey */
-  }
-  100% {
-    background-color: #f0f0f0; /* Return to white */
-  }
-}
-
-#search-input {
-  flex: 1;
-  border: none;
-  outline: none;
-}
-
-.search-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.media {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.button {
-  color: white;
-  display: inline-block; /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
-  position: relative; /* All 'absolute'ly positioned elements are relative to this one */
-  padding: 2px 5px; /* Add some padding so it looks nice */
-}
-
-.media-btn-truth {
-  width: 40vh;
-  height: 40px;
-  background: #9f9f9f;
-  border-radius: 20px;
-  margin-bottom: 10px;
-}
-
-.media-btn,
-.ex-btn {
-  /*Bei: width changed*/
-  /* width: 25vh; */
-  width: 40vh;
-  height: 40px;
-  background: #f1fff1;
-  border-radius: 20px;
-  margin-bottom: 10px;
-}
-
-#search-input:hover,
-.media-btn:hover,
-.main-btn:hover,
-.ex-btn:hover,
-.return-btn:hover,
-.media-btn-truth:hover {
-  -webkit-filter: brightness(70%);
-  -webkit-transition: all 0s ease;
-  -moz-transition: all 0s ease;
-  -o-transition: all 0s ease;
-  -ms-transition: all 0s ease;
-  transition: all 0s ease;
-}
-
-.truth {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.guide-truth {
-  display: none;
-}
-
-.media-btn-truth:hover + .guide-truth {
-  display: block;
-}
-
-.media-btn-truth:hover + .guide-truth.no {
-  display: block;
-}
-
-#media-btn-truth.unlock-still {
-  background-color: #8bbdce;
-}
-
-#media-btn-truth.unlock-anim {
-  background-color: #8bbdce;
-  animation: colorMBTAnimation 2s linear infinite;
-}
-
-@keyframes colorMBTAnimation {
-  0% {
-    background-color: #8bbdce; /* Start with white */
-  }
-  50% {
-    background-color: #6a6aaa; /* Transition to grey */
-  }
-  100% {
-    background-color: #8bbdce; /* Return to white */
-  }
-}
-
-.media-btn-truth:hover + .guide-truth.no {
-  display: none;
-}
-
-.main-btn:hover,
-.return-btn:hover,
-.ex-btn:hover,
-#media-btn-truth.unlock-anim,
-#media-btn-truth.unlock-still {
-  cursor: pointer;
-}
-
-.dot {
-  /* https://stackoverflow.com/questions/5747863/easiest-css-for-red-notification-badge-with-count */
-  height: 20px;
-  width: 20px;
-  background-color: transparent;
-  border-radius: 50%;
-  display: inline-block;
-  position: absolute; /* Position the badge within the relatively positioned button*/
-  top: 0;
-  right: 0;
-}
+/* *********************** */
+/* ******** popup ******** */
+/* *********************** */
 
 .popup {
   display: none;
@@ -406,15 +502,58 @@ height: 100%;
 .video-container,
 .nb-container,
 .ex-container {
+  width: 90%;
+  height: 90%;
   display: none;
+  background-color: #fff;
   position: relative;
   top: 50%;
   left: 50%;
-  height: 90vh;
   transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  max-width: 90%;
+}
+
+#video-player {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  background-size: cover;
+  overflow: hidden;
+}
+
+#image {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+}
+
+#audio-player {
+  position: relative;
+  top: 50%;
+  left: 10%;
+}
+
+#ex-text,
+#ex-feedback {
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 40px;
+  padding-right: 20%;
+  padding-left: 20%;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #006e93;
+}
+
+#ex-help-1-image,
+#ex-help-2-image {
 }
 
 .ex-btn-container {
@@ -424,9 +563,58 @@ height: 100%;
   justify-content: center;
 }
 
-#image-player,
-#video-player {
-  width: 50%;
+.ex-btn {
+  width: 200px;
+  height: max-content;
+  padding: 20px;
+  margin: 20px;
+}
+
+.ex-help-text {
+  right: 0;
+}
+
+.nb-header {
+  font-family: "Typewriter", sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+  text-shadow: 4px 4px 8px rgb(168, 168, 168);
+  color: #006e93;
+}
+
+.nb-true > p,
+.nb-false > p {
+  font-family: "Typewriter", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #060606;
+}
+
+.nb-interface {
+  display: none;
+  position: fixed;
+}
+
+.nb-true,
+.nb-false {
+  text-align: center;
+}
+
+.nb-true-list {
+  font-style: italic;
+  background-color: rgb(150, 200, 196);
+  color: green;
+  margin-bottom: 40px;
+}
+
+.nb-false-list {
+  font-style: italic;
+  background-color: rgb(150, 200, 196);
+  color: red;
 }
 
 .close-button {
@@ -494,63 +682,4 @@ height: 100%;
 .close:hover:after,
 .close:hover:before {
   background: blue;
-}
-
-.footer {
-    left:0;
-    bottom:0;
-  height: 20%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 0 10px;
-  background-color: red;
-}
-
-.main-btn {
-  width: 100%;
-  height: 100%;
-  /* background: #f1ff11; */
-  border-radius: 10px;
-  padding: 0 10px;
-}
-
-.return-btn {
-  width: 100px;
-  height: 50px;
-  background: #f1ff11;
-  border-radius: 10px;
-  padding: 0 10px;
-}
-
-.msg-interface,
-.nb-interface,
-.opt-interface {
-  display: none;
-  position: fixed;
-}
-
-.nb-true,
-.nb-false {
-  text-align: center;
-}
-
-.nb-true-list {
-  font-style: italic;
-  background-color: black;
-  color: green;
-}
-
-.nb-false-list {
-  font-style: italic;
-  background-color: black;
-  color: red;
-}
-
-.opt-btn {
-  width: 80%;
-  height: 40px;
-  background: #f1f1f1;
-  border-radius: 20px;
-  margin-bottom: 10px;
 }

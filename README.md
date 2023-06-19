@@ -104,23 +104,10 @@ A faire ensuite :
 - 2h : help mechanic
 - 2h : team meeting on design
 
-TODO :
+## 19.06.2023 : 
 
-html lien vers le fond
-virus exercise -> v alarm
-boutons : font gris-> noir et background stay light
-search - 3 btn - nb/1st vid - boutons ronds à la fin
-help à la fin dans exos
-EX SUCCEED -> ALARM REMOVED
-mettre help modal sur exercise
-mettre audio en dessous d'images
-
-mandatory : 
-- JOURNAL DE CONCEPTION
-- css 
-
-useful to play : 
-- credits
+4h : 
+- 4h html/css
 
 details : 
 - searchbar icon hover (css styling)
@@ -134,14 +121,13 @@ to check after finishing :
 - drunk 2 marche pas
 - 44
 
-
 Functionalities not included : 
 - save (includes cookies)
 - mobile 
 
 Les mécaniques incluses dans cette version sont : 
-- exercise
-- help
+- exercise (quand keyword a 2 media, le 3è est un exercice)
+- help (après 4 mots faux, donne mot clé pour exercice)
 
 
 # Attributions : 
